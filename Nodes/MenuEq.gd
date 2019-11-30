@@ -5,7 +5,7 @@ onready var RootMenu=get_node("../")
 onready var selector=$SELECTOR
 onready var buttons=get_node("BUTTONS").get_children()
 
-func _ready(): print(RootMenu.name)
+func _ready(): hide()
 
 func show(): 
 	visible=true
