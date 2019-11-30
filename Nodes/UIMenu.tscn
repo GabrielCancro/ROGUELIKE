@@ -1,20 +1,27 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Nodes/UIMenu.gd" type="Script" id=1]
-[ext_resource path="res://sprites/uimenu/equip.png" type="Texture" id=2]
-[ext_resource path="res://sprites/uimenu/attack.png" type="Texture" id=3]
-[ext_resource path="res://sprites/uimenu/uses.png" type="Texture" id=4]
-[ext_resource path="res://sprites/uimenu/spells.png" type="Texture" id=5]
-[ext_resource path="res://sprites/uimenu/selector.png" type="Texture" id=6]
+[ext_resource path="res://Nodes/MenuP.gd" type="Script" id=2]
+[ext_resource path="res://sprites/uimenu/equip.png" type="Texture" id=3]
+[ext_resource path="res://sprites/uimenu/attack.png" type="Texture" id=4]
+[ext_resource path="res://sprites/uimenu/uses.png" type="Texture" id=5]
+[ext_resource path="res://sprites/uimenu/spells.png" type="Texture" id=6]
+[ext_resource path="res://sprites/uimenu/selector.png" type="Texture" id=7]
+[ext_resource path="res://Nodes/MenuEq.gd" type="Script" id=8]
 
-[node name="Control" type="Control"]
+[node name="RootMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -1024.0
 margin_bottom = -600.0
 script = ExtResource( 1 )
 
-[node name="MenuP" type="GridContainer" parent="."]
+[node name="MenuP" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 2 )
+
+[node name="BUTTONS" type="GridContainer" parent="MenuP"]
 margin_left = -101.097
 margin_top = -46.427
 margin_right = 102.903
@@ -23,54 +30,70 @@ custom_constants/vseparation = 0
 custom_constants/hseparation = 0
 columns = 7
 
-[node name="BTN_EQ" type="Button" parent="MenuP"]
+[node name="BTN_EQ" type="Button" parent="MenuP/BUTTONS"]
 margin_right = 51.0
-margin_bottom = 45.0
-icon = ExtResource( 2 )
-
-[node name="BTN_ATK" type="Button" parent="MenuP"]
-margin_left = 51.0
-margin_right = 102.0
 margin_bottom = 45.0
 icon = ExtResource( 3 )
 
-[node name="BTN_US" type="Button" parent="MenuP"]
-margin_left = 102.0
-margin_right = 153.0
+[node name="BTN_ATK" type="Button" parent="MenuP/BUTTONS"]
+margin_left = 51.0
+margin_right = 102.0
 margin_bottom = 45.0
 icon = ExtResource( 4 )
 
-[node name="BTN_SPL" type="Button" parent="MenuP"]
-margin_left = 153.0
-margin_right = 204.0
+[node name="BTN_US" type="Button" parent="MenuP/BUTTONS"]
+margin_left = 102.0
+margin_right = 153.0
 margin_bottom = 45.0
 icon = ExtResource( 5 )
 
-[node name="MenuEq" type="GridContainer" parent="."]
-visible = false
+[node name="BTN_SPL" type="Button" parent="MenuP/BUTTONS"]
+margin_left = 153.0
+margin_right = 204.0
+margin_bottom = 45.0
+icon = ExtResource( 6 )
+
+[node name="SELECTOR" type="TextureRect" parent="MenuP"]
+margin_left = -24.0
+margin_top = -20.0
+margin_right = 27.0
+margin_bottom = 25.0
+texture = ExtResource( 7 )
+stretch_mode = 6
+
+[node name="MenuEq" type="Control" parent="."]
+editor/display_folded = true
 margin_left = -50.0381
 margin_top = -44.1468
-margin_right = 51.9619
-margin_bottom = 0.853157
+margin_right = -10.0381
+margin_bottom = -4.1468
+script = ExtResource( 8 )
+
+[node name="BUTTONS" type="GridContainer" parent="MenuEq"]
+editor/display_folded = true
+margin_right = 102.0
+margin_bottom = 45.0
 custom_constants/vseparation = 0
 custom_constants/hseparation = 0
 columns = 7
 
-[node name="BTN_ATK" type="Button" parent="MenuEq"]
+[node name="BTN_ATK" type="Button" parent="MenuEq/BUTTONS"]
 modulate = Color( 0.784314, 0.588235, 1, 1 )
 margin_right = 51.0
 margin_bottom = 45.0
-icon = ExtResource( 3 )
+icon = ExtResource( 4 )
 
-[node name="BTN_EQ" type="Button" parent="MenuEq"]
+[node name="BTN_EQ" type="Button" parent="MenuEq/BUTTONS"]
 modulate = Color( 0.784314, 0.588235, 1, 1 )
 margin_left = 51.0
 margin_right = 102.0
 margin_bottom = 45.0
-icon = ExtResource( 2 )
+icon = ExtResource( 3 )
 
-[node name="Selector" type="TextureRect" parent="."]
-margin_right = 51.0
-margin_bottom = 45.0
-texture = ExtResource( 6 )
+[node name="SELECTOR" type="TextureRect" parent="MenuEq"]
+margin_left = 26.0381
+margin_top = 24.1468
+margin_right = 77.0381
+margin_bottom = 69.1468
+texture = ExtResource( 7 )
 stretch_mode = 6

@@ -12,7 +12,7 @@ var work_scene = preload("res://Nodes/workEff.tscn")
 
 onready var nav_2D:Navigation2D=get_node("../Nav2D")
 onready var tile_map:TileMap=get_node("../Nav2D/TileMap")
-onready var menu:Navigation2D=get_node("../Control")
+onready var menu=get_node("../RootMenu")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,7 +30,7 @@ func get_input():
 	elif v.x!=0 || v.y!=0:
 		#var new_path = nav_2D.get_simple_path(position, nav_2D.get_tilemap_pos(position+v*32))
 		#get_node("../Nav2D/Line2D").points=new_path
-		var myTileDes=tile_map.world_to_map(position)+v
+		var myTileDes=tilePos()+v
 		var myDes=tile_map.map_to_world(myTileDes)+tile_map.cell_size/2
 		var cell_des=tile_map.get_cellv(myTileDes)
 		if(cell_des==3 || cell_des==10):
@@ -39,10 +39,13 @@ func get_input():
 			set_work("OPEN",myTileDes)
 	if Input.is_action_just_released('ui_accept'): 
 			STATE="MENU"
-			menu.showMenu(self)
+			menu.showRootMenu(self)
 
 func on_exit_menu(data):
 	STATE="MOVE"
+	
+func tilePos():
+	return tile_map.world_to_map(position)
 
 func _physics_process(delta):
 	if STATE=="MOVE": get_input()		
