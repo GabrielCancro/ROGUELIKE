@@ -71,7 +71,3 @@ text = "Te moves con las flechitas del teclado
 con CLICK tambien te moves.. pero cuidado con los Bugs"
 
 [node name="RootMenu" parent="." instance=ExtResource( 9 )]
-margin_left = 826.0
-margin_top = 179.0
-margin_right = 826.0
-margin_bottom = 179.0

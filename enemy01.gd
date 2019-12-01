@@ -16,7 +16,7 @@ onready var menu=get_node("../RootMenu")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position=Vector2(32+16,32+16)
+	position=Vector2(32*4+16,32*3+16)
 
 func get_input():
 # Detect up/down/left/right keystate and only move when pressed.

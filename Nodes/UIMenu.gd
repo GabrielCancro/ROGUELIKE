@@ -1,15 +1,16 @@
-extends Control
+extends Node2D
 
 # Declare member variables here. Examples:
 var current_menu="NONE"
 var player: Node2D
 
-func _ready(): visible=false
+func _ready(): 
+	visible=false
 
 func showRootMenu(pj):
 	player=pj
-	rect_position=player.position
-	rect_position.y-=25
+	position=player.position
+	position.y-=25
 	print("SHOW MENU")
 	visible=true
 	selectSubMenu("MenuP")
