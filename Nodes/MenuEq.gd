@@ -1,29 +1,21 @@
 extends Control
 
 #esto deberia venir del player
-var items = []
 
+var items=[]
 var index=0
 var base=0
 onready var RootMenu=get_node("../")
 onready var selector=$SELECTOR
 onready var buttons=get_node("BUTTONS").get_children()
 
-func createItems():
-	items.append( {"name": "1 Espada Larga", "type":"ARMA", "desc": "+1atk  -1def"} )
-	items.append( {"name": "2 Pocion de Poder", "desc": "+3pp"} )
-	items.append( {"name": "3 Espada Larga", "type":"ARMA", "desc": "+1atk  -1def"} )
-	items.append( {"name": "4 Pocion de Poder", "desc": "+3pp"} )
-	items.append( {"name": "5 Espada Larga", "type":"ARMA", "desc": "+1atk  -1def"} )
-	items.append( {"name": "6 Pocion de Poder", "desc": "+3pp"} )
-	
 func _ready(): 
 	hide()
-	createItems()
 
 func show(): 
 	visible=true
 	set_process(true)
+	items = get_node("../").player.data.equip
 	drawInfoItems()
 	repos_selector()
 	
@@ -31,9 +23,13 @@ func hide():
 	visible=false
 	set_process(false)
 
-func _onAccept(): 	
-	if items[index+base].get("eq","")=="": items[index+base]["eq"]="EQ"
-	else: items[index+base].erase("eq") 
+func _onAccept():
+	var ITEM=items[index+base]
+	if ITEM.get("eq","")=="":
+		for i in range(0, items.size()):
+			if items[i]["type"]==ITEM["type"]: items[i].erase("eq") 
+		ITEM["eq"]="EQ"
+	else: ITEM.erase("eq") 
 	drawInfoItems()
 
 func _onCancel(): 
@@ -67,10 +63,14 @@ func isBtn(btn_name="NONE"): #true si el boton actual coincide con el el paramet
 func drawInfoItems():
 	for i in range(0, buttons.size()):
 		if i+base<items.size():
-			buttons[i].get_node("name").set_text(items[i+base]["name"])			
+			buttons[i].get_node("icon").set_frame(items[i+base]["icon"])
+			buttons[i].get_node("name").set_text(items[i+base]["name"])
 			buttons[i].get_node("desc").set_text(items[i+base]["desc"])
-			buttons[i].get_node("eq").set_text(items[i+base].get("eq",""))
+			var eq=items[i+base].get("eq","")
+			if eq!="": eq=items[i+base].get("type","")
+			buttons[i].get_node("eq").set_text(eq)
 		else:
+			buttons[i].get_node("icon").set_frame(11)
 			buttons[i].get_node("name").set_text("")
 			buttons[i].get_node("desc").set_text("---")
 			buttons[i].get_node("eq").set_text("")

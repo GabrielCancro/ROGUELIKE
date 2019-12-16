@@ -8,15 +8,21 @@ var moveToPath:bool=false
 var indexPath
 var STATE="MOVE"
 
+signal onChangeHp
+
 var work_scene = preload("res://Nodes/workEff.tscn")
 
 onready var nav_2D:Navigation2D=get_node("../Nav2D")
 onready var tile_map:TileMap=get_node("../Nav2D/TileMap")
 onready var menu=get_node("../RootMenu")
+onready var data=get_node("data")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position=Vector2(32*4+16,32*3+16)
+	position=Vector2(32*7+16,32*5+16)
+	add_to_group("objetos")
+	yield(get_tree().create_timer(0.2), "timeout")
+	addHp(0)
 
 func get_input():
 # Detect up/down/left/right keystate and only move when pressed.
@@ -30,27 +36,45 @@ func get_input():
 	elif v.x!=0 || v.y!=0:
 		#var new_path = nav_2D.get_simple_path(position, nav_2D.get_tilemap_pos(position+v*32))
 		#get_node("../Nav2D/Line2D").points=new_path
-		var myTileDes=tilePos()+v
+		var myTileDes=getTilePos()+v
 		var myDes=tile_map.map_to_world(myTileDes)+tile_map.cell_size/2
 		var cell_des=tile_map.get_cellv(myTileDes)
 		if(cell_des==3 || cell_des==10):
 			set_path([position,myDes])
+			get_node("/root/Node2D/DungeonGenerator").showFog(myTileDes.x,myTileDes.y,6)
 		elif cell_des==8:			
 			set_work("OPEN",myTileDes)
 	if Input.is_action_just_released('ui_accept'): 
-			STATE="MENU"
+			setState("MENU")
 			menu.showRootMenu(self)
+	if Input.is_action_just_released('ui_select'): 
+		print(get_tree().get_root().name)
+		get_tree().get_root().get_node('Node2D/DungeonGenerator').generateDungeon(tile_map)
+
+func setState(_state):
+	yield(get_tree().create_timer(0.1), "timeout")
+	STATE=_state
 
 func on_exit_menu(data):
-	STATE="MOVE"
-	
-func tilePos():
+	if data["action"]=="NONE": 
+		setState("MOVE")
+	elif data["action"]=="CAST":
+		showSelectorTilePos(data)
+
+func on_exit_selector(data):
+	if data.has("tilePos"):
+		set_work("OPEN",data.get("tilePos"))
+	else: setState("MOVE")
+
+func getTilePos():
 	return tile_map.world_to_map(position)
 
 func _physics_process(delta):
-	if STATE=="MOVE": get_input()		
-	return move_and_slide(velocity)
-	
+	get_node('/root/Node2D/UIControl/STATE_Label').set_text("S: "+STATE)
+	if STATE=="MOVE": 
+		get_input()
+		move_and_slide(velocity)
+
 func set_work(name,pos):
 	STATE="WORK"
 	if(name=="OPEN"):
@@ -79,6 +103,16 @@ func movePath():
 		indexPath+=1
 		#position=next_point
 		velocity=Vector2(0,0)
-	print(str(distance_to_next)+"-"+str(velocity.x)+","+str(velocity.y))
+	#print(str(distance_to_next)+"-"+str(velocity.x)+","+str(velocity.y))
 	if indexPath>=path.size():
 		moveToPath=false
+
+func addHp(num):
+	print("PLAYER.addHp "+str(num))
+	data.baseAttr[".hp"]+=num
+	emit_signal("onChangeHp", data.baseAttr[".hp"], data.baseAttr["hp"])
+
+func showSelectorTilePos(data):
+	STATE="TILE_SELECTOR"
+	var SPJ=get_node("../UIControl/SelectPj")
+	SPJ.showSelector(self,data)

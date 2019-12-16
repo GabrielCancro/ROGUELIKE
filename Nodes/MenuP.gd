@@ -16,16 +16,14 @@ func hide():
 	visible=false
 	set_process(false)
 
-func _onAccept(): 
-	if isBtn("BTN_EQ"):
-		RootMenu.selectSubMenu("MenuEq")
+func _onAccept(): 	
+	if isBtn("BTN_ATTR"): RootMenu.selectSubMenu("MenuAttr")
+	elif isBtn("BTN_EQ"): RootMenu.selectSubMenu("MenuEq")
+	elif isBtn("BTN_US"): RootMenu.selectSubMenu("MenuUs")
 	elif isBtn("BTN_SPL"):
 		var pj=RootMenu.getPlayer()
-		pj.set_work("OPEN",pj.tilePos()+Vector2(1,0)) #crea una puerta (solo para testear)
 		hide()
-		#esperamos un poco para cerrar asi no coliciona el input con el de abrir el menu
-		yield(get_tree().create_timer(0.2), "timeout")
-		RootMenu.exitRootMenu()
+		RootMenu.exitRootMenu({"action":"CAST","spell":"FIREBOLT"})
 
 func _onCancel(): 
 	hide()

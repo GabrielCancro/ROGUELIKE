@@ -2,7 +2,8 @@ extends Navigation2D
 
 onready var nav_2d:Navigation2D=self
 onready var line_2d:Line2D=$Line2D
-onready var tile_map:KinematicBody2D=$TileMap
+onready var tile_map:TileMap=$TileMap
+onready var fog_map:TileMap=$FogMap
 onready var cell_size =tile_map.cell_size;
 onready var character:KinematicBody2D=get_node("../Player")
 
