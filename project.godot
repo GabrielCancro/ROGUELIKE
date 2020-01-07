@@ -13,16 +13,32 @@ _global_script_classes=[ {
 "class": "AstarClass",
 "language": "GDScript",
 "path": "res://Nodes/UTILS/ASTAR.gd"
+}, {
+"base": "Reference",
+"class": "DDCoreClass",
+"language": "GDScript",
+"path": "res://Nodes/UTILS/DDCORE.gd"
+}, {
+"base": "Reference",
+"class": "Movible",
+"language": "GDScript",
+"path": "res://Class/Movible.gd"
 } ]
 _global_script_class_icons={
-"AstarClass": ""
+"AstarClass": "",
+"DDCoreClass": "",
+"Movible": ""
 }
 
 [application]
 
 config/name="ROGUELIKE"
-run/main_scene="res://Nodes/main.tscn"
+run/main_scene="res://Nodes/menuPrincipal/menu_principal.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://Globals.gd"
 
 [display]
 
@@ -52,9 +68,15 @@ ui_cancel={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"unicode":0,"echo":false,"script":null)
  ]
 }
+toggle_mode={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [rendering]
 
 quality/driver/driver_name="GLES2"
+quality/2d/use_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false

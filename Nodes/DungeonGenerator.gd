@@ -5,6 +5,8 @@ extends Node2D
 
 #onready var ASTAR = preload('res://Nodes/UTILS/ASTAR.gd').new()
 
+var enemyObject = preload("res://Nodes/Enemy.tscn")
+
 var DATAMAP #es un array 2D con los tiles del mapa
 var map_w=60 #ancho del mapa a generar
 var map_h=30 #alto del mapa a generar
@@ -19,7 +21,7 @@ var cant_rooms=map_w*map_h/150 #formula que, segun el tamaño del mapa, da cuant
 
 #poner en false para obtener el resultado del proceso rapidamente
 #en true ira generando poco a poco para poder visualizar el proceso
-var showProcess=true
+var showProcess=false
 
 var rnd = RandomNumberGenerator.new()   
 var tile_map:TileMap
@@ -47,6 +49,10 @@ func generateDungeon(tile_map_target):
 	
 	if showProcess: yield(get_tree().create_timer(0.5), "timeout")
 	iniFog()
+	Globals.ASTAR.setAstar(Globals.dunGen.DATAMAP,[10,3])
+	addEnemies()
+	
+	return Vector2(ROOMS[0]["cx"],ROOMS[0]["cy"])
 
 func create_map(w, h, baseTile):
 	var m = []
@@ -142,6 +148,7 @@ func conectRooms():
 		crearPasillo(visitedRooms[num_v],unvisitedRooms[num_u])
 		visitedRooms.append(unvisitedRooms[num_u])
 		unvisitedRooms.remove(num_u)
+	ROOMS=visitedRooms
 
 func finishMap(map):
 	#lena el espacio libre con bloques no caminables y establece los muros del mapa
@@ -153,7 +160,7 @@ func iniFog():
 	for x in range(map_w):
 		for y in range(map_h):
 			get_node("/root/Node2D/Nav2D/FogMap").set_cell(x,y,0)
-	#showFog(7,7,5)
+	get_node("/root/Node2D/Nav2D/FogMap").update_bitmask_region()
 
 func showFog(px,py,ran):
 #	for x in range(px-rango,px+rango):
@@ -164,6 +171,8 @@ func showFog(px,py,ran):
 #			elif y>map_h: continue
 #			get_node("/root/Node2D/Nav2D/FogMap").set_cell(x,y,-1)
 	linearRevealFog(px,py,ran)
+	#AUTOTILE UPDATE IS PESADE
+	get_node("/root/Node2D/Nav2D/FogMap").update_bitmask_region(Vector2(px-ran,py-ran),Vector2(px+ran,py+ran))
 #	var rmap=[]
 #	rmap.resize(ran*ran)
 #	recursiveFog(px,py,px,py,ran,rmap)
@@ -205,3 +214,11 @@ func isOcluder(x,y):
 	if DATAMAP[x][y]==tiles["MURO"]: return true
 	if DATAMAP[x][y]==tiles["BLOQUEADO"]: return true
 	return false
+
+func addEnemies():
+	for i in range(2,ROOMS.size()):
+		var r=ROOMS[i]
+		var EN=enemyObject.instance()
+		EN.set_tilePosition(r["cx"],r["cy"])
+		get_node("/root/Node2D").add_child(EN)
+		if i>3: break

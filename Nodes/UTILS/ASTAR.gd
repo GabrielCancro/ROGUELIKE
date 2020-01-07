@@ -9,6 +9,7 @@ func setAstar(grid,traversablesIndexs=[1]): #grid is array[x][y] or array[Vector
 	print("ASTAR seting")
 	if typeof(grid[0])==TYPE_VECTOR2:
 		traversable_tiles=grid
+		#error!!! no hay que agregar toda la grilla a los atravesables!!!
 	elif typeof(grid[0])==TYPE_ARRAY:
 		traversable_tiles=[]
 		for x in range(grid.size()):

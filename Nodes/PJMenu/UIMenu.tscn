@@ -1,51 +1,50 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://Nodes/UIMenu.gd" type="Script" id=1]
-[ext_resource path="res://Nodes/MenuP.gd" type="Script" id=2]
+[ext_resource path="res://Nodes/PJMenu/UIMenu.gd" type="Script" id=1]
+[ext_resource path="res://Nodes/PJMenu/MenuP.gd" type="Script" id=2]
 [ext_resource path="res://sprites/uimenu/equip.png" type="Texture" id=3]
 [ext_resource path="res://sprites/uimenu/attack.png" type="Texture" id=4]
 [ext_resource path="res://sprites/uimenu/uses.png" type="Texture" id=5]
 [ext_resource path="res://sprites/uimenu/spells.png" type="Texture" id=6]
 [ext_resource path="res://sprites/uimenu/selector.png" type="Texture" id=7]
-[ext_resource path="res://Nodes/MenuPj.gd" type="Script" id=8]
-[ext_resource path="res://sprites/uimenu/item_attributos.png" type="Texture" id=9]
-[ext_resource path="res://sprites/uimenu/Cabin-Regular.ttf" type="DynamicFontData" id=10]
-[ext_resource path="res://sprites/uimenu/selectorItems.png" type="Texture" id=11]
-[ext_resource path="res://Nodes/MenuEq.gd" type="Script" id=12]
-[ext_resource path="res://sprites/uimenu/item_140x40.png" type="Texture" id=13]
-[ext_resource path="res://sprites/items.png" type="Texture" id=14]
-[ext_resource path="res://Nodes/MenuUs.gd" type="Script" id=15]
+[ext_resource path="res://sprites/uimenu/item_attributos.png" type="Texture" id=8]
+[ext_resource path="res://sprites/uimenu/Cabin-Regular.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://sprites/uimenu/selectorItems.png" type="Texture" id=10]
+[ext_resource path="res://Nodes/PJMenu/MenuEq.gd" type="Script" id=11]
+[ext_resource path="res://sprites/uimenu/item_140x40.png" type="Texture" id=12]
+[ext_resource path="res://sprites/items.png" type="Texture" id=13]
+[ext_resource path="res://Nodes/PJMenu/MenuUs.gd" type="Script" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 19
-font_data = ExtResource( 10 )
+font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=2]
 size = 21
 outline_size = 2
 outline_color = Color( 0.176471, 0.152941, 0.152941, 1 )
-font_data = ExtResource( 10 )
+font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=3]
 size = 22
 outline_size = 2
 outline_color = Color( 0.262745, 0.207843, 0.207843, 1 )
-font_data = ExtResource( 10 )
-
-[sub_resource type="DynamicFont" id=3]
-outline_size = 2
-outline_color = Color( 0.176471, 0.152941, 0.152941, 1 )
-font_data = ExtResource( 10 )
+font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=4]
+outline_size = 2
+outline_color = Color( 0.176471, 0.152941, 0.152941, 1 )
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=5]
 size = 20
 outline_size = 1
 outline_color = Color( 0.607843, 0.0392157, 0.0392157, 1 )
-font_data = ExtResource( 10 )
+font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=6]
 size = 17
-font_data = ExtResource( 10 )
+font_data = ExtResource( 9 )
 
 [node name="RootMenu" type="Node2D"]
 z_index = 5
@@ -98,11 +97,12 @@ texture = ExtResource( 7 )
 stretch_mode = 6
 
 [node name="MenuAttr" type="Control" parent="."]
+editor/display_folded = true
 margin_left = -79.0892
 margin_top = -38.8549
 margin_right = 77.9108
 margin_bottom = 192.145
-script = ExtResource( 8 )
+script = ExtResource( 2 )
 
 [node name="BUTTONS" type="GridContainer" parent="MenuAttr"]
 margin_left = -7.12405
@@ -116,7 +116,7 @@ custom_constants/hseparation = 0
 editor/display_folded = true
 margin_right = 172.0
 margin_bottom = 31.0
-icon = ExtResource( 9 )
+icon = ExtResource( 8 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM1"]
 anchor_right = 1.0
@@ -133,7 +133,7 @@ margin_left = 134.0
 margin_top = 2.0
 margin_right = 171.0
 margin_bottom = 29.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "27"
 align = 1
@@ -143,7 +143,7 @@ editor/display_folded = true
 margin_top = 31.0
 margin_right = 172.0
 margin_bottom = 62.0
-icon = ExtResource( 9 )
+icon = ExtResource( 8 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM2"]
 anchor_right = 1.0
@@ -160,7 +160,7 @@ margin_left = 134.0
 margin_top = 2.0
 margin_right = 171.0
 margin_bottom = 29.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "27"
 align = 1
@@ -170,7 +170,7 @@ editor/display_folded = true
 margin_top = 62.0
 margin_right = 172.0
 margin_bottom = 93.0
-icon = ExtResource( 9 )
+icon = ExtResource( 8 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM3"]
 anchor_right = 1.0
@@ -187,7 +187,7 @@ margin_left = 134.0
 margin_top = 2.0
 margin_right = 171.0
 margin_bottom = 29.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "27"
 align = 1
@@ -197,7 +197,7 @@ editor/display_folded = true
 margin_top = 93.0
 margin_right = 172.0
 margin_bottom = 124.0
-icon = ExtResource( 9 )
+icon = ExtResource( 8 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM4"]
 anchor_right = 1.0
@@ -214,7 +214,7 @@ margin_left = 134.0
 margin_top = 2.0
 margin_right = 171.0
 margin_bottom = 29.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "27"
 align = 1
@@ -224,7 +224,7 @@ editor/display_folded = true
 margin_top = 124.0
 margin_right = 172.0
 margin_bottom = 155.0
-icon = ExtResource( 9 )
+icon = ExtResource( 8 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM5"]
 anchor_right = 1.0
@@ -241,7 +241,7 @@ margin_left = 134.0
 margin_top = 2.0
 margin_right = 171.0
 margin_bottom = 29.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "27"
 align = 1
@@ -251,7 +251,7 @@ editor/display_folded = true
 margin_top = 155.0
 margin_right = 172.0
 margin_bottom = 186.0
-icon = ExtResource( 9 )
+icon = ExtResource( 8 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM6"]
 anchor_right = 1.0
@@ -268,7 +268,7 @@ margin_left = 134.0
 margin_top = 2.0
 margin_right = 171.0
 margin_bottom = 29.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "27"
 align = 1
@@ -279,7 +279,7 @@ margin_top = -59.8883
 margin_right = 339.623
 margin_bottom = 4.11173
 rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 11 )
+texture = ExtResource( 10 )
 stretch_mode = 1
 
 [node name="attr" type="Label" parent="MenuAttr"]
@@ -287,7 +287,7 @@ margin_left = 168.371
 margin_top = -6.789
 margin_right = 207.371
 margin_bottom = 21.211
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "atk"
 
@@ -296,7 +296,7 @@ margin_left = 167.954
 margin_top = -29.3532
 margin_right = 211.954
 margin_bottom = -5.3532
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "1 / 16"
 align = 1
@@ -306,7 +306,7 @@ margin_left = -11.243
 margin_top = -31.5367
 margin_right = 171.757
 margin_bottom = -6.53671
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "CARACTERISTICAS"
 align = 1
 valign = 1
@@ -318,7 +318,7 @@ margin_left = -79.0892
 margin_top = -38.8549
 margin_right = 77.9108
 margin_bottom = 192.145
-script = ExtResource( 12 )
+script = ExtResource( 11 )
 
 [node name="BUTTONS" type="GridContainer" parent="MenuEq"]
 margin_left = -15.0
@@ -332,11 +332,11 @@ custom_constants/hseparation = 0
 editor/display_folded = true
 margin_right = 192.0
 margin_bottom = 46.0
-icon = ExtResource( 13 )
+icon = ExtResource( 12 )
 
 [node name="icon" type="Sprite" parent="MenuEq/BUTTONS/ITEM1"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 3
 hframes = 6
 
@@ -354,7 +354,7 @@ margin_left = 46.0
 margin_top = 22.0
 margin_right = 184.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.333333, 0.333333, 0.333333, 1 )
 text = "descripcion"
 align = 2
@@ -364,7 +364,7 @@ margin_left = -6.0
 margin_top = 26.0
 margin_right = 44.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "EQ"
 align = 2
@@ -374,11 +374,11 @@ editor/display_folded = true
 margin_top = 46.0
 margin_right = 192.0
 margin_bottom = 92.0
-icon = ExtResource( 13 )
+icon = ExtResource( 12 )
 
 [node name="icon" type="Sprite" parent="MenuEq/BUTTONS/ITEM2"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 3
 hframes = 6
 
@@ -396,7 +396,7 @@ margin_left = 46.0
 margin_top = 22.0
 margin_right = 184.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.333333, 0.333333, 0.333333, 1 )
 text = "descripcion"
 align = 2
@@ -406,7 +406,7 @@ margin_left = -6.0
 margin_top = 26.0
 margin_right = 44.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "EQ"
 align = 2
@@ -416,11 +416,11 @@ editor/display_folded = true
 margin_top = 92.0
 margin_right = 192.0
 margin_bottom = 138.0
-icon = ExtResource( 13 )
+icon = ExtResource( 12 )
 
 [node name="icon" type="Sprite" parent="MenuEq/BUTTONS/ITEM3"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 3
 hframes = 6
 
@@ -438,7 +438,7 @@ margin_left = 46.0
 margin_top = 22.0
 margin_right = 184.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.333333, 0.333333, 0.333333, 1 )
 text = "descripcion"
 align = 2
@@ -448,7 +448,7 @@ margin_left = -6.0
 margin_top = 26.0
 margin_right = 44.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "EQ"
 align = 2
@@ -458,11 +458,11 @@ editor/display_folded = true
 margin_top = 138.0
 margin_right = 192.0
 margin_bottom = 184.0
-icon = ExtResource( 13 )
+icon = ExtResource( 12 )
 
 [node name="icon" type="Sprite" parent="MenuEq/BUTTONS/ITEM4"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 3
 hframes = 6
 
@@ -480,7 +480,7 @@ margin_left = 46.0
 margin_top = 22.0
 margin_right = 184.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.333333, 0.333333, 0.333333, 1 )
 text = "descripcion"
 align = 2
@@ -490,7 +490,7 @@ margin_left = -6.0
 margin_top = 26.0
 margin_right = 44.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "EQ"
 align = 2
@@ -500,7 +500,7 @@ margin_left = -14.0
 margin_top = -41.0
 margin_right = 177.0
 margin_bottom = 5.0
-texture = ExtResource( 11 )
+texture = ExtResource( 10 )
 stretch_mode = 1
 
 [node name="counter" type="Label" parent="MenuEq"]
@@ -508,7 +508,7 @@ margin_left = 189.61
 margin_top = -7.7388
 margin_right = 233.61
 margin_bottom = 16.2612
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "1 / 16"
 align = 1
@@ -518,7 +518,7 @@ margin_left = -8.0
 margin_top = -32.0
 margin_right = 175.0
 margin_bottom = -12.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "EQUIPAMIENTO"
 align = 1
 valign = 1
@@ -530,7 +530,7 @@ margin_left = -79.0892
 margin_top = -38.8549
 margin_right = 77.9108
 margin_bottom = 192.145
-script = ExtResource( 15 )
+script = ExtResource( 14 )
 
 [node name="BUTTONS" type="GridContainer" parent="MenuUs"]
 margin_left = -15.0
@@ -544,11 +544,11 @@ custom_constants/hseparation = 0
 editor/display_folded = true
 margin_right = 192.0
 margin_bottom = 46.0
-icon = ExtResource( 13 )
+icon = ExtResource( 12 )
 
 [node name="icon" type="Sprite" parent="MenuUs/BUTTONS/ITEM1"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 3
 hframes = 6
 
@@ -566,7 +566,7 @@ margin_left = 46.0
 margin_top = 22.0
 margin_right = 184.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.333333, 0.333333, 0.333333, 1 )
 text = "descripcion"
 align = 2
@@ -576,7 +576,7 @@ margin_left = 6.0
 margin_top = 26.0
 margin_right = 44.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "x1"
 align = 2
@@ -586,11 +586,11 @@ editor/display_folded = true
 margin_top = 46.0
 margin_right = 192.0
 margin_bottom = 92.0
-icon = ExtResource( 13 )
+icon = ExtResource( 12 )
 
 [node name="icon" type="Sprite" parent="MenuUs/BUTTONS/ITEM2"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 3
 hframes = 6
 
@@ -608,7 +608,7 @@ margin_left = 46.0
 margin_top = 22.0
 margin_right = 184.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.333333, 0.333333, 0.333333, 1 )
 text = "descripcion"
 align = 2
@@ -618,7 +618,7 @@ margin_left = 6.0
 margin_top = 26.0
 margin_right = 44.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "x1"
 align = 2
@@ -628,11 +628,11 @@ editor/display_folded = true
 margin_top = 92.0
 margin_right = 192.0
 margin_bottom = 138.0
-icon = ExtResource( 13 )
+icon = ExtResource( 12 )
 
 [node name="icon" type="Sprite" parent="MenuUs/BUTTONS/ITEM3"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 3
 hframes = 6
 
@@ -650,7 +650,7 @@ margin_left = 46.0
 margin_top = 22.0
 margin_right = 184.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.333333, 0.333333, 0.333333, 1 )
 text = "descripcion"
 align = 2
@@ -660,7 +660,7 @@ margin_left = 6.0
 margin_top = 26.0
 margin_right = 44.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "x1"
 align = 2
@@ -670,11 +670,11 @@ editor/display_folded = true
 margin_top = 138.0
 margin_right = 192.0
 margin_bottom = 184.0
-icon = ExtResource( 13 )
+icon = ExtResource( 12 )
 
 [node name="icon" type="Sprite" parent="MenuUs/BUTTONS/ITEM4"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 3
 hframes = 6
 
@@ -692,7 +692,7 @@ margin_left = 46.0
 margin_top = 22.0
 margin_right = 184.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.333333, 0.333333, 0.333333, 1 )
 text = "descripcion"
 align = 2
@@ -702,7 +702,7 @@ margin_left = 6.0
 margin_top = 26.0
 margin_right = 44.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "x1"
 align = 2
@@ -712,7 +712,7 @@ margin_left = -14.0
 margin_top = -41.0
 margin_right = 177.0
 margin_bottom = 5.0
-texture = ExtResource( 11 )
+texture = ExtResource( 10 )
 stretch_mode = 1
 
 [node name="counter" type="Label" parent="MenuUs"]
@@ -720,7 +720,7 @@ margin_left = 189.61
 margin_top = -7.7388
 margin_right = 233.61
 margin_bottom = 16.2612
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "1 / 16"
 align = 1
@@ -730,7 +730,7 @@ margin_left = -8.0
 margin_top = -32.0
 margin_right = 175.0
 margin_bottom = -7.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "CONSUMIBLES
 "
 align = 1

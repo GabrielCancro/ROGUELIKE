@@ -52,7 +52,7 @@ func redrawSelector():
 	for obj in get_tree().get_nodes_in_group("objetos"):
 		if obj.getTilePos()==tilePos: strObjeto+=obj.name+"\n"
 	
-	var cell=pj.tile_map.get_cellv(tilePos)
+	var cell=tile_map.get_cellv(tilePos)
 	if cell==8: strObjeto+="door"
 	elif cell!=3: strObjeto+="blocked"
 
