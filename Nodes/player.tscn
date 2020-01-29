@@ -1,16 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Nodes/player.gd" type="Script" id=1]
-[ext_resource path="res://Nodes/playerData.gd" type="Script" id=2]
-[ext_resource path="res://sprites/pj2.png" type="Texture" id=3]
+[ext_resource path="res://sprites/pj2.png" type="Texture" id=2]
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="data" type="Node2D" parent="."]
-script = ExtResource( 2 )
-
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.796092, -16 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )

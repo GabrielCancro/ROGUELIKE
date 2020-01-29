@@ -1,78 +1,57 @@
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var ini=true
-onready var MOVIBLE = preload('res://Class/Movible.gd').new(self)
 var speed=20
-# Called when the node enters the scene tree for the first time.
+
+onready var TILEABLE = preload('res://Class/Tileable.gd').new(self,"ENEMIES")
+onready var MOVIBLE = preload('res://Class/Movible.gd').new(self)
+onready var ATTRIBUTABLE = preload('res://Class/Attributable.gd').new(self)
+
 func _ready():
 	Globals.TurnController.add_to_list(self)
 	pass # Replace with function body.
 
-func _process(delta):
+func _process(delta):	
 	MOVIBLE.moveToDest()
-	pass
 
-func getTilePos():
-	return Globals.tile_map.world_to_map(position)
-
-func set_tilePosition(px,py):
-	set_position(Vector2(px,py)*Globals.tile_size+Globals.tile_size/2)
-	print("ENEMY-"+str(position)+"  "+str(px)+","+str(py))
+func dead():
+	Globals.TurnController.remove_to_list(self)
+	Globals.TilemapManager.remove_to_tilegroup(self,"ENEMIES")
+	queue_free()
 
 var path
 var pathIndex
 var steps
-func onEnterTurn():	
-	path=Globals.ASTAR.get_astar_path(getTilePos(),Globals.player.getTilePos())
+func onEnterTurn():
+	var pos_ASTAR=TILEABLE.get_tile_pos()+(Globals.player.TILEABLE.get_tile_pos()-TILEABLE.get_tile_pos())/2
+	pos_ASTAR=Vector2(floor(pos_ASTAR.x),floor(pos_ASTAR.y))
+	var ran_ASTAR=8
+	var obst_grid=Globals.TilemapManager.get_obstacles_in_area(pos_ASTAR,ran_ASTAR)
+	obst_grid[TILEABLE.get_tile_pos().x-pos_ASTAR.x+ran_ASTAR][TILEABLE.get_tile_pos().y-pos_ASTAR.y+ran_ASTAR]=0
+	Globals.ASTAR.setAstarRect(pos_ASTAR,ran_ASTAR,Globals.dunGen.DATAMAP,obst_grid)
+	path=Globals.ASTAR.get_astar_path(TILEABLE.get_tile_pos(),Globals.player.TILEABLE.get_tile_pos())
 	pathIndex=0
 	steps=5
-	if path==null: path=[getTilePos()]
+	if path==null: path=[TILEABLE.get_tile_pos()]
 	if(path.size()>1):
 		MOVIBLE.set_tile_des(path[0])
-		Globals.nav.drawPath(path)
+		#Globals.nav.drawPath(path)
 
 func processTurn():
 	if !MOVIBLE.isMoving:
 		pathIndex+=1
 		steps-=1
+		if path.size()<=1: 
+			Globals.turnController.finishTurn(self)
+			return
+		if(steps<0):
+			Globals.turnController.finishTurn(self)
+			return
 		if(pathIndex==path.size()-1):
-			Globals.effectManager.text_effect(position,'ATTACK',1)
+			#Globals.effectManager.text_effect(position,'ATTACK')
 			Globals.DDCORE.attack(self,Globals.player)
 			Globals.turnController.finishTurn(self)
 			return			
-		elif(steps<0):
-			Globals.turnController.finishTurn(self)
-			return
-		elif(path.size()-1<pathIndex):
-			Globals.turnController.finishTurn(self)
-			return
 		else: 
-			Globals.effectManager.text_effect(position,':'+str(steps),1)
+			Globals.effectManager.text_effect(position,':'+str(steps))
 			MOVIBLE.set_tile_des(path[pathIndex])
-
-func processTravel():
-	pass
-
-#func set_path(value: PoolVector2Array)->void:
-#	path=value
-#	moveToPath=true
-#	indexPath=0
-#
-#func movePath():	
-#	if path.size()<=0: return
-#	var start_point: = position
-#	var next_point: = path[indexPath]
-#	var distance_to_next: = start_point.distance_to(next_point)
-#	if distance_to_next>5.0:
-#		var direction = ( next_point - start_point ).normalized()
-#		velocity=direction*speed
-#	else:
-#		indexPath+=1
-#		#position=next_point
-#		velocity=Vector2(0,0)
-#	#print(str(distance_to_next)+"-"+str(velocity.x)+","+str(velocity.y))
-#	if indexPath>=path.size():
-#		moveToPath=false

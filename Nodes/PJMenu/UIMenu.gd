@@ -7,18 +7,17 @@ var player: Node2D
 func _ready(): 
 	visible=false
 
-func showRootMenu(pj):
+func showRootMenu(pj,subMenu="MenuP"):
 	player=pj
 	position=player.position
-	position.y-=25
+	position.y-=60
 	if position.x<100: position.x=100
 	if position.y<70: position.y=70
 	print("SHOW MENU")
 	visible=true
-	selectSubMenu("MenuP")
+	selectSubMenu(subMenu)
 
 func exitRootMenu(data={"action":"NONE"}):
-	player.addHp(-1)
 	visible=false
 	if current_menu!="NONE": get_node(current_menu).hide()
 	current_menu="NONE"

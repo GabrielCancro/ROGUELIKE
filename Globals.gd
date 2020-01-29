@@ -15,10 +15,14 @@ var player
 var ASTAR = preload('res://Nodes/UTILS/ASTAR.gd').new()
 var DDCORE = preload('res://Nodes/UTILS/DDCORE.gd').new()
 var TurnController
+var TilemapManager
+var ItemsManager
+var HabsManager
 var soundManager
+var rnd = RandomNumberGenerator.new()
 
 func _ready():
-	pass
+	rnd.randomize()
 
 func _initGlobals():	
 	tile_map=get_node("/root/Node2D/Nav2D/TileMap")
@@ -32,10 +36,19 @@ func _initGlobals():
 	tile_size=tile_map.cell_size
 	player=get_node("/root/Node2D/Player")
 	TurnController = get_node("/root/Node2D/TurnController")
+	TilemapManager = get_node("/root/Node2D/TilemapManager")
+	ItemsManager = get_node("/root/Node2D/ItemsManager")
+	HabsManager = get_node("/root/Node2D/HabsManager")
 	
 	soundManager=AudioStreamPlayer.new()
 	effectManager.add_child(soundManager)
-	soundManager.stream=load("res://Sounds/music_dungeon1.ogg")
-	soundManager.play()
+	playMusic("music_dungeon1")
 	#get_tree().change_scene("res://Nodes/menuPrincipal/menu_principal.tscn")
 	pass
+
+func playMusic(song):
+	soundManager.stream=load("res://Sounds/"+song+".ogg")
+	soundManager.play()
+
+func rndi(minim,maxim):
+	return rnd.randi_range(minim, maxim)

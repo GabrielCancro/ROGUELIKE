@@ -6,6 +6,8 @@ onready var tile_map:TileMap=$TileMap
 onready var cell_size =tile_map.cell_size;
 onready var character:KinematicBody2D=get_node("../Player")
 
+var enemies_tilegroup={}
+
 func _unhandled_input(e:InputEvent)->void:
 	if not e is InputEventMouseButton:
 		return

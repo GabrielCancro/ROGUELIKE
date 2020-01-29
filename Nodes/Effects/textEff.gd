@@ -1,18 +1,23 @@
 extends Node2D
 
 # Declare member variables here. Examples:
-var a=5.0
-# var b = "text"
+signal sg_finish
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func init(world_pos, text):
+	set_text(text)
+	position=world_pos
+	position.y-=25
 
+func _ready():    
+	yield(get_tree().create_timer(1), "timeout")
+	emit_signal("my_signal")
+	free()
+	
 func set_text(txt):
 	$Label.set_text(txt)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+var a=5
 func _process(delta):
-	a*=0.9
+	a*=0.8
 	if a>1: position.y-=a
 

@@ -19,7 +19,7 @@ func showSelector(_pj,_data):
 	set_process(true)
 	pj=_pj
 	data=_data
-	tilePos=pj.getTilePos()
+	tilePos=pj.TILEABLE.get_tile_pos()
 	redrawSelector()
 
 func hideSelector():

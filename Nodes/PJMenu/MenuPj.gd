@@ -2,7 +2,6 @@ extends Control
 
 #esto deberia venir del player
 
-var baseAttr={}
 var nameAttr={}
 var index=0
 var base=0
@@ -16,8 +15,7 @@ func _ready():
 func show(): 
 	visible=true
 	set_process(true)
-	baseAttr = get_node("../").player.data.baseAttr
-	nameAttr = get_node("../").player.data.nameAttr
+	nameAttr = get_node("../").player.ATTRIBUTABLE.nameAttr
 	drawInfoItems()
 	repos_selector()
 	
@@ -68,7 +66,7 @@ func drawInfoItems():
 		if i+base<nameAttr.size():
 			k=nameAttr.keys()[i+base]
 			buttons[i].get_node("name").set_text( nameAttr[k] )
-			buttons[i].get_node("val").set_text( str(baseAttr.get(k,0) ) )
+			buttons[i].get_node("val").set_text( str(get_node("../").player.ATTRIBUTABLE.get_attr(k) ) )
 		else:
 			buttons[i].get_node("name").set_text("")
 			buttons[i].get_node("val").set_text( "" )

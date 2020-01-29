@@ -1,0 +1,54 @@
+ROGUELIKE
+
+La idea es crear un roguelike estilo clasico, pero con movimientos y efectos mas modernos
+Quiciera que sea "dinamico" para los jugadores, algunas ideas son:
+ -NO usar un inventario gigante
+ -que el player no tenga q leer y analizar demasiado q arma, habilidad o conjuro quiere
+ -que la interfaz sea clara y mas bien minimalista (menu circular para el pj)
+ -que no haya que elegir raza, clase, etc.. que se vaya armando progresivamente
+ -probablemente se diseñe para no depender del mouse (para portabilidad a android o jugar con joystick)
+ 
+Existe la fuerte posibilidad que se diseñe para 2 jugadores simultaneo en la misma pc, 
+por eso tambien la idea de un "menu/inventario" simple.
+
+Otra posibilidad es que en el modo de 1 jugador tengas un "compañero" que tambien puedas manejar y tenga sus propias habilidades, seria como tener dos personajes..
+
+
+Hay dos momentos en la partida:
+
+ 1-MODO TRAVESIA: es un modo libre donde podes caminar o realizar acciones sin restrinccion,
+   es el modo para explorar el dungeon, recoger items y buscar la salida.
+
+ 2-MODO COMBATE: se entra en este modo al encontrarse con un enemigo, aqui las acciones y movimientos
+   son por turnos.
+
+falta hacer:
+
+	DEFINIR VARIOS ITEMS (equipamiento, consumibles)
+	Menu de recoleccion de items
+	ver dropeo de items
+	
+	CREAR FUNCION DE ATACAR MELE
+	DEFINIR ATRIBUTOS
+	
+	DEFINIR ENEMIGOS DIVERSOS TIPOS
+	DEFINIR RANGO PARA ENTRAR EN COMBATE Y COMO HUIR
+
+	DEFINIR HABILIDADES
+	CREAR MECANICAS HABILIDADES
+	MENU ADQUIRIR/MEJORAR HABILIDADES
+
+	CREAR CONJUROS
+	DEFINIR MECANICAS CONJUROS
+	Menu Aprender Conjuros
+
+	Implementar HUD
+
+EN CADA PASO:
+  CHECK SI LA CASILLA ES CAMINABLE
+  CHECK SI REQUIERE ACCION (PUERTA)
+  REVELAR MAPA
+  VER SI HAY ENEMIGOS CERCA
+  VER SI HAY ENEMIGO EN DESTINO
+  VER SI HAY ITEM EN DESTINO
+  VER SI HAY OBJETO INTERACTIVO EN DESTINO

@@ -12,9 +12,24 @@ var rnd=RandomNumberGenerator.new()
 func _ready():
 	rnd.randomize()
 
+func set_turn_mode(isTM=true):
+	if isTurnMode!=isTM:
+		isTurnMode=isTM
+		if(isTM): 
+			Globals.playMusic("music_combat")
+			Globals.effectManager.text_effect(Globals.player.position+Vector2(-200,-100),'! COMBATE !')
+			Globals.effectManager.text_effect(Globals.player.position+Vector2( 200, 100),'! COMBATE !')
+		else: 
+			Globals.playMusic("music_dungeon1")
+			Globals.effectManager.text_effect(Globals.player.position+Vector2(0,-100),'-ESCAPASTE-')
+
 func add_to_list(obj):
 	list.append(obj)
 	chargeList[obj.name]=0
+	
+func remove_to_list(obj):
+	list.erase(obj)
+	chargeList.erase(obj.name)
 
 var pretime=0
 func _process(delta):
@@ -23,8 +38,7 @@ func _process(delta):
 
 func processTravel():
 	Globals.camera.setTarget(Globals.player)
-	for trj in list:
-		trj.processTravel()
+	Globals.player.processTravel()
 
 func processTurn():
 	if isPausedTurn: return
@@ -33,20 +47,21 @@ func processTurn():
 			pretime-=1
 			return
 		for trj in list:
-			chargeList[trj.name]+=rnd.randi_range(1,5)
+			if trj.TILEABLE.get_tile_pos().distance_to(Globals.player.TILEABLE.get_tile_pos())>10: continue
+			chargeList[trj.name]+=5
 			if(chargeList[trj.name]>100):
 				chargeList[trj.name]-=100				
 				turnObj=trj
 				i=0
-				print("is turn of "+turnObj.name)
 				break
 	else:
 		Globals.GUI.get_node('Label_TurnOf').set_text('turno de '+turnObj.name)
 		if pretime==20 and turnObj.has_method("onEnterTurn"): 
+			Globals.effectManager.titilar(turnObj)
+			Globals.camera.setTarget(turnObj)
 			turnObj.onEnterTurn()
-		if pretime>20:
-			if Globals.fog_map.get_cellv(turnObj.getTilePos())==-1: Globals.camera.setTarget(turnObj)
-			turnObj.processTurn()			
+		if pretime>60:
+			turnObj.processTurn()
 		else: pretime+=1
 
 func finishTurn(turneableObject):

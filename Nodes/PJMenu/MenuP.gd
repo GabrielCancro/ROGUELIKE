@@ -20,6 +20,7 @@ func _onAccept():
 	if isBtn("BTN_ATTR"): RootMenu.selectSubMenu("MenuAttr")
 	elif isBtn("BTN_EQ"): RootMenu.selectSubMenu("MenuEq")
 	elif isBtn("BTN_US"): RootMenu.selectSubMenu("MenuUs")
+	elif isBtn("BTN_HAB"): RootMenu.selectSubMenu("MenuHab")
 	elif isBtn("BTN_SPL"):
 		var pj=RootMenu.getPlayer()
 		hide()

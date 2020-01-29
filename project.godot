@@ -10,35 +10,63 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "Abilityable",
+"language": "GDScript",
+"path": "res://Class/Abilityable.gd"
+}, {
+"base": "Reference",
 "class": "AstarClass",
 "language": "GDScript",
 "path": "res://Nodes/UTILS/ASTAR.gd"
 }, {
 "base": "Reference",
-"class": "DDCoreClass",
+"class": "Attributable",
+"language": "GDScript",
+"path": "res://Class/Attributable.gd"
+}, {
+"base": "Reference",
+"class": "DDCore",
 "language": "GDScript",
 "path": "res://Nodes/UTILS/DDCORE.gd"
+}, {
+"base": "Reference",
+"class": "Inventariable",
+"language": "GDScript",
+"path": "res://Class/Inventariable.gd"
 }, {
 "base": "Reference",
 "class": "Movible",
 "language": "GDScript",
 "path": "res://Class/Movible.gd"
+}, {
+"base": "Reference",
+"class": "Tileable",
+"language": "GDScript",
+"path": "res://Class/Tileable.gd"
 } ]
 _global_script_class_icons={
+"Abilityable": "",
 "AstarClass": "",
-"DDCoreClass": "",
-"Movible": ""
+"Attributable": "",
+"DDCore": "",
+"Inventariable": "",
+"Movible": "",
+"Tileable": ""
 }
 
 [application]
 
 config/name="ROGUELIKE"
-run/main_scene="res://Nodes/menuPrincipal/menu_principal.tscn"
+run/main_scene="res://Nodes/main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Globals="*res://Globals.gd"
+
+[debug]
+
+gdscript/warnings/unused_variable=false
 
 [display]
 
@@ -73,6 +101,10 @@ toggle_mode={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[logging]
+
+file_logging/max_log_files=100
 
 [rendering]
 

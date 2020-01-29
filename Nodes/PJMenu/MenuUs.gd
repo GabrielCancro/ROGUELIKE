@@ -13,7 +13,7 @@ func _ready():
 func show(): 
 	visible=true
 	set_process(true)
-	items = get_node("../").player.data.items
+	items = get_node("../").player.INVENTARIABLE.items
 	drawInfoItems()
 	repos_selector()
 	
@@ -22,10 +22,11 @@ func hide():
 	set_process(false)
 
 func _onAccept():
-	if index+base>items.size()-1: return
+	if index+base>items.size()-1: return	
+	Globals.ItemsManager.use_consumible(get_node("../").player,items[index+base].get("code"))
 	if items[index+base].get("cnt",0)>1: items[index+base]["cnt"]-=1
-	else: items.remove(index+base) 
-	drawInfoItems()
+	else: items.remove(index+base)
+	RootMenu.exitRootMenu()
 
 func _onCancel(): 
 	RootMenu.selectSubMenu("MenuP")

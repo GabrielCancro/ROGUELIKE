@@ -49,8 +49,9 @@ func generateDungeon(tile_map_target):
 	
 	if showProcess: yield(get_tree().create_timer(0.5), "timeout")
 	iniFog()
-	Globals.ASTAR.setAstar(Globals.dunGen.DATAMAP,[10,3])
+	#Globals.ASTAR.setAstar(Globals.dunGen.DATAMAP,[10,3])
 	addEnemies()
+	addChests()
 	
 	return Vector2(ROOMS[0]["cx"],ROOMS[0]["cy"])
 
@@ -218,7 +219,17 @@ func isOcluder(x,y):
 func addEnemies():
 	for i in range(2,ROOMS.size()):
 		var r=ROOMS[i]
-		var EN=enemyObject.instance()
-		EN.set_tilePosition(r["cx"],r["cy"])
+		var EN=enemyObject.instance()		
 		get_node("/root/Node2D").add_child(EN)
-		if i>3: break
+		EN.TILEABLE.set_tile_pos(Vector2(r["cx"],r["cy"]))
+		#if i>3: break
+
+func addChests():
+	for i in range(7):
+		for j in range(50):
+			var xx=Globals.rndi(1,map_w-2)
+			var yy=Globals.rndi(1,map_h-2)
+			if DATAMAP[xx][yy]==tiles["SUELO"]:
+				Globals.ItemsManager.createChest(Vector2(xx,yy))
+				break
+			

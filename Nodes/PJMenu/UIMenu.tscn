@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Nodes/PJMenu/UIMenu.gd" type="Script" id=1]
 [ext_resource path="res://Nodes/PJMenu/MenuP.gd" type="Script" id=2]
@@ -7,44 +7,57 @@
 [ext_resource path="res://sprites/uimenu/uses.png" type="Texture" id=5]
 [ext_resource path="res://sprites/uimenu/spells.png" type="Texture" id=6]
 [ext_resource path="res://sprites/uimenu/selector.png" type="Texture" id=7]
-[ext_resource path="res://sprites/uimenu/item_attributos.png" type="Texture" id=8]
-[ext_resource path="res://sprites/uimenu/Cabin-Regular.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://sprites/uimenu/selectorItems.png" type="Texture" id=10]
-[ext_resource path="res://Nodes/PJMenu/MenuEq.gd" type="Script" id=11]
-[ext_resource path="res://sprites/uimenu/item_140x40.png" type="Texture" id=12]
-[ext_resource path="res://sprites/items.png" type="Texture" id=13]
-[ext_resource path="res://Nodes/PJMenu/MenuUs.gd" type="Script" id=14]
+[ext_resource path="res://Nodes/PJMenu/MenuPj.gd" type="Script" id=8]
+[ext_resource path="res://sprites/uimenu/item_attributos.png" type="Texture" id=9]
+[ext_resource path="res://sprites/uimenu/Cabin-Regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://sprites/uimenu/selectorItems.png" type="Texture" id=11]
+[ext_resource path="res://Nodes/PJMenu/MenuEq.gd" type="Script" id=12]
+[ext_resource path="res://sprites/uimenu/item_140x40.png" type="Texture" id=13]
+[ext_resource path="res://sprites/items.png" type="Texture" id=14]
+[ext_resource path="res://Nodes/PJMenu/MenuUs.gd" type="Script" id=15]
+[ext_resource path="res://Nodes/PJMenu/MenuHab.gd" type="Script" id=16]
+[ext_resource path="res://sprites/uimenu/itemBag_160x25.png" type="Texture" id=17]
+[ext_resource path="res://Nodes/PJMenu/MenuITEMS.gd" type="Script" id=18]
 
 [sub_resource type="DynamicFont" id=1]
 size = 19
-font_data = ExtResource( 9 )
+font_data = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 21
 outline_size = 2
 outline_color = Color( 0.176471, 0.152941, 0.152941, 1 )
-font_data = ExtResource( 9 )
+font_data = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 22
 outline_size = 2
 outline_color = Color( 0.262745, 0.207843, 0.207843, 1 )
-font_data = ExtResource( 9 )
+font_data = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=4]
 outline_size = 2
 outline_color = Color( 0.176471, 0.152941, 0.152941, 1 )
-font_data = ExtResource( 9 )
+font_data = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 20
 outline_size = 1
 outline_color = Color( 0.607843, 0.0392157, 0.0392157, 1 )
-font_data = ExtResource( 9 )
+font_data = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 17
-font_data = ExtResource( 9 )
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=7]
+outline_size = 7
+outline_color = Color( 0.0156863, 0.517647, 0, 1 )
+font_data = ExtResource( 10 )
+
+[sub_resource type="StreamTexture" id=8]
+flags = 4
+load_path = "res://.import/itemBag_140x40.png-bf43af2436f2c9b1f8487f940db028d4.stex"
 
 [node name="RootMenu" type="Node2D"]
 z_index = 5
@@ -66,6 +79,7 @@ custom_constants/hseparation = 0
 columns = 7
 
 [node name="BTN_ATTR" type="Button" parent="MenuP/BUTTONS"]
+modulate = Color( 0, 0, 0, 0.341176 )
 margin_right = 51.0
 margin_bottom = 45.0
 icon = ExtResource( 3 )
@@ -88,6 +102,12 @@ margin_right = 204.0
 margin_bottom = 45.0
 icon = ExtResource( 6 )
 
+[node name="BTN_HAB" type="Button" parent="MenuP/BUTTONS"]
+margin_left = 204.0
+margin_right = 255.0
+margin_bottom = 45.0
+icon = ExtResource( 3 )
+
 [node name="SELECTOR" type="TextureRect" parent="MenuP"]
 margin_left = -101.903
 margin_top = -47.4289
@@ -98,11 +118,12 @@ stretch_mode = 6
 
 [node name="MenuAttr" type="Control" parent="."]
 editor/display_folded = true
+visible = false
 margin_left = -79.0892
 margin_top = -38.8549
 margin_right = 77.9108
 margin_bottom = 192.145
-script = ExtResource( 2 )
+script = ExtResource( 8 )
 
 [node name="BUTTONS" type="GridContainer" parent="MenuAttr"]
 margin_left = -7.12405
@@ -116,7 +137,7 @@ custom_constants/hseparation = 0
 editor/display_folded = true
 margin_right = 172.0
 margin_bottom = 31.0
-icon = ExtResource( 8 )
+icon = ExtResource( 9 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM1"]
 anchor_right = 1.0
@@ -143,7 +164,7 @@ editor/display_folded = true
 margin_top = 31.0
 margin_right = 172.0
 margin_bottom = 62.0
-icon = ExtResource( 8 )
+icon = ExtResource( 9 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM2"]
 anchor_right = 1.0
@@ -170,7 +191,7 @@ editor/display_folded = true
 margin_top = 62.0
 margin_right = 172.0
 margin_bottom = 93.0
-icon = ExtResource( 8 )
+icon = ExtResource( 9 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM3"]
 anchor_right = 1.0
@@ -197,7 +218,7 @@ editor/display_folded = true
 margin_top = 93.0
 margin_right = 172.0
 margin_bottom = 124.0
-icon = ExtResource( 8 )
+icon = ExtResource( 9 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM4"]
 anchor_right = 1.0
@@ -224,7 +245,7 @@ editor/display_folded = true
 margin_top = 124.0
 margin_right = 172.0
 margin_bottom = 155.0
-icon = ExtResource( 8 )
+icon = ExtResource( 9 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM5"]
 anchor_right = 1.0
@@ -251,7 +272,7 @@ editor/display_folded = true
 margin_top = 155.0
 margin_right = 172.0
 margin_bottom = 186.0
-icon = ExtResource( 8 )
+icon = ExtResource( 9 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM6"]
 anchor_right = 1.0
@@ -279,7 +300,7 @@ margin_top = -59.8883
 margin_right = 339.623
 margin_bottom = 4.11173
 rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 stretch_mode = 1
 
 [node name="attr" type="Label" parent="MenuAttr"]
@@ -292,10 +313,10 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "atk"
 
 [node name="counter" type="Label" parent="MenuAttr"]
-margin_left = 167.954
-margin_top = -29.3532
-margin_right = 211.954
-margin_bottom = -5.3532
+margin_left = 119.304
+margin_top = 177.697
+margin_right = 163.304
+margin_bottom = 201.697
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "1 / 16"
@@ -318,9 +339,10 @@ margin_left = -79.0892
 margin_top = -38.8549
 margin_right = 77.9108
 margin_bottom = 192.145
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 
 [node name="BUTTONS" type="GridContainer" parent="MenuEq"]
+editor/display_folded = true
 margin_left = -15.0
 margin_top = -7.0
 margin_right = 177.0
@@ -332,12 +354,12 @@ custom_constants/hseparation = 0
 editor/display_folded = true
 margin_right = 192.0
 margin_bottom = 46.0
-icon = ExtResource( 12 )
+icon = ExtResource( 13 )
 
 [node name="icon" type="Sprite" parent="MenuEq/BUTTONS/ITEM1"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 13 )
-vframes = 3
+texture = ExtResource( 14 )
+vframes = 6
 hframes = 6
 
 [node name="name" type="Label" parent="MenuEq/BUTTONS/ITEM1"]
@@ -374,12 +396,12 @@ editor/display_folded = true
 margin_top = 46.0
 margin_right = 192.0
 margin_bottom = 92.0
-icon = ExtResource( 12 )
+icon = ExtResource( 13 )
 
 [node name="icon" type="Sprite" parent="MenuEq/BUTTONS/ITEM2"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 13 )
-vframes = 3
+texture = ExtResource( 14 )
+vframes = 6
 hframes = 6
 
 [node name="name" type="Label" parent="MenuEq/BUTTONS/ITEM2"]
@@ -416,12 +438,12 @@ editor/display_folded = true
 margin_top = 92.0
 margin_right = 192.0
 margin_bottom = 138.0
-icon = ExtResource( 12 )
+icon = ExtResource( 13 )
 
 [node name="icon" type="Sprite" parent="MenuEq/BUTTONS/ITEM3"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 13 )
-vframes = 3
+texture = ExtResource( 14 )
+vframes = 6
 hframes = 6
 
 [node name="name" type="Label" parent="MenuEq/BUTTONS/ITEM3"]
@@ -458,12 +480,12 @@ editor/display_folded = true
 margin_top = 138.0
 margin_right = 192.0
 margin_bottom = 184.0
-icon = ExtResource( 12 )
+icon = ExtResource( 13 )
 
 [node name="icon" type="Sprite" parent="MenuEq/BUTTONS/ITEM4"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 13 )
-vframes = 3
+texture = ExtResource( 14 )
+vframes = 6
 hframes = 6
 
 [node name="name" type="Label" parent="MenuEq/BUTTONS/ITEM4"]
@@ -500,14 +522,14 @@ margin_left = -14.0
 margin_top = -41.0
 margin_right = 177.0
 margin_bottom = 5.0
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 stretch_mode = 1
 
 [node name="counter" type="Label" parent="MenuEq"]
-margin_left = 189.61
-margin_top = -7.7388
-margin_right = 233.61
-margin_bottom = 16.2612
+margin_left = 132.56
+margin_top = 177.561
+margin_right = 176.56
+margin_bottom = 201.561
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "1 / 16"
@@ -523,6 +545,17 @@ text = "EQUIPAMIENTO"
 align = 1
 valign = 1
 
+[node name="habs" type="Label" parent="MenuEq"]
+margin_left = 172.0
+margin_top = -1.0
+margin_right = 457.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.627451, 1, 0.988235, 1 )
+text = "Esta habilidad permite mejorar tu danio letal maximo"
+valign = 1
+autowrap = true
+
 [node name="MenuUs" type="Control" parent="."]
 editor/display_folded = true
 visible = false
@@ -530,9 +563,10 @@ margin_left = -79.0892
 margin_top = -38.8549
 margin_right = 77.9108
 margin_bottom = 192.145
-script = ExtResource( 14 )
+script = ExtResource( 15 )
 
 [node name="BUTTONS" type="GridContainer" parent="MenuUs"]
+editor/display_folded = true
 margin_left = -15.0
 margin_top = -7.0
 margin_right = 177.0
@@ -544,12 +578,12 @@ custom_constants/hseparation = 0
 editor/display_folded = true
 margin_right = 192.0
 margin_bottom = 46.0
-icon = ExtResource( 12 )
+icon = ExtResource( 13 )
 
 [node name="icon" type="Sprite" parent="MenuUs/BUTTONS/ITEM1"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 13 )
-vframes = 3
+texture = ExtResource( 14 )
+vframes = 6
 hframes = 6
 
 [node name="name" type="Label" parent="MenuUs/BUTTONS/ITEM1"]
@@ -586,12 +620,12 @@ editor/display_folded = true
 margin_top = 46.0
 margin_right = 192.0
 margin_bottom = 92.0
-icon = ExtResource( 12 )
+icon = ExtResource( 13 )
 
 [node name="icon" type="Sprite" parent="MenuUs/BUTTONS/ITEM2"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 13 )
-vframes = 3
+texture = ExtResource( 14 )
+vframes = 6
 hframes = 6
 
 [node name="name" type="Label" parent="MenuUs/BUTTONS/ITEM2"]
@@ -628,12 +662,12 @@ editor/display_folded = true
 margin_top = 92.0
 margin_right = 192.0
 margin_bottom = 138.0
-icon = ExtResource( 12 )
+icon = ExtResource( 13 )
 
 [node name="icon" type="Sprite" parent="MenuUs/BUTTONS/ITEM3"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 13 )
-vframes = 3
+texture = ExtResource( 14 )
+vframes = 6
 hframes = 6
 
 [node name="name" type="Label" parent="MenuUs/BUTTONS/ITEM3"]
@@ -670,12 +704,12 @@ editor/display_folded = true
 margin_top = 138.0
 margin_right = 192.0
 margin_bottom = 184.0
-icon = ExtResource( 12 )
+icon = ExtResource( 13 )
 
 [node name="icon" type="Sprite" parent="MenuUs/BUTTONS/ITEM4"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 13 )
-vframes = 3
+texture = ExtResource( 14 )
+vframes = 6
 hframes = 6
 
 [node name="name" type="Label" parent="MenuUs/BUTTONS/ITEM4"]
@@ -712,14 +746,14 @@ margin_left = -14.0
 margin_top = -41.0
 margin_right = 177.0
 margin_bottom = 5.0
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 stretch_mode = 1
 
 [node name="counter" type="Label" parent="MenuUs"]
-margin_left = 189.61
-margin_top = -7.7388
-margin_right = 233.61
-margin_bottom = 16.2612
+margin_left = 129.71
+margin_top = 178.511
+margin_right = 173.71
+margin_bottom = 202.511
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "1 / 16"
@@ -733,5 +767,378 @@ margin_bottom = -7.0
 custom_fonts/font = SubResource( 5 )
 text = "CONSUMIBLES
 "
+align = 1
+valign = 1
+
+[node name="MenuHab" type="Control" parent="."]
+editor/display_folded = true
+visible = false
+margin_left = -79.0892
+margin_top = -38.8549
+margin_right = 77.9108
+margin_bottom = 192.145
+script = ExtResource( 16 )
+
+[node name="BUTTONS" type="GridContainer" parent="MenuHab"]
+margin_left = -3.35278
+margin_top = -4.73526
+margin_right = 188.647
+margin_bottom = 325.265
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+
+[node name="ITEM1" type="Button" parent="MenuHab/BUTTONS"]
+editor/display_folded = true
+margin_right = 172.0
+margin_bottom = 31.0
+icon = ExtResource( 17 )
+
+[node name="icon" type="Sprite" parent="MenuHab/BUTTONS/ITEM1"]
+position = Vector2( 20.147, 14.9116 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 14 )
+vframes = 6
+hframes = 6
+
+[node name="name" type="Label" parent="MenuHab/BUTTONS/ITEM1"]
+anchor_right = 1.0
+margin_left = 42.2646
+margin_top = 1.9412
+margin_right = 18.2646
+margin_bottom = 25.9412
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.192157, 0.192157, 0.192157, 1 )
+text = "Nombre"
+
+[node name="ITEM2" type="Button" parent="MenuHab/BUTTONS"]
+editor/display_folded = true
+margin_top = 31.0
+margin_right = 172.0
+margin_bottom = 62.0
+icon = ExtResource( 17 )
+
+[node name="icon" type="Sprite" parent="MenuHab/BUTTONS/ITEM2"]
+position = Vector2( 20.147, 14.9116 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 14 )
+vframes = 6
+hframes = 6
+
+[node name="name" type="Label" parent="MenuHab/BUTTONS/ITEM2"]
+anchor_right = 1.0
+margin_left = 42.2646
+margin_top = 1.9412
+margin_right = 18.2646
+margin_bottom = 25.9412
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.192157, 0.192157, 0.192157, 1 )
+text = "Nombre"
+
+[node name="ITEM3" type="Button" parent="MenuHab/BUTTONS"]
+editor/display_folded = true
+margin_top = 62.0
+margin_right = 172.0
+margin_bottom = 93.0
+icon = ExtResource( 17 )
+
+[node name="icon" type="Sprite" parent="MenuHab/BUTTONS/ITEM3"]
+position = Vector2( 20.147, 14.9116 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 14 )
+vframes = 6
+hframes = 6
+
+[node name="name" type="Label" parent="MenuHab/BUTTONS/ITEM3"]
+anchor_right = 1.0
+margin_left = 42.2646
+margin_top = 1.9412
+margin_right = 18.2646
+margin_bottom = 25.9412
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.192157, 0.192157, 0.192157, 1 )
+text = "Nombre"
+
+[node name="ITEM4" type="Button" parent="MenuHab/BUTTONS"]
+editor/display_folded = true
+margin_top = 93.0
+margin_right = 172.0
+margin_bottom = 124.0
+icon = ExtResource( 17 )
+
+[node name="icon" type="Sprite" parent="MenuHab/BUTTONS/ITEM4"]
+position = Vector2( 20.147, 14.9116 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 14 )
+vframes = 6
+hframes = 6
+
+[node name="name" type="Label" parent="MenuHab/BUTTONS/ITEM4"]
+anchor_right = 1.0
+margin_left = 42.2646
+margin_top = 1.9412
+margin_right = 18.2646
+margin_bottom = 25.9412
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.192157, 0.192157, 0.192157, 1 )
+text = "Nombre"
+
+[node name="ITEM5" type="Button" parent="MenuHab/BUTTONS"]
+editor/display_folded = true
+margin_top = 124.0
+margin_right = 172.0
+margin_bottom = 155.0
+icon = ExtResource( 17 )
+
+[node name="icon" type="Sprite" parent="MenuHab/BUTTONS/ITEM5"]
+position = Vector2( 20.147, 14.9116 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 14 )
+vframes = 6
+hframes = 6
+
+[node name="name" type="Label" parent="MenuHab/BUTTONS/ITEM5"]
+anchor_right = 1.0
+margin_left = 42.2646
+margin_top = 1.9412
+margin_right = 18.2646
+margin_bottom = 25.9412
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.192157, 0.192157, 0.192157, 1 )
+text = "Nombre"
+
+[node name="ITEM6" type="Button" parent="MenuHab/BUTTONS"]
+editor/display_folded = true
+margin_top = 155.0
+margin_right = 172.0
+margin_bottom = 186.0
+icon = ExtResource( 17 )
+
+[node name="icon" type="Sprite" parent="MenuHab/BUTTONS/ITEM6"]
+position = Vector2( 20.147, 14.9116 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 14 )
+vframes = 6
+hframes = 6
+
+[node name="name" type="Label" parent="MenuHab/BUTTONS/ITEM6"]
+anchor_right = 1.0
+margin_left = 42.2646
+margin_top = 1.9412
+margin_right = 18.2646
+margin_bottom = 25.9412
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.192157, 0.192157, 0.192157, 1 )
+text = "Nombre"
+
+[node name="SELECTOR" type="TextureRect" parent="MenuHab"]
+margin_left = -3.0
+margin_top = -7.0
+margin_right = 177.0
+margin_bottom = 33.0
+rect_scale = Vector2( 0.95, 0.8 )
+texture = ExtResource( 11 )
+stretch_mode = 1
+
+[node name="counter" type="Label" parent="MenuHab"]
+margin_left = 132.56
+margin_top = 177.561
+margin_right = 176.56
+margin_bottom = 201.561
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "1 / 16"
+align = 1
+
+[node name="title" type="Label" parent="MenuHab"]
+margin_left = -8.0
+margin_top = -32.0
+margin_right = 175.0
+margin_bottom = -12.0
+custom_fonts/font = SubResource( 5 )
+text = "HABILIDADES"
+align = 1
+valign = 1
+
+[node name="habs" type="Label" parent="MenuHab"]
+margin_left = 172.0
+margin_top = -1.0
+margin_right = 457.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.627451, 1, 0.988235, 1 )
+text = "Esta habilidad permite mejorar tu danio letal maximo"
+valign = 1
+autowrap = true
+
+[node name="MenuITEMS" type="Control" parent="."]
+editor/display_folded = true
+visible = false
+margin_left = -80.0
+margin_top = -40.0
+margin_right = 77.0
+margin_bottom = 191.0
+script = ExtResource( 18 )
+
+[node name="Tween" type="Tween" parent="MenuITEMS"]
+
+[node name="BUTTONS" type="GridContainer" parent="MenuITEMS"]
+editor/display_folded = true
+margin_left = -15.0
+margin_top = -7.0
+margin_right = 177.0
+margin_bottom = 323.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+
+[node name="ITEM1" type="Button" parent="MenuITEMS/BUTTONS"]
+editor/display_folded = true
+margin_right = 192.0
+margin_bottom = 46.0
+icon = SubResource( 8 )
+
+[node name="icon" type="Sprite" parent="MenuITEMS/BUTTONS/ITEM1"]
+position = Vector2( 25, 23 )
+texture = ExtResource( 14 )
+vframes = 6
+hframes = 6
+
+[node name="name" type="Label" parent="MenuITEMS/BUTTONS/ITEM1"]
+anchor_right = 1.0
+margin_left = 51.0
+margin_right = 27.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.192157, 0.192157, 0.192157, 1 )
+text = "Nombre"
+
+[node name="desc" type="Label" parent="MenuITEMS/BUTTONS/ITEM1"]
+margin_left = 46.0
+margin_top = 22.0
+margin_right = 184.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.333333, 0.333333, 0.333333, 1 )
+text = "descripcion"
+align = 2
+
+[node name="cnt" type="Label" parent="MenuITEMS/BUTTONS/ITEM1"]
+margin_left = -6.0
+margin_top = 26.0
+margin_right = 44.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "EQ"
+align = 2
+
+[node name="ITEM2" type="Button" parent="MenuITEMS/BUTTONS"]
+editor/display_folded = true
+margin_top = 46.0
+margin_right = 192.0
+margin_bottom = 92.0
+icon = SubResource( 8 )
+
+[node name="icon" type="Sprite" parent="MenuITEMS/BUTTONS/ITEM2"]
+position = Vector2( 25, 23 )
+texture = ExtResource( 14 )
+vframes = 6
+hframes = 6
+
+[node name="name" type="Label" parent="MenuITEMS/BUTTONS/ITEM2"]
+anchor_right = 1.0
+margin_left = 51.0
+margin_right = 27.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.192157, 0.192157, 0.192157, 1 )
+text = "Nombre"
+
+[node name="desc" type="Label" parent="MenuITEMS/BUTTONS/ITEM2"]
+margin_left = 46.0
+margin_top = 22.0
+margin_right = 184.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.333333, 0.333333, 0.333333, 1 )
+text = "descripcion"
+align = 2
+
+[node name="cnt" type="Label" parent="MenuITEMS/BUTTONS/ITEM2"]
+margin_left = -6.0
+margin_top = 26.0
+margin_right = 44.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "EQ"
+align = 2
+
+[node name="ITEM3" type="Button" parent="MenuITEMS/BUTTONS"]
+editor/display_folded = true
+margin_top = 92.0
+margin_right = 192.0
+margin_bottom = 138.0
+icon = SubResource( 8 )
+
+[node name="icon" type="Sprite" parent="MenuITEMS/BUTTONS/ITEM3"]
+position = Vector2( 25, 23 )
+texture = ExtResource( 14 )
+vframes = 6
+hframes = 6
+
+[node name="name" type="Label" parent="MenuITEMS/BUTTONS/ITEM3"]
+anchor_right = 1.0
+margin_left = 51.0
+margin_right = 27.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.192157, 0.192157, 0.192157, 1 )
+text = "Nombre"
+
+[node name="desc" type="Label" parent="MenuITEMS/BUTTONS/ITEM3"]
+margin_left = 46.0
+margin_top = 22.0
+margin_right = 184.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.333333, 0.333333, 0.333333, 1 )
+text = "descripcion"
+align = 2
+
+[node name="cnt" type="Label" parent="MenuITEMS/BUTTONS/ITEM3"]
+margin_left = -6.0
+margin_top = 26.0
+margin_right = 44.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "EQ"
+align = 2
+
+[node name="SELECTOR" type="TextureRect" parent="MenuITEMS"]
+margin_left = -14.0
+margin_top = -41.0
+margin_right = 177.0
+margin_bottom = 5.0
+texture = ExtResource( 11 )
+stretch_mode = 1
+
+[node name="counter" type="Label" parent="MenuITEMS"]
+margin_left = 130.81
+margin_top = 131.011
+margin_right = 174.81
+margin_bottom = 155.011
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "1 / 16"
+align = 1
+
+[node name="title" type="Label" parent="MenuITEMS"]
+margin_left = -8.0
+margin_top = -32.0
+margin_right = 175.0
+margin_bottom = -12.0
+custom_fonts/font = SubResource( 5 )
+text = "RECOGER ITEMS"
 align = 1
 valign = 1
