@@ -19,7 +19,9 @@ func _ready():
 	yield(get_tree().create_timer(0.2), "timeout")
 	var iniPos=Globals.dunGen.generateDungeon(Globals.tile_map)
 	TILEABLE.set_tile_pos(iniPos)
-	Globals.dunGen.showFog(iniPos.x,iniPos.y,3)
+	Globals.dunGen.showFog(iniPos.x,iniPos.y,ATTRIBUTABLE.get_attr("see"))
+	ATTRIBUTABLE.set_attr("hp",12)
+	ATTRIBUTABLE.set_attr(".hp",12)
 
 func get_input():
 	var v = Vector2(0,0)
@@ -41,7 +43,7 @@ func get_input():
 	if Input.is_action_just_released('ui_select'): 
 		var iniPos=Globals.dunGen.generateDungeon(Globals.tile_map)
 		TILEABLE.set_tile_pos(iniPos)
-		Globals.dunGen.showFog(iniPos.x,iniPos.y,3)
+		Globals.dunGen.showFog(iniPos.x,iniPos.y,ATTRIBUTABLE.get_attr("see"))
 	if Input.is_action_just_released('toggle_mode'):
 		#print(str(Globals.soundManager.get_playback_position()))
 		print(str(Globals.TilemapManager.GR_ENEMIES))
@@ -56,12 +58,17 @@ func on_exit_menu(data):
 		setState("MOVE")
 	elif data["action"]=="CAST":
 		showSelectorTilePos(data)
-	steps=0
+	elif data["action"]=="HAB":
+		Globals.HabsManager.ejecutarHab(self,data)
+		yield(get_tree().create_timer(.5), "timeout")
+		setState("MOVE")
+	
 
 func on_exit_selector(data):
 	if data.has("tilePos"):
-		set_work("OPEN",data.get("tilePos"))
-	else: setState("MOVE")
+		set_work("OPEN",data.get("tilePos"))		
+	else: 
+		setState("MOVE")
 
 func _process(delta):
 	get_node('/root/Node2D/UIControl/STATE_Label').set_text("S: "+STATE)
@@ -123,6 +130,7 @@ func checkTileDest(tile_des):
 
 func set_work(name,pos):
 	STATE="WORK"
+	steps=0
 	if(name=="OPEN"):
 		Globals.effectManager.work_effect(pos,2.0)
 		yield(get_tree().create_timer(2.0), "timeout")
@@ -136,5 +144,4 @@ func showSelectorTilePos(data):
 	SPJ.showSelector(self,data)
 
 func dead():
-	pass
-	
+	pass	

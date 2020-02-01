@@ -161,7 +161,7 @@ func iniFog():
 	for x in range(map_w):
 		for y in range(map_h):
 			get_node("/root/Node2D/Nav2D/FogMap").set_cell(x,y,0)
-	get_node("/root/Node2D/Nav2D/FogMap").update_bitmask_region()
+	#get_node("/root/Node2D/Nav2D/FogMap").update_bitmask_region()
 
 func showFog(px,py,ran):
 #	for x in range(px-rango,px+rango):
@@ -173,7 +173,7 @@ func showFog(px,py,ran):
 #			get_node("/root/Node2D/Nav2D/FogMap").set_cell(x,y,-1)
 	linearRevealFog(px,py,ran)
 	#AUTOTILE UPDATE IS PESADE
-	get_node("/root/Node2D/Nav2D/FogMap").update_bitmask_region(Vector2(px-ran,py-ran),Vector2(px+ran,py+ran))
+	#get_node("/root/Node2D/Nav2D/FogMap").update_bitmask_region(Vector2(px-ran,py-ran),Vector2(px+ran,py+ran))
 #	var rmap=[]
 #	rmap.resize(ran*ran)
 #	recursiveFog(px,py,px,py,ran,rmap)
@@ -192,24 +192,47 @@ func recursiveFog(ox,oy,x,y,ran,rmap):
 
 func linearRevealFog(ox,oy,ran):
 	var fog_map=get_node("/root/Node2D/Nav2D/FogMap")
-
+	linearRectLinesFog(ox,oy,ran)
 	for x in range(ox-ran,ox+ran+1):
 		var dx=(x-ox)/ran
-		for i in range(ran+1):
+		for i in range(ran):
 			fog_map.set_cell(ox+i*dx, oy+i, -1)
 			if isOcluder(ox+i*dx, oy+i): break
-		for i in range(ran+1):
+		for i in range(ran):
 			fog_map.set_cell(ox+i*dx, oy-i, -1)
 			if isOcluder(ox+i*dx, oy-i): break
 	
 	for y in range(oy-ran,oy+ran+1):
 		var dy=(y-oy)/ran
-		for i in range(ran+1):
+		for i in range(ran):
 			fog_map.set_cell(ox+i, oy+i*dy, -1)
 			if isOcluder(ox+i, oy+i*dy): break
-		for i in range(ran+1):
+		for i in range(ran):
 			fog_map.set_cell(ox-i, oy+i*dy, -1)
 			if isOcluder(ox-i, oy+i*dy): break
+
+func linearRectLinesFog(ox,oy,ran):
+	var fog_map=get_node("/root/Node2D/Nav2D/FogMap")
+	for x in range(ox,ox+ran):
+		fog_map.set_cell(x, oy-1, -1)
+		fog_map.set_cell(x, oy, -1)
+		fog_map.set_cell(x, oy+1, -1)
+		if isOcluder(x, oy): break
+	for x in range(ox,ox-ran,-1):
+		fog_map.set_cell(x, oy-1, -1)
+		fog_map.set_cell(x, oy, -1)
+		fog_map.set_cell(x, oy+1, -1)
+		if isOcluder(x, oy): break
+	for y in range(oy,oy+ran):
+		fog_map.set_cell(ox-1, y, -1)
+		fog_map.set_cell(ox, y, -1)
+		fog_map.set_cell(ox+1, y, -1)
+		if isOcluder(ox, y): break
+	for y in range(oy,oy-ran,-1):
+		fog_map.set_cell(ox-1, y, -1)
+		fog_map.set_cell(ox, y, -1)
+		fog_map.set_cell(ox+1, y, -1)
+		if isOcluder(ox, y): break
 
 func isOcluder(x,y):
 	if DATAMAP[x][y]==tiles["MURO"]: return true

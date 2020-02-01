@@ -15,3 +15,6 @@ func getHab(CODE):
 	HAB["cost"]=HAB.get("cost",0)
 	HAB["cnt"]=HAB.get("cnt",0)
 	return HAB
+
+func ejecutarHab(own,data):
+	Globals.effectManager.text_effect(own.position,data["hab"]+" "+str(data["cnt"]))

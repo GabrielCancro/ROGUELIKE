@@ -25,14 +25,9 @@ func hide():
 	set_process(false)
 
 func _onAccept():
-	var ITEM=habs[index+base]
-	if ITEM.get("eq","")=="":
-		for i in range(0, habs.size()):
-			if habs[i]["type"]==ITEM["type"]: habs[i].erase("eq") 
-		ITEM["eq"]="EQ"
-	else: ITEM.erase("eq") 
-	get_node("../").player.INVENTARIABLE.change_equipament()
-	drawInfoItems()
+	var myHab=Globals.HabsManager.getHab( habs.keys()[index+base] )
+	if(myHab["type"]=="ACT"):
+		RootMenu.exitRootMenu({"action":"HAB","hab":habs.keys()[index+base],"cnt":habs[ habs.keys()[index+base] ]})
 
 func _onCancel(): 
 	RootMenu.selectSubMenu("MenuP")
@@ -75,15 +70,15 @@ func isBtn(btn_name="NONE"): #true si el boton actual coincide con el el paramet
 
 func drawInfoItems():
 	for i in range(0, buttons.size()):
-		buttons[i].get_node("icon").set_frame(1)
+		buttons[i].get_node("icon").set_frame(34)
 		if i+base<habs.size():
 			var myHab=Globals.HabsManager.getHab( habs.keys()[i+base] )
 			var myCnt=habs[ habs.keys()[i+base] ]
 			#buttons[i].get_node("icon").set_frame( myHab["icon"] )
-			if(myHab["type"]=="ACT"): buttons[i].get_node("icon").set_frame(2)
+			if(myHab["type"]=="ACT"): buttons[i].get_node("icon").set_frame(35)
 			buttons[i].get_node("name").set_text( myHab["name"]+" "+Globals.DDCORE.to_roman(myCnt) )
 		else:
-			buttons[i].get_node("icon").set_frame(11)
+			buttons[i].get_node("icon").set_frame(33)
 			buttons[i].get_node("name").set_text("")
 	get_node("counter").set_text(str(index+base+1)+" / "+str(habs.size()))
 

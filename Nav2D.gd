@@ -14,7 +14,7 @@ func _unhandled_input(e:InputEvent)->void:
 	if e.button_index != BUTTON_LEFT or not e.pressed:
 		return
 	
-	Globals.effectManager.text_effect(Globals.player.position,'test',1)
+	#Globals.effectManager.text_effect(Globals.player.position,'test',1)
 #	var new_path : = nav_2d.get_simple_path(character.global_position, get_tilemap_pos(e.global_position),false)
 #	line_2d.points=new_path
 #	character.path = new_path
