@@ -45,6 +45,6 @@ func moveToDest():
 
 func moveAction(des):
 	var cell_des=Globals.tile_map.get_cellv(des)
-	if(cell_des==3 || cell_des==10):
-		if own.name=='Player': Globals.dunGen.showFog(des.x,des.y,6)
+	if Globals.dunGen.traversablesIndexs.has(cell_des):		
+		if own.name=='Player': Globals.dunGen.showFog(des.x,des.y,own.ATTRIBUTABLE.get_attr("see"))
 		return true #true if is posible move

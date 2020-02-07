@@ -21,6 +21,10 @@ func text_effect(pos,txt):
 	add_child( node )
 	return node
 
+func grand_text_effect(pos,txt):
+	var node = text_effect(pos,txt)
+	node.scale=Vector2(3,3)
+
 func titilar(obj):
 	var tween = obj.get_node("Tween")
 	if !tween:

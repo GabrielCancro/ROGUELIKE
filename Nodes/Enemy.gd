@@ -31,7 +31,7 @@ func onEnterTurn():
 	Globals.ASTAR.setAstarRect(pos_ASTAR,ran_ASTAR,Globals.dunGen.DATAMAP,obst_grid)
 	path=Globals.ASTAR.get_astar_path(TILEABLE.get_tile_pos(),Globals.player.TILEABLE.get_tile_pos())
 	pathIndex=0
-	steps=5
+	steps=ATTRIBUTABLE.get_attr("stp")
 	if path==null: path=[TILEABLE.get_tile_pos()]
 	if(path.size()>1):
 		MOVIBLE.set_tile_des(path[0])

@@ -11,20 +11,19 @@ func _ready():
 	selectSprite = $Select;	
 
 func updateGUI(attr,cnt):
-	print("UPDATEHP")
 	update_stats_UI()
-	if attr==".hp":
-		get_node("HPLabel").set_text("VIDA PJ: "+str(cnt) )
 
 func _process(delta):
 	pass
 
 func update_stats_UI():
-	print("update ui stats")
 	var ATTRS=Globals.player.ATTRIBUTABLE
-	var LBL=get_node("GUI_STATS/attr_label")
+	
 	var STR=" hp: "+str( ATTRS.get_attr(".hp") )+"/"+str( ATTRS.get_attr("hp") )+"\n"
 	STR+=" pp: "+str( ATTRS.get_attr(".pp") )+"/"+str( ATTRS.get_attr("pp") )+"\n\n"
+	get_node("GUI_STATS/hppp_label").set_text(STR)
+	
+	STR=""
 	var showAttr=["atk","def","pow","res",]
 	for at in showAttr: STR+=at+" "+str( ATTRS.get_attr(at) )+"\n"
-	LBL.set_text(STR)
+	get_node("GUI_STATS/attr_label").set_text(STR)

@@ -8,6 +8,7 @@ onready var INVENTARIABLE = preload('res://Class/Inventariable.gd').new(self)
 
 var speed = 20
 var STATE="MOVE"
+var isDead=false
 var currentBag
 
 onready var nav_2D:Navigation2D=get_node("../Nav2D")
@@ -17,11 +18,9 @@ onready var menu=get_node("../RootMenu")
 func _ready():
 	Globals.TurnController.add_to_list(self)
 	yield(get_tree().create_timer(0.2), "timeout")
-	var iniPos=Globals.dunGen.generateDungeon(Globals.tile_map)
-	TILEABLE.set_tile_pos(iniPos)
-	Globals.dunGen.showFog(iniPos.x,iniPos.y,ATTRIBUTABLE.get_attr("see"))
-	ATTRIBUTABLE.set_attr("hp",12)
-	ATTRIBUTABLE.set_attr(".hp",12)
+	Globals.dunGen.generateDungeon(Globals.tile_map)
+	ATTRIBUTABLE.set_attr("hp",2)
+	ATTRIBUTABLE.set_attr(".hp",2)
 
 func get_input():
 	var v = Vector2(0,0)
@@ -41,12 +40,12 @@ func get_input():
 			ATTRIBUTABLE.print_all_attr()
 			ABILITYABLE.print_all_habs()
 	if Input.is_action_just_released('ui_select'): 
-		var iniPos=Globals.dunGen.generateDungeon(Globals.tile_map)
-		TILEABLE.set_tile_pos(iniPos)
-		Globals.dunGen.showFog(iniPos.x,iniPos.y,ATTRIBUTABLE.get_attr("see"))
+		pass
+		#Globals.dunGen.generateDungeon(Globals.tile_map)
 	if Input.is_action_just_released('toggle_mode'):
-		#print(str(Globals.soundManager.get_playback_position()))
 		print(str(Globals.TilemapManager.GR_ENEMIES))
+		#get_tree().change_scene("res://Nodes/menuPrincipal/menu_principal.tscn")
+		#Globals.DeathAnimation.ThePlayerDied()
 		pass
 
 func setState(_state):
@@ -72,24 +71,24 @@ func on_exit_selector(data):
 
 func _process(delta):
 	get_node('/root/Node2D/UIControl/STATE_Label').set_text("S: "+STATE)
-	MOVIBLE.moveToDest()
-	
+	MOVIBLE.moveToDest()	
 
-func processTravel():	
+func processTravel():
+	if isDead: return
 	if !MOVIBLE.isMoving and STATE=="MOVE": get_input()
 	
 var steps=0
 func onEnterTurn():
-	steps=5
+	steps=ATTRIBUTABLE.get_attr("stp")
 
 func processTurn():
+	if isDead: return
 	if STATE=="MOVE":
 		if steps<=0:
 			Globals.turnController.finishTurn(self)
 			return
 		if !MOVIBLE.isMoving: 
 			get_input()
-
 
 func checkTileDest(tile_des):
 	print("CHECK TILE DES "+str(tile_des))
@@ -101,17 +100,21 @@ func checkTileDest(tile_des):
 		return false
 	# 2.. si hay puerta la intenta abrir
 	var cell_des=Globals.tile_map.get_cellv(tile_des)
-	if cell_des==8:
+	if cell_des==Globals.dunGen.tiles["PUERTA"]:
 		set_work("OPEN",tile_des)
-		Globals.turnController.finishTurn(self)
 		return false
+	# 6.. si esta la salida
+	if cell_des==Globals.dunGen.tiles["SALIDA"]:
+		if Globals.turnController.isTurnMode:
+			Globals.effectManager.text_effect(position,'Debes terminar el combate')
+		else: Globals.nextDungeon()
 	# 3.. si hay enemigos cerca   NO ES MUY OPTIMO
 	if !Globals.turnController.isTurnMode:
-		var enemiGroup=Globals.TilemapManager.get_elements_in_area(tile_des,6,"ENEMIES")
+		var enemiGroup=Globals.TilemapManager.get_elements_in_area(tile_des,5,"ENEMIES")
 		if enemiGroup.size()>0: 
 			Globals.turnController.set_turn_mode()
 	else:
-		var enemiGroup=Globals.TilemapManager.get_elements_in_area(tile_des,10,"ENEMIES")
+		var enemiGroup=Globals.TilemapManager.get_elements_in_area(tile_des,7,"ENEMIES")
 		print("ENEMI GROUP AREA l108 "+str(enemiGroup))
 		if enemiGroup.size()==0: Globals.turnController.set_turn_mode(false)
 	# 4.. si hay un items
@@ -124,7 +127,8 @@ func checkTileDest(tile_des):
 	# 5 .. si te moves en modo combate
 	if Globals.turnController.isTurnMode:
 		steps-=1
-		Globals.effectManager.text_effect(position,':'+str(steps))		
+		Globals.effectManager.text_effect(position,':'+str(steps))
+	
 	return true
 
 
@@ -132,10 +136,16 @@ func set_work(name,pos):
 	STATE="WORK"
 	steps=0
 	if(name=="OPEN"):
-		Globals.effectManager.work_effect(pos,2.0)
-		yield(get_tree().create_timer(2.0), "timeout")
-		Globals.tile_map.set_cell(pos.x,pos.y,10)
-		Globals.turnController.finishTurn(self)
+		Globals.effectManager.work_effect(pos,1.5)
+		yield(get_tree().create_timer(1.5), "timeout")
+		if Globals.rndi(1,100)>20:
+			Globals.tile_map.set_cell(pos.x,pos.y,Globals.dunGen.tiles["SUELO"])
+			Globals.dunGen.DATAMAP[pos.x][pos.y]=Globals.dunGen.tiles["SUELO"]
+			Globals.dunGen.showFog(pos.x,pos.y,ATTRIBUTABLE.get_attr("see"))
+		else: 
+			Globals.effectManager.text_effect(position,'FALLASTE')
+			yield(get_tree().create_timer(0.5), "timeout")
+		Globals.turnController.finishTurn(self)		
 		STATE="MOVE"
 
 func showSelectorTilePos(data):
@@ -144,4 +154,9 @@ func showSelectorTilePos(data):
 	SPJ.showSelector(self,data)
 
 func dead():
-	pass	
+	isDead=true
+	visible=false
+	Globals.effectManager.grand_text_effect(Globals.player.position+Vector2(0,-150),"MUERTO")
+	yield(get_tree().create_timer(5), "timeout")	
+	get_tree().change_scene("res://Nodes/menuPrincipal/menu_principal.tscn")
+	pass

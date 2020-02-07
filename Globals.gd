@@ -18,6 +18,8 @@ var TurnController
 var TilemapManager
 var ItemsManager
 var HabsManager
+var EnemiesManager
+var DeathAnimation
 var soundManager
 var rnd = RandomNumberGenerator.new()
 
@@ -39,6 +41,8 @@ func _initGlobals():
 	TilemapManager = get_node("/root/Node2D/TilemapManager")
 	ItemsManager = get_node("/root/Node2D/ItemsManager")
 	HabsManager = get_node("/root/Node2D/HabsManager")
+	EnemiesManager = get_node("/root/Node2D/EnemiesManager")
+	DeathAnimation = get_node("/root/Node2D/DeathAnimation")
 	
 	soundManager=AudioStreamPlayer.new()
 	effectManager.add_child(soundManager)
@@ -52,3 +56,7 @@ func playMusic(song):
 
 func rndi(minim,maxim):
 	return rnd.randi_range(minim, maxim)
+
+func nextDungeon():
+	yield(get_tree().create_timer(0.5), "timeout")
+	Globals.dunGen.generateDungeon(Globals.tile_map)

@@ -54,3 +54,11 @@ func get_group(groupName):
 	elif groupName=="OBJECTS": return GR_OBJECTS
 	else: push_error("NO EXISTE EL GRUPO "+groupName)
 	return
+
+func remove_all_elements():
+	for elem in GR_ENEMIES.keys():
+		GR_ENEMIES[elem].dead()
+		GR_ENEMIES.erase( elem )
+	for elem2 in GR_OBJECTS.keys():		
+		GR_OBJECTS[elem2].queue_free()
+		GR_OBJECTS.erase( elem2 )

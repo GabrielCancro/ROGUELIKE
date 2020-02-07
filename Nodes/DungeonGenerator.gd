@@ -4,20 +4,20 @@ extends Node2D
 #      gabrielcancro@gmail.com
 
 #onready var ASTAR = preload('res://Nodes/UTILS/ASTAR.gd').new()
-
-var enemyObject = preload("res://Nodes/Enemy.tscn")
+var NIVEL=1
 
 var DATAMAP #es un array 2D con los tiles del mapa
-var map_w=60 #ancho del mapa a generar
-var map_h=30 #alto del mapa a generar
+var map_w #ancho del mapa a generar
+var map_h #alto del mapa a generar
 
 #indices de los tiles, por si los necesitas cambiar o algo
 #							0							11							12
-var tiles={ "LIBRE":10, "MURO":0, "SUELO":3,  "BLOQUEADO":13, "PASILLO":3, "MUROV":12 }
+var tiles={ "LIBRE":10, "MURO":0, "SUELO":3,  "BLOQUEADO":13, "PASILLO":3, "INICIO":15, "SALIDA":14 , "PUERTA":8 , "PUERTA_OPEN":3 }
+var traversablesIndexs=[10,3,14,15]
 var ROOMS=[] #lista de habitaciones en el mapa
 var min_room=Vector2(4,4)	#tamaño minimo de habitaciones
 var max_room=Vector2(8,8)	#tamaño maximo de habitaciones
-var cant_rooms=map_w*map_h/150 #formula que, segun el tamaño del mapa, da cuantas habitaciones se crearan
+var cant_rooms
 
 #poner en false para obtener el resultado del proceso rapidamente
 #en true ira generando poco a poco para poder visualizar el proceso
@@ -30,6 +30,10 @@ func _ready():
 	rnd.randomize()
 
 func generateDungeon(tile_map_target):
+	map_w=25+NIVEL*7
+	map_h=25+NIVEL*6
+	cant_rooms=map_w*map_h/150
+	print("ROOMS TOTALES "+str(cant_rooms))
 	tile_map=tile_map_target
 	DATAMAP = create_map(map_w,map_h,tiles["LIBRE"])
 	if showProcess: draw_map(DATAMAP)
@@ -43,17 +47,28 @@ func generateDungeon(tile_map_target):
 	if showProcess: draw_map(DATAMAP)
 	if showProcess: yield(get_tree().create_timer(0.5), "timeout")
 	
+	DATAMAP[ ROOMS[ROOMS.size()-1]["cx"] ][ ROOMS[ROOMS.size()-1]["cy"] ]=tiles["SALIDA"]
+	DATAMAP[ ROOMS[0]["cx"] ][ ROOMS[0]["cy"] ]=tiles["INICIO"]
+	
 	finishMap(DATAMAP)
+	addDoors()
 	draw_map(DATAMAP)
 	tile_map.update_bitmask_region()
 	
 	if showProcess: yield(get_tree().create_timer(0.5), "timeout")
 	iniFog()
 	#Globals.ASTAR.setAstar(Globals.dunGen.DATAMAP,[10,3])
+	Globals.TilemapManager.remove_all_elements()
 	addEnemies()
 	addChests()
 	
-	return Vector2(ROOMS[0]["cx"],ROOMS[0]["cy"])
+	var posRoomZero=Vector2(ROOMS[0]["cx"],ROOMS[0]["cy"])
+	Globals.player.TILEABLE.set_tile_pos(posRoomZero)
+	showFog(posRoomZero.x,posRoomZero.y,Globals.player.ATTRIBUTABLE.get_attr("see"))
+	yield(get_tree().create_timer(1.0), "timeout")
+	Globals.effectManager.grand_text_effect(Globals.player.position+Vector2(0,-100),"NIVEL "+str(NIVEL))
+	NIVEL+=1
+	return posRoomZero
 
 func create_map(w, h, baseTile):
 	var m = []
@@ -237,21 +252,45 @@ func linearRectLinesFog(ox,oy,ran):
 func isOcluder(x,y):
 	if DATAMAP[x][y]==tiles["MURO"]: return true
 	if DATAMAP[x][y]==tiles["BLOQUEADO"]: return true
+	if DATAMAP[x][y]==tiles["PUERTA"]: return true
 	return false
 
-func addEnemies():
-	for i in range(2,ROOMS.size()):
-		var r=ROOMS[i]
-		var EN=enemyObject.instance()		
-		get_node("/root/Node2D").add_child(EN)
-		EN.TILEABLE.set_tile_pos(Vector2(r["cx"],r["cy"]))
-		#if i>3: break
+func addDoors():
+	var cnt=0
+	for i in range(1000):
+		if cnt >= 3+Globals.rndi(NIVEL,NIVEL*2): break
+		var xx=Globals.rndi(1,map_w-2)
+		var yy=Globals.rndi(1,map_h-2)
+		if isViableDoor(xx,yy):
+			cnt+=1
+			DATAMAP[xx][yy]=tiles["PUERTA"]
+			print("add DOOR in "+str(xx)+","+str(yy))
 
-func addChests():
-	for i in range(7):
+func isViableDoor(xx,yy):
+	if traversablesIndexs.has(DATAMAP[xx-1][yy]) and traversablesIndexs.has(DATAMAP[xx+1][yy]):
+		if !traversablesIndexs.has(DATAMAP[xx][yy-1]) and !traversablesIndexs.has(DATAMAP[xx][yy+1]):
+			return true
+	if traversablesIndexs.has(DATAMAP[xx][yy-1]) and traversablesIndexs.has(DATAMAP[xx][yy+1]):
+		if !traversablesIndexs.has(DATAMAP[xx-1][yy]) and !traversablesIndexs.has(DATAMAP[xx+1][yy]):
+			return true 
+	return false
+	
+func addEnemies():
+	var cnt= 1+Globals.rndi(NIVEL,NIVEL*2)
+	for i in range(cnt):
 		for j in range(50):
 			var xx=Globals.rndi(1,map_w-2)
 			var yy=Globals.rndi(1,map_h-2)
+			if DATAMAP[xx][yy]==tiles["SUELO"]:
+				Globals.EnemiesManager.create_enemy("SKELETON",Vector2(xx,yy))
+				break
+
+func addChests():
+	for i in range(NIVEL):
+		for j in range(50):
+			var xx=Globals.rndi(1,map_w-2)
+			var yy=Globals.rndi(1,map_h-2)
+			if Globals.TilemapManager.get_element(Vector2(xx,yy),"OBJECTS"): continue
 			if DATAMAP[xx][yy]==tiles["SUELO"]:
 				Globals.ItemsManager.createChest(Vector2(xx,yy))
 				break

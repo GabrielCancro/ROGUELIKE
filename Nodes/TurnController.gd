@@ -18,10 +18,10 @@ func set_turn_mode(isTM=true):
 		if(isTM): 
 			Globals.playMusic("music_combat")
 			Globals.effectManager.text_effect(Globals.player.position+Vector2(-200,-100),'! COMBATE !')
-			Globals.effectManager.text_effect(Globals.player.position+Vector2( 200, 100),'! COMBATE !')
+			Globals.effectManager.text_effect(Globals.player.position+Vector2( 200, -100),'! COMBATE !')
 		else: 
 			Globals.playMusic("music_dungeon1")
-			Globals.effectManager.text_effect(Globals.player.position+Vector2(0,-100),'-ESCAPASTE-')
+			Globals.effectManager.text_effect(Globals.player.position+Vector2(0,-100),'-MODO TRAVESIA-')
 
 func add_to_list(obj):
 	list.append(obj)
@@ -47,7 +47,7 @@ func processTurn():
 			pretime-=1
 			return
 		for trj in list:
-			if trj.TILEABLE.get_tile_pos().distance_to(Globals.player.TILEABLE.get_tile_pos())>10: continue
+			if trj.TILEABLE.get_tile_pos().distance_to(Globals.player.TILEABLE.get_tile_pos())>7: continue
 			chargeList[trj.name]+=5
 			if(chargeList[trj.name]>100):
 				chargeList[trj.name]-=100				
@@ -60,7 +60,7 @@ func processTurn():
 			Globals.effectManager.titilar(turnObj)
 			Globals.camera.setTarget(turnObj)
 			turnObj.onEnterTurn()
-		if pretime>60:
+		if pretime>30:
 			turnObj.processTurn()
 		else: pretime+=1
 

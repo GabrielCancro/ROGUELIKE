@@ -2,12 +2,12 @@
 class_name AstarClass
 
 var astar
-var traversablesIndexs=[10,3]
+var traversablesIndexs
 var diagonalMovements=false
-onready var traversable_tiles
+var traversable_tiles
 
-func setAstar(grid): #grid is array[x][y] or array[Vector2]
-	print("ASTAR seting")
+
+func setAstar(grid):
 	if typeof(grid[0])==TYPE_VECTOR2:
 		traversable_tiles=grid
 		#error!!! no hay que agregar toda la grilla a los atravesables!!!
@@ -20,10 +20,10 @@ func setAstar(grid): #grid is array[x][y] or array[Vector2]
 	astar=AStar.new()
 	_add_traversable_tiles(traversable_tiles)
 	_connect_traversable_tiles(traversable_tiles)
-	print("set_ok!")
 	return true
 
 func setAstarRect(pos,ran,grid,obstacles_grid):
+	traversablesIndexs=Globals.dunGen.traversablesIndexs
 	if typeof(grid[0])==TYPE_ARRAY:
 		traversable_tiles=[]
 		for x in range(pos.x-ran, pos.x+ran):
@@ -33,17 +33,11 @@ func setAstarRect(pos,ran,grid,obstacles_grid):
 				if y<0: continue
 				if y>grid[0].size()-1: continue
 				if !traversablesIndexs.has(grid[x][y]): continue
-				if obstacles_grid[x-pos.x+ran][y-pos.y+ran]==1: 
-					print("OBSTACULO EN "+str(Vector2(x-pos.x+ran,y-pos.y+ran)))
-					continue
-				#print("OBSTACULO EN "+str(Vector2(x-pos.x,y-pos.y)))
+				if obstacles_grid[x-pos.x+ran][y-pos.y+ran]==1: continue
 				traversable_tiles.append(Vector2(x,y))
 	astar=AStar.new()
 	_add_traversable_tiles(traversable_tiles)
 	_connect_traversable_tiles(traversable_tiles)
-	print("set_ASTAR RECT ok! "+str(pos)+"  r"+str(ran))
-	for i in obstacles_grid:
-		print("set_ASTAR RECT OBSTACLES   "+str(i))
 	return true
 
 func _add_traversable_tiles(traversable_tiles):

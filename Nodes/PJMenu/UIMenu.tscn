@@ -64,7 +64,6 @@ z_index = 5
 script = ExtResource( 1 )
 
 [node name="MenuP" type="Control" parent="."]
-editor/display_folded = true
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 2 )
