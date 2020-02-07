@@ -30,13 +30,13 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 20
 outline_size = 2
 outline_color = Color( 0.243137, 0.0627451, 0.0627451, 1 )
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 outline_size = 2
 outline_color = Color( 0.32549, 0.223529, 0.223529, 1 )
 font_data = ExtResource( 9 )
@@ -90,7 +90,7 @@ margin_left = 23.0368
 margin_top = 9.64233
 margin_right = 103.037
 margin_bottom = 54.6423
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.803922, 0.878431, 0.756863, 1 )
 text = "hp  12/12
 pp 3/3"
@@ -100,7 +100,7 @@ margin_left = 11.8394
 margin_top = 95.297
 margin_right = 80.8394
 margin_bottom = 252.297
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.803922, 0.878431, 0.756863, 1 )
 text = "att 1
 att 2

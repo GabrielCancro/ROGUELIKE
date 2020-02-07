@@ -157,6 +157,6 @@ func dead():
 	isDead=true
 	visible=false
 	Globals.effectManager.grand_text_effect(Globals.player.position+Vector2(0,-150),"MUERTO")
-	yield(get_tree().create_timer(5), "timeout")	
-	get_tree().change_scene("res://Nodes/menuPrincipal/menu_principal.tscn")
+	yield(get_tree().create_timer(3), "timeout")	
+	get_tree().change_scene("res://Nodes/DeathAnimation.tscn")
 	pass
