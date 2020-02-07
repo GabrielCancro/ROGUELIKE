@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Nodes/DeathAnimation.gd" type="Script" id=1]
+[ext_resource path="res://sprites/HAS MUERTO.png" type="Texture" id=2]
+[ext_resource path="res://sprites/CALACA.png" type="Texture" id=3]
+[ext_resource path="res://Fonts/Font death node.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Sounds/Gameover.wav" type="AudioStream" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "FadeScreen"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/HAS MUERTO:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/CALACA:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Texto:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 8, 8.7, 9.4, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="DeathAnimation" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="HAS MUERTO" type="TextureRect" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -424.0
+margin_top = -253.5
+margin_right = 424.0
+margin_bottom = 253.5
+texture = ExtResource( 2 )
+
+[node name="CALACA" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 503.768, 495.434 )
+scale = Vector2( 0.340419, 0.340419 )
+texture = ExtResource( 3 )
+
+[node name="Texto" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -288.0
+margin_right = 288.0
+margin_bottom = 81.0
+custom_fonts/font = ExtResource( 4 )
+text = "Presiona cualquier tecla para continuar
+"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/FadeScreen = SubResource( 1 )
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
