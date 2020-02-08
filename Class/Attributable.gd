@@ -3,7 +3,7 @@ class_name Attributable
 var own
 signal sg_change_attr
 
-var baseAttr={"hp":7, "atk":3, "def":1, "dan":2, "end":1, "pp":3, "pow":0, "res":0, "see":5, "stp":4 }
+var baseAttr={"hp":3, "atk":1, "def":1, "pp":0, "pow":0, "see":5, "stp":4 }
 var objectAttr={}
 var nameAttr={}
 
@@ -15,6 +15,7 @@ func _init(_owner):
 	set_attr(".pp",baseAttr["pp"])
 
 func set_attr(attr,cnt):
+	if cnt<0: cnt=0
 	baseAttr[attr]=cnt
 	emit_signal("sg_change_attr",attr,cnt)
 

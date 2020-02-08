@@ -4,7 +4,7 @@ extends Node2D
 #      gabrielcancro@gmail.com
 
 #onready var ASTAR = preload('res://Nodes/UTILS/ASTAR.gd').new()
-var NIVEL=1
+var NIVEL=4
 
 var DATAMAP #es un array 2D con los tiles del mapa
 var map_w #ancho del mapa a generar
@@ -30,8 +30,8 @@ func _ready():
 	rnd.randomize()
 
 func generateDungeon(tile_map_target):
-	map_w=25+NIVEL*7
-	map_h=25+NIVEL*6
+	map_w=25+NIVEL*6
+	map_h=25+NIVEL*5
 	cant_rooms=map_w*map_h/150
 	print("ROOMS TOTALES "+str(cant_rooms))
 	tile_map=tile_map_target
@@ -264,7 +264,7 @@ func addDoors():
 		if isViableDoor(xx,yy):
 			cnt+=1
 			DATAMAP[xx][yy]=tiles["PUERTA"]
-			print("add DOOR in "+str(xx)+","+str(yy))
+			#print("add DOOR in "+str(xx)+","+str(yy))
 
 func isViableDoor(xx,yy):
 	if traversablesIndexs.has(DATAMAP[xx-1][yy]) and traversablesIndexs.has(DATAMAP[xx+1][yy]):

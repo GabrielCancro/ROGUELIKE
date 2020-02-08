@@ -59,6 +59,7 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="HAS MUERTO" type="TextureRect" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -70,11 +71,13 @@ margin_bottom = 230.022
 texture = ExtResource( 3 )
 
 [node name="CALACA" type="Sprite" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 503.768, 491.434 )
 scale = Vector2( 0.340419, 0.340419 )
 texture = ExtResource( 4 )
 
 [node name="Texto" type="Label" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -288.0

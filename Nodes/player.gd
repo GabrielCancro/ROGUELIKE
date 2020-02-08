@@ -19,8 +19,19 @@ func _ready():
 	Globals.TurnController.add_to_list(self)
 	yield(get_tree().create_timer(0.2), "timeout")
 	Globals.dunGen.generateDungeon(Globals.tile_map)
-	ATTRIBUTABLE.set_attr("hp",2)
-	ATTRIBUTABLE.set_attr(".hp",2)
+	
+	ATTRIBUTABLE.set_attr("hp",7)
+	ATTRIBUTABLE.set_attr(".hp",7)
+	
+	ATTRIBUTABLE.set_attr("pp",2)
+	ATTRIBUTABLE.set_attr(".pp",2)
+	
+	ABILITYABLE.set_base_hab("BERSERK",5)
+	#ABILITYABLE.set_base_hab("PUNTERIA",3)
+	#ABILITYABLE.set_base_hab("ARQUERIA",3)
+	ABILITYABLE.set_base_hab("DEBILITAR",1)
+	
+	#INVENTARIABLE.addItem(201,2)
 
 func get_input():
 	var v = Vector2(0,0)
@@ -59,14 +70,15 @@ func on_exit_menu(data):
 		showSelectorTilePos(data)
 	elif data["action"]=="HAB":
 		Globals.HabsManager.ejecutarHab(self,data)
-		yield(get_tree().create_timer(.5), "timeout")
-		setState("MOVE")
 	
 
 func on_exit_selector(data):
+	#print("on_exit_selector: "+str(data))
 	if data.has("tilePos"):
-		set_work("OPEN",data.get("tilePos"))		
+		if data.has("action") and data["action"]=="HAB":
+			Globals.HabsManager.ejecutarHabInPos(self,data)
 	else: 
+		yield(get_tree().create_timer(.5), "timeout")
 		setState("MOVE")
 
 func _process(delta):
@@ -91,7 +103,7 @@ func processTurn():
 			get_input()
 
 func checkTileDest(tile_des):
-	print("CHECK TILE DES "+str(tile_des))
+	#print("CHECK TILE DES "+str(tile_des))
 	# 1..si hay enemigo lo ataca	
 	var enem=Globals.TilemapManager.get_element(tile_des,"ENEMIES")
 	if enem!=null: 
@@ -106,7 +118,7 @@ func checkTileDest(tile_des):
 	# 6.. si esta la salida
 	if cell_des==Globals.dunGen.tiles["SALIDA"]:
 		if Globals.turnController.isTurnMode:
-			Globals.effectManager.text_effect(position,'Debes terminar el combate')
+			Globals.effectManager.text_effect(position+Vector2(0,-50),'Debes terminar el combate')
 		else: Globals.nextDungeon()
 	# 3.. si hay enemigos cerca   NO ES MUY OPTIMO
 	if !Globals.turnController.isTurnMode:
@@ -115,7 +127,7 @@ func checkTileDest(tile_des):
 			Globals.turnController.set_turn_mode()
 	else:
 		var enemiGroup=Globals.TilemapManager.get_elements_in_area(tile_des,7,"ENEMIES")
-		print("ENEMI GROUP AREA l108 "+str(enemiGroup))
+		#print("ENEMI GROUP AREA l108 "+str(enemiGroup))
 		if enemiGroup.size()==0: Globals.turnController.set_turn_mode(false)
 	# 4.. si hay un items
 	var bag=Globals.TilemapManager.get_element(tile_des,"OBJECTS")
@@ -156,7 +168,7 @@ func showSelectorTilePos(data):
 func dead():
 	isDead=true
 	visible=false
-	Globals.effectManager.grand_text_effect(Globals.player.position+Vector2(0,-150),"MUERTO")
+	#Globals.effectManager.grand_text_effect(Globals.player.position+Vector2(0,-150),"MUERTO")
 	yield(get_tree().create_timer(3), "timeout")	
 	get_tree().change_scene("res://Nodes/DeathAnimation.tscn")
 	pass

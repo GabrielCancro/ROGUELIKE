@@ -3,6 +3,7 @@ extends Node2D
 var work_scene = preload("res://Nodes/Effects/workEff.tscn")
 var text_scene = preload("res://Nodes/Effects/textEff.tscn")
 var anim_scene = preload("res://Nodes/Effects/anim.tscn")
+var fx_magic_scene = preload("res://Nodes/Effects/fx_magic.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -46,4 +47,12 @@ func hit_effect(pos):
 	node.get_node("AnimatedSprite").play("default")
 	add_child( node )
 	yield(get_tree().create_timer(0.8), "timeout")
+	node.free()
+
+func magic_effect(pos):
+	var node = fx_magic_scene.instance()
+	node.position=pos
+	node.get_node("AnimatedSprite").play("default")
+	add_child( node )
+	yield(get_tree().create_timer(1.5), "timeout")
 	node.free()

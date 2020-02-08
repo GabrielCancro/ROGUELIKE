@@ -7,12 +7,7 @@ var baseHabs={}
 var objectHabs={}
 
 func _init(_owner):
-	own=_owner	
-	yield(own.get_tree().create_timer(0.1), "timeout")
-	set_base_hab("BERSERK",5)
-	set_base_hab("PUNTERIA",3)
-	set_base_hab("ARQUERIA",3)
-	print_all_habs()
+	own=_owner
 
 func print_all_habs():
 	print("--- HABILIDADES FULL ---")

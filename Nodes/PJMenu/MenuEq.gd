@@ -25,6 +25,7 @@ func hide():
 	set_process(false)
 
 func _onAccept():
+	if items.size()-1<index+base: return
 	var ITEM=items[index+base]
 	if ITEM.get("eq","")=="":
 		for i in range(0, items.size()):

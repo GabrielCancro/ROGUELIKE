@@ -7,14 +7,6 @@ var items=[]
 
 func _init(_owner):
 	own=_owner
-	createItemsBag()
-	
-func createItemsBag():
-	addItem(101)
-	addItem(102)
-	addItem(201)
-	addItem(201,3)
-	pass
 
 func addItem(CODE,cant=1):
 	if CODE<200:

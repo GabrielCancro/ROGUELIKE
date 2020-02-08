@@ -44,6 +44,7 @@ font_data = ExtResource( 9 )
 [node name="Node2D" type="Node2D"]
 
 [node name="Nav2D" type="Navigation2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 1 )
 
 [node name="TileMap" parent="Nav2D" instance=ExtResource( 2 )]
@@ -79,6 +80,7 @@ smoothing_enabled = true
 script = ExtResource( 7 )
 
 [node name="UIControl" type="CanvasLayer" parent="."]
+editor/display_folded = true
 script = ExtResource( 8 )
 
 [node name="GUI_STATS" type="Control" parent="UIControl"]
@@ -124,29 +126,18 @@ text = "[ x ] Accept utton
 
 [node name="Label_TurnOf" type="Label" parent="UIControl"]
 margin_left = 379.138
-margin_top = 4.99837
+margin_top = -3.00163
 margin_right = 627.138
-margin_bottom = 39.9984
+margin_bottom = 31.9984
 text = "is your turn"
 align = 1
 valign = 1
 
-[node name="Label INFO" type="Label" parent="UIControl"]
-modulate = Color( 1, 1, 0, 1 )
-margin_left = 14.9649
-margin_top = 561.07
-margin_right = 679.965
-margin_bottom = 582.07
-rect_scale = Vector2( 1.5, 1.5 )
-text = "Utiliza [ SPACE ] para generar un Nuevo Dungeon Aleatorio"
-align = 1
-valign = 1
-
 [node name="STATE_Label" type="Label" parent="UIControl"]
-margin_left = 906.549
-margin_top = 511.041
-margin_right = 1018.55
-margin_bottom = 546.041
+margin_left = 921.549
+margin_top = 569.041
+margin_right = 1033.55
+margin_bottom = 604.041
 text = "LABEL"
 align = 1
 valign = 1

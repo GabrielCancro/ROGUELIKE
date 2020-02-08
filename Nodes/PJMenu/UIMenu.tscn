@@ -1,59 +1,58 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Nodes/PJMenu/UIMenu.gd" type="Script" id=1]
 [ext_resource path="res://Nodes/PJMenu/MenuP.gd" type="Script" id=2]
-[ext_resource path="res://sprites/uimenu/equip.png" type="Texture" id=3]
-[ext_resource path="res://sprites/uimenu/attack.png" type="Texture" id=4]
-[ext_resource path="res://sprites/uimenu/uses.png" type="Texture" id=5]
-[ext_resource path="res://sprites/uimenu/spells.png" type="Texture" id=6]
-[ext_resource path="res://sprites/uimenu/selector.png" type="Texture" id=7]
-[ext_resource path="res://Nodes/PJMenu/MenuPj.gd" type="Script" id=8]
-[ext_resource path="res://sprites/uimenu/item_attributos.png" type="Texture" id=9]
-[ext_resource path="res://sprites/uimenu/Cabin-Regular.ttf" type="DynamicFontData" id=10]
-[ext_resource path="res://sprites/uimenu/selectorItems.png" type="Texture" id=11]
-[ext_resource path="res://Nodes/PJMenu/MenuEq.gd" type="Script" id=12]
-[ext_resource path="res://sprites/uimenu/item_140x40.png" type="Texture" id=13]
-[ext_resource path="res://sprites/items.png" type="Texture" id=14]
-[ext_resource path="res://Nodes/PJMenu/MenuUs.gd" type="Script" id=15]
-[ext_resource path="res://Nodes/PJMenu/MenuHab.gd" type="Script" id=16]
-[ext_resource path="res://sprites/uimenu/itemBag_160x25.png" type="Texture" id=17]
-[ext_resource path="res://Nodes/PJMenu/MenuITEMS.gd" type="Script" id=18]
+[ext_resource path="res://sprites/uimenu/attack.png" type="Texture" id=3]
+[ext_resource path="res://sprites/uimenu/uses.png" type="Texture" id=4]
+[ext_resource path="res://sprites/uimenu/equip.png" type="Texture" id=5]
+[ext_resource path="res://sprites/uimenu/selector.png" type="Texture" id=6]
+[ext_resource path="res://Nodes/PJMenu/MenuPj.gd" type="Script" id=7]
+[ext_resource path="res://sprites/uimenu/item_attributos.png" type="Texture" id=8]
+[ext_resource path="res://sprites/uimenu/Cabin-Regular.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://sprites/uimenu/selectorItems.png" type="Texture" id=10]
+[ext_resource path="res://Nodes/PJMenu/MenuEq.gd" type="Script" id=11]
+[ext_resource path="res://sprites/uimenu/item_140x40.png" type="Texture" id=12]
+[ext_resource path="res://sprites/items.png" type="Texture" id=13]
+[ext_resource path="res://Nodes/PJMenu/MenuUs.gd" type="Script" id=14]
+[ext_resource path="res://Nodes/PJMenu/MenuHab.gd" type="Script" id=15]
+[ext_resource path="res://sprites/uimenu/itemBag_160x25.png" type="Texture" id=16]
+[ext_resource path="res://Nodes/PJMenu/MenuITEMS.gd" type="Script" id=17]
 
 [sub_resource type="DynamicFont" id=1]
 size = 19
-font_data = ExtResource( 10 )
+font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 21
 outline_size = 2
 outline_color = Color( 0.176471, 0.152941, 0.152941, 1 )
-font_data = ExtResource( 10 )
+font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 22
 outline_size = 2
 outline_color = Color( 0.262745, 0.207843, 0.207843, 1 )
-font_data = ExtResource( 10 )
+font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=4]
 outline_size = 2
 outline_color = Color( 0.176471, 0.152941, 0.152941, 1 )
-font_data = ExtResource( 10 )
+font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 20
 outline_size = 1
 outline_color = Color( 0.607843, 0.0392157, 0.0392157, 1 )
-font_data = ExtResource( 10 )
+font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 17
-font_data = ExtResource( 10 )
+font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=7]
 outline_size = 7
 outline_color = Color( 0.0156863, 0.517647, 0, 1 )
-font_data = ExtResource( 10 )
+font_data = ExtResource( 9 )
 
 [sub_resource type="StreamTexture" id=8]
 flags = 4
@@ -69,50 +68,37 @@ margin_bottom = 40.0
 script = ExtResource( 2 )
 
 [node name="BUTTONS" type="GridContainer" parent="MenuP"]
-margin_left = -101.097
-margin_top = -46.427
-margin_right = 102.903
-margin_bottom = -1.427
+margin_left = -77.477
+margin_top = -46.0
+margin_right = 75.523
+margin_bottom = -1.0
 custom_constants/vseparation = 0
 custom_constants/hseparation = 0
 columns = 7
 
-[node name="BTN_ATTR" type="Button" parent="MenuP/BUTTONS"]
-modulate = Color( 0, 0, 0, 0.341176 )
+[node name="BTN_EQ" type="Button" parent="MenuP/BUTTONS"]
 margin_right = 51.0
 margin_bottom = 45.0
 icon = ExtResource( 3 )
 
-[node name="BTN_EQ" type="Button" parent="MenuP/BUTTONS"]
+[node name="BTN_US" type="Button" parent="MenuP/BUTTONS"]
 margin_left = 51.0
 margin_right = 102.0
 margin_bottom = 45.0
 icon = ExtResource( 4 )
 
-[node name="BTN_US" type="Button" parent="MenuP/BUTTONS"]
+[node name="BTN_HAB" type="Button" parent="MenuP/BUTTONS"]
 margin_left = 102.0
 margin_right = 153.0
 margin_bottom = 45.0
 icon = ExtResource( 5 )
-
-[node name="BTN_SPL" type="Button" parent="MenuP/BUTTONS"]
-margin_left = 153.0
-margin_right = 204.0
-margin_bottom = 45.0
-icon = ExtResource( 6 )
-
-[node name="BTN_HAB" type="Button" parent="MenuP/BUTTONS"]
-margin_left = 204.0
-margin_right = 255.0
-margin_bottom = 45.0
-icon = ExtResource( 3 )
 
 [node name="SELECTOR" type="TextureRect" parent="MenuP"]
 margin_left = -101.903
 margin_top = -47.4289
 margin_right = -50.9029
 margin_bottom = -2.42886
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 stretch_mode = 6
 
 [node name="MenuAttr" type="Control" parent="."]
@@ -122,7 +108,7 @@ margin_left = -79.0892
 margin_top = -38.8549
 margin_right = 77.9108
 margin_bottom = 192.145
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 
 [node name="BUTTONS" type="GridContainer" parent="MenuAttr"]
 margin_left = -7.12405
@@ -136,7 +122,7 @@ custom_constants/hseparation = 0
 editor/display_folded = true
 margin_right = 172.0
 margin_bottom = 31.0
-icon = ExtResource( 9 )
+icon = ExtResource( 8 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM1"]
 anchor_right = 1.0
@@ -163,7 +149,7 @@ editor/display_folded = true
 margin_top = 31.0
 margin_right = 172.0
 margin_bottom = 62.0
-icon = ExtResource( 9 )
+icon = ExtResource( 8 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM2"]
 anchor_right = 1.0
@@ -190,7 +176,7 @@ editor/display_folded = true
 margin_top = 62.0
 margin_right = 172.0
 margin_bottom = 93.0
-icon = ExtResource( 9 )
+icon = ExtResource( 8 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM3"]
 anchor_right = 1.0
@@ -217,7 +203,7 @@ editor/display_folded = true
 margin_top = 93.0
 margin_right = 172.0
 margin_bottom = 124.0
-icon = ExtResource( 9 )
+icon = ExtResource( 8 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM4"]
 anchor_right = 1.0
@@ -244,7 +230,7 @@ editor/display_folded = true
 margin_top = 124.0
 margin_right = 172.0
 margin_bottom = 155.0
-icon = ExtResource( 9 )
+icon = ExtResource( 8 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM5"]
 anchor_right = 1.0
@@ -271,7 +257,7 @@ editor/display_folded = true
 margin_top = 155.0
 margin_right = 172.0
 margin_bottom = 186.0
-icon = ExtResource( 9 )
+icon = ExtResource( 8 )
 
 [node name="name" type="Label" parent="MenuAttr/BUTTONS/ITEM6"]
 anchor_right = 1.0
@@ -299,7 +285,7 @@ margin_top = -59.8883
 margin_right = 339.623
 margin_bottom = 4.11173
 rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 11 )
+texture = ExtResource( 10 )
 stretch_mode = 1
 
 [node name="attr" type="Label" parent="MenuAttr"]
@@ -338,7 +324,7 @@ margin_left = -79.0892
 margin_top = -38.8549
 margin_right = 77.9108
 margin_bottom = 192.145
-script = ExtResource( 12 )
+script = ExtResource( 11 )
 
 [node name="BUTTONS" type="GridContainer" parent="MenuEq"]
 editor/display_folded = true
@@ -353,11 +339,11 @@ custom_constants/hseparation = 0
 editor/display_folded = true
 margin_right = 192.0
 margin_bottom = 46.0
-icon = ExtResource( 13 )
+icon = ExtResource( 12 )
 
 [node name="icon" type="Sprite" parent="MenuEq/BUTTONS/ITEM1"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 
@@ -395,11 +381,11 @@ editor/display_folded = true
 margin_top = 46.0
 margin_right = 192.0
 margin_bottom = 92.0
-icon = ExtResource( 13 )
+icon = ExtResource( 12 )
 
 [node name="icon" type="Sprite" parent="MenuEq/BUTTONS/ITEM2"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 
@@ -437,11 +423,11 @@ editor/display_folded = true
 margin_top = 92.0
 margin_right = 192.0
 margin_bottom = 138.0
-icon = ExtResource( 13 )
+icon = ExtResource( 12 )
 
 [node name="icon" type="Sprite" parent="MenuEq/BUTTONS/ITEM3"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 
@@ -479,11 +465,11 @@ editor/display_folded = true
 margin_top = 138.0
 margin_right = 192.0
 margin_bottom = 184.0
-icon = ExtResource( 13 )
+icon = ExtResource( 12 )
 
 [node name="icon" type="Sprite" parent="MenuEq/BUTTONS/ITEM4"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 
@@ -521,7 +507,7 @@ margin_left = -14.0
 margin_top = -41.0
 margin_right = 177.0
 margin_bottom = 5.0
-texture = ExtResource( 11 )
+texture = ExtResource( 10 )
 stretch_mode = 1
 
 [node name="counter" type="Label" parent="MenuEq"]
@@ -562,7 +548,7 @@ margin_left = -79.0892
 margin_top = -38.8549
 margin_right = 77.9108
 margin_bottom = 192.145
-script = ExtResource( 15 )
+script = ExtResource( 14 )
 
 [node name="BUTTONS" type="GridContainer" parent="MenuUs"]
 editor/display_folded = true
@@ -577,11 +563,11 @@ custom_constants/hseparation = 0
 editor/display_folded = true
 margin_right = 192.0
 margin_bottom = 46.0
-icon = ExtResource( 13 )
+icon = ExtResource( 12 )
 
 [node name="icon" type="Sprite" parent="MenuUs/BUTTONS/ITEM1"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 
@@ -619,11 +605,11 @@ editor/display_folded = true
 margin_top = 46.0
 margin_right = 192.0
 margin_bottom = 92.0
-icon = ExtResource( 13 )
+icon = ExtResource( 12 )
 
 [node name="icon" type="Sprite" parent="MenuUs/BUTTONS/ITEM2"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 
@@ -661,11 +647,11 @@ editor/display_folded = true
 margin_top = 92.0
 margin_right = 192.0
 margin_bottom = 138.0
-icon = ExtResource( 13 )
+icon = ExtResource( 12 )
 
 [node name="icon" type="Sprite" parent="MenuUs/BUTTONS/ITEM3"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 
@@ -703,11 +689,11 @@ editor/display_folded = true
 margin_top = 138.0
 margin_right = 192.0
 margin_bottom = 184.0
-icon = ExtResource( 13 )
+icon = ExtResource( 12 )
 
 [node name="icon" type="Sprite" parent="MenuUs/BUTTONS/ITEM4"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 
@@ -745,7 +731,7 @@ margin_left = -14.0
 margin_top = -41.0
 margin_right = 177.0
 margin_bottom = 5.0
-texture = ExtResource( 11 )
+texture = ExtResource( 10 )
 stretch_mode = 1
 
 [node name="counter" type="Label" parent="MenuUs"]
@@ -776,7 +762,7 @@ margin_left = -79.0892
 margin_top = -38.8549
 margin_right = 77.9108
 margin_bottom = 192.145
-script = ExtResource( 16 )
+script = ExtResource( 15 )
 
 [node name="BUTTONS" type="GridContainer" parent="MenuHab"]
 margin_left = -3.35278
@@ -790,12 +776,12 @@ custom_constants/hseparation = 0
 editor/display_folded = true
 margin_right = 172.0
 margin_bottom = 31.0
-icon = ExtResource( 17 )
+icon = ExtResource( 16 )
 
 [node name="icon" type="Sprite" parent="MenuHab/BUTTONS/ITEM1"]
 position = Vector2( 20.147, 14.9116 )
 scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 
@@ -814,12 +800,12 @@ editor/display_folded = true
 margin_top = 31.0
 margin_right = 172.0
 margin_bottom = 62.0
-icon = ExtResource( 17 )
+icon = ExtResource( 16 )
 
 [node name="icon" type="Sprite" parent="MenuHab/BUTTONS/ITEM2"]
 position = Vector2( 20.147, 14.9116 )
 scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 
@@ -838,12 +824,12 @@ editor/display_folded = true
 margin_top = 62.0
 margin_right = 172.0
 margin_bottom = 93.0
-icon = ExtResource( 17 )
+icon = ExtResource( 16 )
 
 [node name="icon" type="Sprite" parent="MenuHab/BUTTONS/ITEM3"]
 position = Vector2( 20.147, 14.9116 )
 scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 
@@ -862,12 +848,12 @@ editor/display_folded = true
 margin_top = 93.0
 margin_right = 172.0
 margin_bottom = 124.0
-icon = ExtResource( 17 )
+icon = ExtResource( 16 )
 
 [node name="icon" type="Sprite" parent="MenuHab/BUTTONS/ITEM4"]
 position = Vector2( 20.147, 14.9116 )
 scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 
@@ -886,12 +872,12 @@ editor/display_folded = true
 margin_top = 124.0
 margin_right = 172.0
 margin_bottom = 155.0
-icon = ExtResource( 17 )
+icon = ExtResource( 16 )
 
 [node name="icon" type="Sprite" parent="MenuHab/BUTTONS/ITEM5"]
 position = Vector2( 20.147, 14.9116 )
 scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 
@@ -910,12 +896,12 @@ editor/display_folded = true
 margin_top = 155.0
 margin_right = 172.0
 margin_bottom = 186.0
-icon = ExtResource( 17 )
+icon = ExtResource( 16 )
 
 [node name="icon" type="Sprite" parent="MenuHab/BUTTONS/ITEM6"]
 position = Vector2( 20.147, 14.9116 )
 scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 
@@ -935,7 +921,7 @@ margin_top = -7.0
 margin_right = 177.0
 margin_bottom = 33.0
 rect_scale = Vector2( 0.95, 0.8 )
-texture = ExtResource( 11 )
+texture = ExtResource( 10 )
 stretch_mode = 1
 
 [node name="counter" type="Label" parent="MenuHab"]
@@ -976,7 +962,7 @@ margin_left = -80.0
 margin_top = -40.0
 margin_right = 77.0
 margin_bottom = 191.0
-script = ExtResource( 18 )
+script = ExtResource( 17 )
 
 [node name="Tween" type="Tween" parent="MenuITEMS"]
 
@@ -997,7 +983,7 @@ icon = SubResource( 8 )
 
 [node name="icon" type="Sprite" parent="MenuITEMS/BUTTONS/ITEM1"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 
@@ -1039,7 +1025,7 @@ icon = SubResource( 8 )
 
 [node name="icon" type="Sprite" parent="MenuITEMS/BUTTONS/ITEM2"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 
@@ -1081,7 +1067,7 @@ icon = SubResource( 8 )
 
 [node name="icon" type="Sprite" parent="MenuITEMS/BUTTONS/ITEM3"]
 position = Vector2( 25, 23 )
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 
@@ -1119,7 +1105,7 @@ margin_left = -14.0
 margin_top = -41.0
 margin_right = 177.0
 margin_bottom = 5.0
-texture = ExtResource( 11 )
+texture = ExtResource( 10 )
 stretch_mode = 1
 
 [node name="counter" type="Label" parent="MenuITEMS"]
