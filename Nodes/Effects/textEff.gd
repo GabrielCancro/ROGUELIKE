@@ -1,8 +1,5 @@
 extends Node2D
 
-# Declare member variables here. Examples:
-signal sg_finish
-
 func init(world_pos, text):
 	set_text(text)
 	position=world_pos
@@ -10,7 +7,6 @@ func init(world_pos, text):
 
 func _ready():    
 	yield(get_tree().create_timer(1), "timeout")
-	emit_signal("my_signal")
 	free()
 	
 func set_text(txt):

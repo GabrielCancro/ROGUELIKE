@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Miss_1.wav-b489080215901aebb81f7819456722e9.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/Miss_1.wav"
+dest_files=[ "res://.import/Miss_1.wav-b489080215901aebb81f7819456722e9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

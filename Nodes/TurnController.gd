@@ -16,12 +16,11 @@ func set_turn_mode(isTM=true):
 	if isTurnMode!=isTM:
 		isTurnMode=isTM
 		if(isTM): 
-			Globals.playMusic("music_combat")
-			Globals.effectManager.text_effect(Globals.player.position+Vector2(-200,-100),'! COMBATE !')
-			Globals.effectManager.text_effect(Globals.player.position+Vector2( 200, -100),'! COMBATE !')
+			Globals.SoundsManager.play_music("music_combat")
+			Globals.effectManager.custom_text_effect(Globals.get_center_camera_pos()+Vector2(0,-100),"GIANT","COMBATE")
 		else: 
-			Globals.playMusic("music_dungeon1")
-			Globals.effectManager.text_effect(Globals.player.position+Vector2(0,-100),'-MODO TRAVESIA-')
+			Globals.SoundsManager.play_music("music_dungeon1",true)
+			Globals.effectManager.custom_text_effect(Globals.get_center_camera_pos()+Vector2(0,-100),"GIANT","TRAVESIA")
 
 func add_to_list(obj):
 	list.append(obj)
@@ -55,7 +54,7 @@ func processTurn():
 				i=0
 				break
 	else:
-		Globals.GUI.get_node('Label_TurnOf').set_text('turno de '+turnObj.name)
+		Globals.GUI.get_node('Label_TurnOf').set_text('Turno de '+turnObj.visual_name)
 		if pretime==20 and turnObj.has_method("onEnterTurn"): 
 			Globals.effectManager.titilar(turnObj)
 			Globals.camera.setTarget(turnObj)
@@ -64,7 +63,7 @@ func processTurn():
 			turnObj.processTurn()
 		else: pretime+=1
 
-func finishTurn(turneableObject):
+func finishTurn(turneableObject):		
 	if turneableObject==turnObj:
 		turnObj=null
 
@@ -73,3 +72,11 @@ func pauseTurn():
 
 func resumeTurn():
 	isPausedTurn=false
+
+func check_enemies_range(pos,ran):
+	var enemiGroup=Globals.TilemapManager.get_elements_in_area(pos,ran,"ENEMIES")
+	for enemigo in enemiGroup:
+		enemigo.calculate_path()
+		if enemigo.path.size()>0 and enemigo.path.size()<floor(ran*1.7):
+			return true
+	return false

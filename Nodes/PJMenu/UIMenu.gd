@@ -3,6 +3,8 @@ extends Node2D
 # Declare member variables here. Examples:
 var current_menu="NONE"
 var player: Node2D
+var vfram=8
+var hfram=6
 
 func _ready(): 
 	visible=false
@@ -10,7 +12,7 @@ func _ready():
 func showRootMenu(pj,subMenu="MenuP"):
 	player=pj
 	position=player.position
-	position.y-=60
+	position.y-=50
 	if position.x<100: position.x=100
 	if position.y<70: position.y=70
 	print("SHOW MENU")

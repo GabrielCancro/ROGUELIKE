@@ -7,7 +7,8 @@ onready var buttons=get_node("BUTTONS").get_children()
 
 func _ready(): hide()
 
-func show(): 
+func show():
+	Globals.SoundsManager.play_sfx("UI_accept") 
 	visible=true
 	set_process(true)
 	repos_selector()
@@ -17,6 +18,7 @@ func hide():
 	set_process(false)
 
 func _onAccept(): 	
+	Globals.SoundsManager.play_sfx("UI_accept")
 	if isBtn("BTN_ATTR"): RootMenu.selectSubMenu("MenuAttr")
 	elif isBtn("BTN_EQ"): RootMenu.selectSubMenu("MenuEq")
 	elif isBtn("BTN_US"): RootMenu.selectSubMenu("MenuUs")
@@ -25,7 +27,7 @@ func _onAccept():
 		var pj=RootMenu.getPlayer()
 		hide()
 		RootMenu.exitRootMenu({"action":"CAST","spell":"FIREBOLT"})
-
+	
 func _onCancel(): 
 	hide()
 	RootMenu.exitRootMenu()

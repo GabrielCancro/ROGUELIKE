@@ -2,6 +2,7 @@ extends Node2D
 
 var ini=true
 var speed=20
+var visual_name="Enemy"
 
 onready var TILEABLE = preload('res://Class/Tileable.gd').new(self,"ENEMIES")
 onready var MOVIBLE = preload('res://Class/Movible.gd').new(self)
@@ -23,6 +24,12 @@ var path
 var pathIndex
 var steps
 func onEnterTurn():
+	steps=ATTRIBUTABLE.get_attr("stp")
+	calculate_path()
+	if path==null: path=[TILEABLE.get_tile_pos()]
+	if(path.size()>1): MOVIBLE.set_tile_des(path[0])
+
+func calculate_path():
 	var pos_ASTAR=TILEABLE.get_tile_pos()+(Globals.player.TILEABLE.get_tile_pos()-TILEABLE.get_tile_pos())/2
 	pos_ASTAR=Vector2(floor(pos_ASTAR.x),floor(pos_ASTAR.y))
 	var ran_ASTAR=8
@@ -31,11 +38,7 @@ func onEnterTurn():
 	Globals.ASTAR.setAstarRect(pos_ASTAR,ran_ASTAR,Globals.dunGen.DATAMAP,obst_grid)
 	path=Globals.ASTAR.get_astar_path(TILEABLE.get_tile_pos(),Globals.player.TILEABLE.get_tile_pos())
 	pathIndex=0
-	steps=ATTRIBUTABLE.get_attr("stp")
-	if path==null: path=[TILEABLE.get_tile_pos()]
-	if(path.size()>1):
-		MOVIBLE.set_tile_des(path[0])
-		#Globals.nav.drawPath(path)
+	return path
 
 func processTurn():
 	if !MOVIBLE.isMoving:
@@ -50,8 +53,9 @@ func processTurn():
 		if(pathIndex==path.size()-1):
 			#Globals.effectManager.text_effect(position,'ATTACK')
 			Globals.DDCORE.attack(self,Globals.player)
+			get_node( "Sprite" ).set_flip_h( Globals.player.TILEABLE.get_tile_pos().x<TILEABLE.get_tile_pos().x )
 			Globals.turnController.finishTurn(self)
 			return			
 		else: 
-			Globals.effectManager.text_effect(position,':'+str(steps))
+			Globals.effectManager.custom_text_effect(position,"STEPS",str(steps))
 			MOVIBLE.set_tile_des(path[pathIndex])

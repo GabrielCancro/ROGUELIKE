@@ -10,6 +10,9 @@ onready var selector=$SELECTOR
 onready var buttons=get_node("BUTTONS").get_children()
 
 func _ready(): 
+	for i in range(0, buttons.size()):
+		buttons[i].get_node("icon").vframes=RootMenu.vfram
+		buttons[i].get_node("icon").hframes=RootMenu.hfram
 	hide()
 
 func show(): 
@@ -25,9 +28,14 @@ func hide():
 	set_process(false)
 
 func _onAccept():
+	if index+base>habs.size()-1: return
 	var myHab=Globals.HabsManager.getHab( habs.keys()[index+base] )
 	if(myHab["type"]=="ACT"):
+		Globals.SoundsManager.play_sfx("UI_accept")
 		RootMenu.exitRootMenu({"action":"HAB","hab":habs.keys()[index+base],"cnt":habs[ habs.keys()[index+base] ]})
+	elif(myHab["type"]=="SPL"):
+		Globals.SoundsManager.play_sfx("UI_accept")
+		RootMenu.exitRootMenu({"action":"SPL","spell":habs.keys()[index+base],"cnt":habs[ habs.keys()[index+base] ]})
 
 func _onCancel(): 
 	RootMenu.selectSubMenu("MenuP")
@@ -57,11 +65,13 @@ func repos_selector(): #reposiciona el selector sobre el boton actual
 	var paso=Vector2(0,buttons[0].rect_size.y)
 	selector.rect_position=btn_pos+paso*index
 	get_node("counter").set_text(str(index+base+1)+" / "+str(habs.size()))
-
+	
 func show_current_habs():
 	var TXT=""
 	if index+base<habs.size():
+		var myHab=Globals.HabsManager.getHab( habs.keys()[index+base])
 		TXT=Globals.HabsManager.getHab( habs.keys()[index+base] )["desc"]
+		if(myHab["type"]=="SPL"): TXT+=" -"+str(myHab["cost"])+"pp"
 	$habs.set_text(TXT)
 	$habs.rect_position.y=selector.rect_position.y 
 
@@ -76,9 +86,10 @@ func drawInfoItems():
 			var myCnt=habs[ habs.keys()[i+base] ]
 			#buttons[i].get_node("icon").set_frame( myHab["icon"] )
 			if(myHab["type"]=="ACT"): buttons[i].get_node("icon").set_frame(35)
+			elif(myHab["type"]=="SPL"): buttons[i].get_node("icon").set_frame(33)
 			buttons[i].get_node("name").set_text( myHab["name"]+" "+Globals.DDCORE.to_roman(myCnt) )
 		else:
-			buttons[i].get_node("icon").set_frame(33)
+			buttons[i].get_node("icon").set_frame(0)
 			buttons[i].get_node("name").set_text("")
 	get_node("counter").set_text(str(index+base+1)+" / "+str(habs.size()))
 

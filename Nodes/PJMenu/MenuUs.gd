@@ -8,6 +8,9 @@ onready var selector=$SELECTOR
 onready var buttons=get_node("BUTTONS").get_children()
 
 func _ready(): 
+	for i in range(0, buttons.size()):
+		buttons[i].get_node("icon").vframes=RootMenu.vfram
+		buttons[i].get_node("icon").hframes=RootMenu.hfram
 	hide()
 
 func show(): 
@@ -22,7 +25,8 @@ func hide():
 	set_process(false)
 
 func _onAccept():
-	if index+base>items.size()-1: return	
+	if index+base>items.size()-1: return
+	Globals.SoundsManager.play_sfx("UI_accept")
 	Globals.ItemsManager.use_consumible(get_node("../").player,items[index+base].get("code"))
 	if items[index+base].get("cnt",0)>1: items[index+base]["cnt"]-=1
 	else: items.remove(index+base)
@@ -64,7 +68,7 @@ func drawInfoItems():
 			buttons[i].get_node("desc").set_text(items[i+base]["desc"])
 			buttons[i].get_node("cnt").set_text("x"+str(items[i+base].get("cnt",0)) )
 		else:
-			buttons[i].get_node("icon").set_frame(11)
+			buttons[i].get_node("icon").set_frame(0)
 			buttons[i].get_node("name").set_text("")
 			buttons[i].get_node("desc").set_text("---")
 			buttons[i].get_node("cnt").set_text("")

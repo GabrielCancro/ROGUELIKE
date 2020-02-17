@@ -4,7 +4,7 @@ extends Node2D
 #      gabrielcancro@gmail.com
 
 #onready var ASTAR = preload('res://Nodes/UTILS/ASTAR.gd').new()
-var NIVEL=4
+var NIVEL=0
 
 var DATAMAP #es un array 2D con los tiles del mapa
 var map_w #ancho del mapa a generar
@@ -30,6 +30,7 @@ func _ready():
 	rnd.randomize()
 
 func generateDungeon(tile_map_target):
+	NIVEL+=1
 	map_w=25+NIVEL*6
 	map_h=25+NIVEL*5
 	cant_rooms=map_w*map_h/150
@@ -43,7 +44,7 @@ func generateDungeon(tile_map_target):
 		if showProcess: draw_map(DATAMAP)
 		if showProcess: yield(get_tree().create_timer(0.05), "timeout")
 	
-	conectRooms()	
+	conectRooms()
 	if showProcess: draw_map(DATAMAP)
 	if showProcess: yield(get_tree().create_timer(0.5), "timeout")
 	
@@ -58,16 +59,14 @@ func generateDungeon(tile_map_target):
 	if showProcess: yield(get_tree().create_timer(0.5), "timeout")
 	iniFog()
 	#Globals.ASTAR.setAstar(Globals.dunGen.DATAMAP,[10,3])
+	
 	Globals.TilemapManager.remove_all_elements()
+	addAltar()
+	addFuente()
 	addEnemies()
 	addChests()
 	
 	var posRoomZero=Vector2(ROOMS[0]["cx"],ROOMS[0]["cy"])
-	Globals.player.TILEABLE.set_tile_pos(posRoomZero)
-	showFog(posRoomZero.x,posRoomZero.y,Globals.player.ATTRIBUTABLE.get_attr("see"))
-	yield(get_tree().create_timer(1.0), "timeout")
-	Globals.effectManager.grand_text_effect(Globals.player.position+Vector2(0,-100),"NIVEL "+str(NIVEL))
-	NIVEL+=1
 	return posRoomZero
 
 func create_map(w, h, baseTile):
@@ -281,12 +280,14 @@ func addEnemies():
 		for j in range(50):
 			var xx=Globals.rndi(1,map_w-2)
 			var yy=Globals.rndi(1,map_h-2)
-			if DATAMAP[xx][yy]==tiles["SUELO"]:
-				Globals.EnemiesManager.create_enemy("SKELETON",Vector2(xx,yy))
-				break
+			if Vector2(ROOMS[0]["cx"],ROOMS[0]["cy"]).distance_to(Vector2(xx,yy))<4: continue
+			if DATAMAP[xx][yy]!=tiles["SUELO"]: continue
+			
+			Globals.EnemiesManager.random_enemy(NIVEL,Vector2(xx,yy))
+			break
 
 func addChests():
-	for i in range(NIVEL):
+	for i in range(1+floor(NIVEL/2)):
 		for j in range(50):
 			var xx=Globals.rndi(1,map_w-2)
 			var yy=Globals.rndi(1,map_h-2)
@@ -295,3 +296,22 @@ func addChests():
 				Globals.ItemsManager.createChest(Vector2(xx,yy))
 				break
 			
+
+func addAltar():
+	for j in range(50):
+		var xx=Globals.rndi(1,map_w-2)
+		var yy=Globals.rndi(1,map_h-2)
+		if Globals.TilemapManager.get_element(Vector2(xx,yy),"OBJECTS"): continue
+		if DATAMAP[xx][yy]==tiles["SUELO"]:
+			Globals.ItemsManager.createAltar(Vector2(xx,yy))
+			break
+
+func addFuente():
+	for j in range(50):
+		var xx=Globals.rndi(1,map_w-2)
+		var yy=Globals.rndi(1,map_h-2)
+		if Globals.TilemapManager.get_element(Vector2(xx,yy),"OBJECTS"): continue
+		if DATAMAP[xx][yy]==tiles["SUELO"]:
+			Globals.ItemsManager.createFuente(Vector2(xx,yy))
+			break
+

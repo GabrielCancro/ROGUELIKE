@@ -10,6 +10,9 @@ onready var selector=$SELECTOR
 onready var buttons=get_node("BUTTONS").get_children()
 
 func _ready(): 
+	for i in range(0, buttons.size()):
+		buttons[i].get_node("icon").vframes=RootMenu.vfram
+		buttons[i].get_node("icon").hframes=RootMenu.hfram
 	hide()
 
 func show(): 
@@ -26,6 +29,7 @@ func hide():
 
 func _onAccept():
 	if items.size()-1<index+base: return
+	Globals.SoundsManager.play_sfx("UI_accept")
 	var ITEM=items[index+base]
 	if ITEM.get("eq","")=="":
 		for i in range(0, items.size()):
@@ -63,7 +67,7 @@ func repos_selector(): #reposiciona el selector sobre el boton actual
 	var paso=Vector2(0,buttons[0].rect_size.y)
 	selector.rect_position=btn_pos+paso*index
 	get_node("counter").set_text(str(index+base+1)+" / "+str(items.size()))
-
+	
 func show_current_habs():
 	var TXT=""
 	if index+base<items.size():
@@ -97,7 +101,7 @@ func drawInfoItems():
 			if eq!="": eq=items[i+base].get("type","")
 			buttons[i].get_node("eq").set_text(eq)
 		else:
-			buttons[i].get_node("icon").set_frame(11)
+			buttons[i].get_node("icon").set_frame(0)
 			buttons[i].get_node("name").set_text("")
 			buttons[i].get_node("desc").set_text("---")
 			buttons[i].get_node("eq").set_text("")

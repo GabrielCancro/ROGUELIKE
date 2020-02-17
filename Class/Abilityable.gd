@@ -16,7 +16,7 @@ func print_all_habs():
 
 func get_full_hab(CODE_HAB):
 	recalculate_object_habs()
-	return baseHabs.get(CODE_HAB,0)+objectHabs.get(CODE_HAB,0)
+	return min(baseHabs.get(CODE_HAB,0)+objectHabs.get(CODE_HAB,0),Globals.HabsManager.getHab(CODE_HAB)["max"])
 
 func get_all_habs():
 	recalculate_object_habs()

@@ -8,8 +8,7 @@ var delayMove=0
 var steps=0
 
 func _init(_owner):
-	own=_owner
-	own.set_z_index(10+own.TILEABLE.get_tile_pos().y)
+	own=_owner	
 	#print (own.name+" is movible init")
 
 func update():
@@ -26,8 +25,7 @@ func set_tile_des(d):
 		if ( own.has_method("checkTileDest") and !own.checkTileDest(tile_des) ) or !moveAction(tile_des): 
 			tile_des=null
 			delayMove=20
-			return
-		own.set_z_index(10+tile_des.y)
+			return		
 		steps+=1
 
 func moveToDest():
@@ -42,9 +40,8 @@ func moveToDest():
 			own.TILEABLE.set_tile_pos(tile_des)
 			tile_des=null
 
-
 func moveAction(des):
 	var cell_des=Globals.tile_map.get_cellv(des)
-	if Globals.dunGen.traversablesIndexs.has(cell_des):		
+	if Globals.dunGen.traversablesIndexs.has(cell_des):
 		if own.name=='Player': Globals.dunGen.showFog(des.x,des.y,own.ATTRIBUTABLE.get_attr("see"))
 		return true #true if is posible move

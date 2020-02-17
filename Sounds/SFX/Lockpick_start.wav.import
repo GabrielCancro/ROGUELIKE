@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Lockpick_start.wav-b00372c19f0e43431d409cf53104289e.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/Lockpick_start.wav"
+dest_files=[ "res://.import/Lockpick_start.wav-b00372c19f0e43431d409cf53104289e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

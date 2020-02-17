@@ -11,7 +11,7 @@ func _init(_owner):
 	own=_owner
 	createNamesAttr()
 	yield(own.get_tree().create_timer(0.1), "timeout")
-	set_attr(".hp",baseAttr["hp"]/2)
+	set_attr(".hp",baseAttr["hp"])
 	set_attr(".pp",baseAttr["pp"])
 
 func set_attr(attr,cnt):

@@ -12,6 +12,8 @@ func set_tile_pos(newTilePos):
 	if(tile_group!=""):
 		Globals.TilemapManager.reindex_tilegroup(own,tile_pos,newTilePos)		
 	tile_pos=newTilePos
+	if own.get("MOVIBLE"): own.set_z_index(11+tile_pos.y)
+	else: own.set_z_index(10+tile_pos.y)
 	update_position()
 
 func get_tile_pos():

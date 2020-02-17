@@ -2,7 +2,7 @@ extends Node2D
 
 var tick=0
 var light_size:Vector2
-var my
+var input_enabled=false
 var rnd=RandomNumberGenerator.new()
 var buttonSelect=""
 
@@ -11,6 +11,8 @@ func _ready():
 	rnd.randomize()
 	selectButton("btn1")
 	iniMusic()
+	yield(get_tree().create_timer(1), "timeout")
+	input_enabled=true
 	pass # Replace with function body.
 
 func iniMusic():
@@ -32,13 +34,16 @@ func selectButton(btn):
 	#position=BTN_POS
 
 func get_input():
+	if !input_enabled: return
 	var v = Vector2(0,0)
 	if Input.is_action_pressed('ui_right'): selectButton("btn3")
 	if Input.is_action_pressed('ui_left'): selectButton("btn2")
 	if Input.is_action_pressed('ui_down'): selectButton("btn1")
 	if Input.is_action_pressed('ui_up'): selectButton("btn4")
-	if Input.is_action_just_released('ui_accept'): 
-		if buttonSelect=='btn1': get_tree().change_scene("res://Nodes/main.tscn")
+	if Input.is_action_just_pressed('ui_accept'): 
+		if buttonSelect=='btn1': 
+			#get_tree().change_scene("res://Nodes/main.tscn")
+			get_node("/root/Node2D").goto_scene("res://Nodes/main.tscn",get_node('/root/Node2D/Buttons/btn1') )
 		elif buttonSelect=='btn3': get_tree().quit()
 	if Input.is_action_just_released('ui_select'): pass
 	if Input.is_action_just_released('toggle_mode'): pass
