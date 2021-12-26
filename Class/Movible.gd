@@ -1,47 +1,27 @@
 class_name Movible
 
 var own
-var tile_des=null
-var world_des
 var isMoving=false
-var delayMove=0
 var steps=0
+var tween_move
 
 func _init(_owner):
-	own=_owner	
-	#print (own.name+" is movible init")
+	own=_owner
+	tween_move=Tween.new()
+	own.add_child(tween_move)
 
-func update():
-	pass
+func set_tile_des(tile_des):
+	move_tween(tile_des)
+	#FLIPEAMOS EL SPRITE
+	var own_pos=own.TILEABLE.get_tile_pos()
+	if tile_des.x!=own_pos.x: own.get_node( "Sprite" ).set_flip_h( tile_des.x<own_pos.x )
+	own.set_z_index(11+tile_des.y)
 
-func set_tile_des(d):
-	if delayMove>0: return
-	if tile_des==null:
-		tile_des=d
-		world_des=Globals.tile_map.map_to_world(tile_des)+Globals.tile_map.cell_size/2
-		
-		var myTilePos=own.TILEABLE.get_tile_pos()
-		if tile_des.x!=myTilePos.x: own.get_node( "Sprite" ).set_flip_h( tile_des.x<myTilePos.x )
-		if ( own.has_method("checkTileDest") and !own.checkTileDest(tile_des) ) or !moveAction(tile_des): 
-			tile_des=null
-			delayMove=20
-			return		
-		steps+=1
-
-func moveToDest():
-	if delayMove>0:
-		delayMove-=1
-		return
-	isMoving=tile_des!=null
-	if tile_des!=null:
-		if own.position.distance_to(world_des)>1:
-			own.position+=(world_des-own.position)/100*own.speed
-		else:
-			own.TILEABLE.set_tile_pos(tile_des)
-			tile_des=null
-
-func moveAction(des):
-	var cell_des=Globals.tile_map.get_cellv(des)
-	if Globals.dunGen.traversablesIndexs.has(cell_des):
-		if own.name=='Player': Globals.dunGen.showFog(des.x,des.y,own.ATTRIBUTABLE.get_attr("see"))
-		return true #true if is posible move
+func move_tween(tile_des):
+	isMoving=true
+	var world_des=Globals.tile_map.map_to_world(tile_des)+Globals.tile_map.cell_size/2
+	tween_move.interpolate_property(own, "position",own.position, world_des, 0.3,Tween.TRANS_QUAD, Tween.EASE_OUT)
+	tween_move.start()
+	yield(tween_move, "tween_completed")
+	own.TILEABLE.set_tile_pos(tile_des)
+	isMoving=false

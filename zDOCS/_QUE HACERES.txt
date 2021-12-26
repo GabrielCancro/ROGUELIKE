@@ -1,0 +1,30 @@
+10/03/2020
+
+*Poder dropear items
+( caen al suelo? o se borran? )
+
+*MIRAR AL ENEMIGO AL GOLPEARLO
+
+*Poner Habilidades especiales que no se puedan aprender.. 
+(solo estaran en objetos especiales, o enemigos especiales)
+!!tener cuidado que no se buguee en ALTAR!!
+
+*agregar sistema de cinematicas
+(una cinematica inicial que explique que es un desarrollo y que en todos los niveles hay fuente y altar)
+(situar una cinematica al final del testing)
+
++crear algunos objetos mas
++crear algunos hechizos mas
++crear algunos enemigos mas
++crear un tilemap nuevo para los niveles ( 1, 4, 7, 10, 13boss )
+
+*mas adelante poner trampas y habilidad de detectar trampas
+*poner como consumible llaves y cofres cerrados
+*agregar sed y hambre??
+
+VER LAS ESPECIALES EN EL ALTAR
+
+
+
+
+

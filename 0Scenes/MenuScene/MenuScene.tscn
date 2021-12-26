@@ -1,0 +1,147 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://0Scenes/MenuScene/MenuScene.gd" type="Script" id=1]
+[ext_resource path="res://Game/AndroidUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sprites/fondo.jpg" type="Texture" id=3]
+[ext_resource path="res://sprites/nm_fondo.png" type="Texture" id=4]
+[ext_resource path="res://sprites/light.png" type="Texture" id=5]
+[ext_resource path="res://Fonts/menup_font.tres" type="DynamicFont" id=6]
+[ext_resource path="res://0Scenes/MenuScene/SceneLoader.gd" type="Script" id=7]
+[ext_resource path="res://Sounds/music_main.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/SFX/main_shot.ogg" type="AudioStream" id=9]
+
+[node name="MenuScene" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="AndroidUI" parent="." instance=ExtResource( 2 )]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.392157, 0.392157, 0.392157, 1 )
+
+[node name="Fondo" type="Sprite" parent="."]
+position = Vector2( 530.363, 268.939 )
+scale = Vector2( 1.75575, 1.75575 )
+texture = ExtResource( 3 )
+normal_map = ExtResource( 4 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 522.057, 272.954 )
+scale = Vector2( 3, 2 )
+texture = ExtResource( 5 )
+color = Color( 1, 0.988235, 0.364706, 1 )
+energy = 3.0
+range_height = 50.0
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( 70.9026, 178.954 )
+scale = Vector2( 2.02223, 2 )
+texture = ExtResource( 5 )
+color = Color( 0.329412, 0.329412, 0.329412, 1 )
+energy = 3.0
+range_height = 50.0
+
+[node name="Light2D3" type="Light2D" parent="."]
+position = Vector2( 958.903, 178.954 )
+scale = Vector2( 2.02223, 2 )
+texture = ExtResource( 5 )
+color = Color( 0.329412, 0.329412, 0.329412, 1 )
+energy = 3.0
+range_height = 50.0
+
+[node name="lbver" type="Label" parent="."]
+margin_left = 893.847
+margin_top = 563.931
+margin_right = 1019.85
+margin_bottom = 584.931
+text = "version 0.10"
+align = 1
+valign = 1
+
+[node name="Buttons" type="Control" parent="."]
+editor/display_folded = true
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="prev2" type="Label" parent="Buttons"]
+margin_left = 440.364
+margin_top = 139.73
+margin_right = 682.364
+margin_bottom = 235.73
+rect_scale = Vector2( 0.6, 0.6 )
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.0509804, 0, 0, 1 )
+text = "Exit"
+align = 1
+valign = 1
+
+[node name="prev" type="Label" parent="Buttons"]
+margin_left = 420.364
+margin_top = 175.819
+margin_right = 662.364
+margin_bottom = 271.819
+rect_scale = Vector2( 0.8, 0.8 )
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.137255, 0, 0, 1 )
+text = "Options"
+align = 1
+valign = 1
+
+[node name="current" type="Label" parent="Buttons"]
+margin_left = 392.364
+margin_top = 228.819
+margin_right = 634.364
+margin_bottom = 324.819
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.560784, 0.0823529, 0.0823529, 1 )
+text = "Fall to
+Dungeon"
+align = 1
+valign = 1
+
+[node name="next" type="Label" parent="Buttons"]
+margin_left = 418.364
+margin_top = 303.819
+margin_right = 660.364
+margin_bottom = 399.819
+rect_scale = Vector2( 0.8, 0.8 )
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.137255, 0, 0, 1 )
+text = "Exit"
+align = 1
+valign = 1
+
+[node name="next2" type="Label" parent="Buttons"]
+margin_left = 440.364
+margin_top = 360.73
+margin_right = 682.364
+margin_bottom = 456.73
+rect_scale = Vector2( 0.6, 0.6 )
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.0509804, 0, 0, 1 )
+text = "Exit"
+align = 1
+valign = 1
+
+[node name="SceneLoader" type="Control" parent="."]
+editor/display_folded = true
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="SceneLoader"]
+margin_left = 445.0
+margin_top = 252.0
+margin_right = 587.0
+margin_bottom = 303.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.27451, 0.137255, 0.137255, 1 )
+text = "Descendiendo
+99%"
+align = 1
+
+[node name="MusicMain" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+
+[node name="SFX01" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )

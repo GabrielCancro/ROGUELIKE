@@ -1,0 +1,44 @@
+{
+"//":"ARMAS MELEE",
+"101":{"icon":10,"min_dun":1,"max_dun":4,"name":"Garrote","type":"Hand","attr":{"atk":1,"def":-1}},
+"102":{"icon":12,"min_dun":2,"max_dun":5,"name":"Cuchilla Vieja","type":"Hand","attr":{"atk":1}},
+"103":{"icon":8,"min_dun":3,"max_dun":7,"name":"Daga","type":"Hand","attr":{"atk":2}},
+"104":{"icon":1,"min_dun":5,"max_dun":12,"name":"Espada Corta","type":"Hand","attr":{"atk":1,"dan":1}},
+"105":{"icon":5,"min_dun":6,"max_dun":20,"name":"Espadon","type":"Hand","attr":{"atk":1,"dan":2}},
+"106":{"icon":4,"min_dun":7,"max_dun":20,"name":"Estilete","type":"Hand","attr":{"atk":3}},
+"107":{"icon":11,"min_dun":9,"max_dun":20,"name":"Maza Pinchuda","type":"Hand","attr":{"atk":2,"dan":2}},
+"108":{"icon":24,"min_dun":10,"max_dun":20,"name":"Daga Mistica","type":"Hand","attr":{"atk":4,"dan":1}},
+
+"//":"ARMAS MAGICAS Y DE HABILIDAD",
+"121":{"icon":23,"min_dun":4,"max_dun":20,"name":"Ballesta","type":"Hand","attr":{},
+	   "code_hab_1":"ARQUERIA","cnt_hab_1":1, "code_hab_2":"PUNTERIA","cnt_hab_2":1},
+"122":{"icon":31,"min_dun":4,"max_dun":20,"name":"Baculo Magico","type":"Hand","attr":{"atk":1},
+	   "code_hab_1":"IMPACTO","cnt_hab_1":1},
+"123":{"icon":33,"min_dun":6,"max_dun":20,"name":"Cetro","type":"Hand","attr":{"atk":1,"pp":2},
+	   "code_hab_1":"IMPACTO","cnt_hab_1":2},
+
+"//":"CABEZA",
+"131":{"icon":42, "min_dun":3,"max_dun":8,"name":"Casquete","type":"Head","attr":{"def":1}},
+"132":{"icon":43,"min_dun":5,"max_dun":20,"name":"Casco","type":"Head","attr":{"def":2,"pp":-1}},
+"133":{"icon":44,"min_dun":8,"max_dun":20,"name":"Yelmo","type":"Head","attr":{"def":2,"see":-1}},
+"134":{"icon":52,"min_dun":4,"max_dun":20,"name":"Sombrero","type":"Head","attr":{"pp":2},"code":134},
+"135":{"icon":50,"min_dun":7,"max_dun":20,"name":"Tiara Hiam","type":"Head","attr":{"def":2,"pp":4}},
+
+"//":"ARMADURAS",
+"151":{"icon":54, "min_dun":4,"max_dun":10,"name":"Capa","type":"Body","attr":{"def":1}},
+"152":{"icon":38, "min_dun":5,"max_dun":20,"name":"Armadura","type":"Body","attr":{"def":3,"pp":-3}},
+"153":{"icon":56,"min_dun":6,"max_dun":20,"name":"Capa Magica","type":"Body","attr":{"def":1,"pp":2}},
+
+"//":"ESCUDOS",
+"171":{"icon":36,"min_dun":4,"max_dun":10,"name":"Escudin","type":"Scnd","attr":{"def":1}},
+"172":{"icon":37,"min_dun":7,"max_dun":20,"name":"Escudo","type":"Scnd","attr":{"def":2}},
+"173":{"icon":41,"min_dun":9,"max_dun":20,"name":"Escudo G","type":"Scnd","attr":{"def":3,"atk":-1}},
+
+"//":"CONSUMIBLES",
+"201":{"icon":62,"min_dun":1,"max_dun":20,"name":"Manzana","type":"Use","cnt":1,"desc":"+2hp"},
+"202":{"icon":63,"min_dun":5,"max_dun":20,"name":"Carne","type":"Use","cnt":1,"desc":"+3hp"},
+"203":{"icon":81,"min_dun":4,"max_dun":20,"name":"Pocion de Poder","type":"Use","cnt":1,"desc":"+3pp"},
+"204":{"icon":64,"min_dun":1,"max_dun":20,"name":"Hierbas Curativas","type":"Use","cnt":1,"desc":"+2hp"},
+"205":{"icon":61,"min_dun":1,"max_dun":20,"name":"Esencia","type":"Use","cnt":1,"desc":"+1pp"},
+"206":{"icon":82,"min_dun":10,"max_dun":20,"name":"Elixir","type":"Use","cnt":1,"desc":"+1hp permanent"}
+}

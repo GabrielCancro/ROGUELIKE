@@ -1,0 +1,30 @@
+[RESUELTO] que el menu de jugador nunca aparezca muy arriba!!
+
+[RESUELTO] que los enemigos se volteen al pegarte aunque no se muevan
+
+que no puedas portar infinitas armas y armaduras y objetos
+
+[RESUELTO] que no entre en combate si los enemigos no pueden llegar hasta vos
+
+[RESUELTO] cambiar musica modo travesia
+
+[RESUELTO] agregar sfx consumibles y altar y pasar al siguiente dungeon
+
+si ya tenes un objeto no volver a agarrarlo o solo permitir tener 2 objetos de cada tipo..
+
+[RESUELTO] totem +2 pp
+
+SPL: debilitar, curar-3, realentizar, ojo magico, teletransporte, Impacto-5, Explosion-3
+
+HAB PAS: berserker, esquiva-3, roba vida, canalizar, punteria-5, "detectar trampas", "abrir cerrojos", cazador(%dar carne animal)
+
+HAB ACT: arqueria, 
+
+HAB ESP: ENVENENAR
+
+VER LAS ESPECIALES EN EL ALTAR
+
+
+
+
+

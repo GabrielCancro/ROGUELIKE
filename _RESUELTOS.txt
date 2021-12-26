@@ -1,0 +1,38 @@
+AZAGAYA 11/06/2020
+  +HACER UN TUTORIAL EXPLICAR MEJORAS E INVENTARIO
+  +SPRITE PARA COFRE ABIERTO Y QUE NO SE VUELVA A ABRIR SI ESTA VACIO
+  +PARA QUE FALLA LA CERRADURA SI PODES INTENTAR MIL VECES? PONER TIEMPO DE ESPERA
+  +SACAR CARTELITO DE "LABEL"	OK!
+  +QUE EL JUEGO SE GUARDE AL PASAR DE PROFUNDIDAD
+
+OTROS 26/08/2020
+  +PONER ALGO DE HISTORIA  
+  +HACER DIALOGO SIMPLE PARA TUTORIAL
+  +HACER HUD SUPER MINIMALISTA
+
+26/08----MOSTRAR EN PC BOTON X/Z EN ANDROID BOTON A/B
+27/08----NUEVO UI PARA LA VIDA MANA Y ATRIBUTOS CON PROGRESS BARS
+28/08----OPTIONS script con VOLUMEN y SAVE/LOAD DATA
+28/08----DELETE CHEST SIN ITEMS
+30/08----SISTEMA DE DIALOGO
+31/08----CARTELES QUE AL PISAR MUESTRAN DIALOGO
+04/09----FINALIZADO EL TUTORIAL!
+
+GUARDAR PARTIDA Y POSTEAR LA MUERTE..
+07/09----httprequest y pantalla con puntajes...
+10/09----poner puntajes a pasar de nivel, matar enemigo, encontrar altar, recibir daño
+09/09----quitar habitaciones especiales del dungenerator (1 habitacion por nivel)
+09/09----deshardcodear habilidades y descripciones / items / enemigos
+10/09----poner el fondo de los buttons gris
+10/09----permitir salir sin postear score al morir
+
+SCORE ENEMY: hp + 3*pp + 3*atk + 3*def + 3*pow + stp
+SCORE DUNGE: 40 + dun*75
+SCORE FUENT: 20 + dun*35
+SCORE ALTAR: 20 + dun*45
+
+
+18/09----PROX PASO, ARMAR EL GUARDAR PARTIDA!
+16/09----resetear score al iniciar..
+
+20/09----Mostrar pasos restantes UI

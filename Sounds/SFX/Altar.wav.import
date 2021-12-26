@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Altar.wav-4aff49bab9843c131d27ff10edad85c8.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/Altar.wav"
+dest_files=[ "res://.import/Altar.wav-4aff49bab9843c131d27ff10edad85c8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

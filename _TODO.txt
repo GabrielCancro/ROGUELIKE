@@ -1,0 +1,32 @@
+FEATURES
+28/09----incluir .stp como atributo de pasos
+28/09----un boton de mapa
+28/09----sonido para el dialogo
+
++crear una intro donde diga ROGUELIKE, creado por mole06
+
++un menu ingame para salir y guardar
+
++boton de saltear intro
+
++REVEER LAS FUNCIONES DE ATAQUES QUE SON UN QUILOMBO 
+  TIPO DE ATAQUE: MAGICO, MELE, PROYECTIL
+  ATACANTE
+  BONIF DE ATAQUE
+  DEFENSOR
+  BONIF DE DEFENSA
+  APLICAR HABILIDADES
+
++Diferenciar Habilidades de subterfugio y Habilidades magicas En diferente menu
+
++Deshardcodear dialogos
+
++Deshardcodear estados
+
++mejorar tiles de paredes primeros niveles
+
++poner sonidos al entrar en accion un enemigo
+
+
+
++incluir calculo de attributos por estados, como hay por objetos

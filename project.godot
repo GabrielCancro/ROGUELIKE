@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "AstarClass",
 "language": "GDScript",
-"path": "res://Nodes/UTILS/ASTAR.gd"
+"path": "res://Game/UTILS/ASTAR.gd"
 }, {
 "base": "Reference",
 "class": "Attributable",
@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "DDCore",
 "language": "GDScript",
-"path": "res://Nodes/UTILS/DDCORE.gd"
+"path": "res://Game/UTILS/DDCORE.gd"
 }, {
 "base": "Reference",
 "class": "Inventariable",
@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "Movible",
 "language": "GDScript",
 "path": "res://Class/Movible.gd"
+}, {
+"base": "Reference",
+"class": "Stateable",
+"language": "GDScript",
+"path": "res://Class/Stateable.gd"
 }, {
 "base": "Reference",
 "class": "Tileable",
@@ -51,13 +56,15 @@ _global_script_class_icons={
 "DDCore": "",
 "Inventariable": "",
 "Movible": "",
+"Stateable": "",
 "Tileable": ""
 }
 
 [application]
 
 config/name="ROGUELIKE"
-run/main_scene="res://Nodes/menuPrincipal/menu_principal.tscn"
+run/main_scene="res://0Scenes/IniScene/IniScene.tscn"
+boot_splash/image="res://boot_splash.png"
 config/icon="res://icon.png"
 
 [autoload]
@@ -66,6 +73,7 @@ Globals="*res://Globals.gd"
 
 [debug]
 
+settings/fps/force_fps=60
 gdscript/warnings/unused_variable=false
 
 [display]
@@ -102,6 +110,10 @@ toggle_mode={
  ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [logging]
 
 file_logging/max_log_files=100
@@ -109,6 +121,18 @@ file_logging/max_log_files=100
 [rendering]
 
 quality/driver/driver_name="GLES2"
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+quality/directional_shadow/size=256
+quality/directional_shadow/size.mobile=256
+quality/shadow_atlas/size=256
+quality/shadow_atlas/size.mobile=256
+quality/shadow_atlas/quadrant_0_subdiv=0
+quality/shadow_atlas/quadrant_1_subdiv=0
+quality/shadow_atlas/quadrant_2_subdiv=0
+quality/shadow_atlas/quadrant_3_subdiv=0
+environment/default_clear_color=Color( 0.0705882, 0.0588235, 0.0588235, 1 )
+2d/snapping/use_gpu_pixel_snap=true

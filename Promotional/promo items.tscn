@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://sprites/items.png" type="Texture" id=1]
+[ext_resource path="res://Promotional/Sprite.gd" type="Script" id=2]
+[ext_resource path="res://sprites/character/pj3.png" type="Texture" id=3]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 671.887, 306.511 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+vframes = 10
+hframes = 10
+frame = 1
+script = ExtResource( 2 )
+ini_frame = [ 1, 3, 4, 5, 7, 11 ]
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 393.062, 463.894 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+vframes = 10
+hframes = 10
+frame = 1
+script = ExtResource( 2 )
+ini_frame = [ 13, 38, 16, 80, 82 ]
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( 628.207, 459.372 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+vframes = 10
+hframes = 10
+frame = 1
+script = ExtResource( 2 )
+ini_frame = [ 36, 22, 62, 61, 64 ]
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( 320.709, 275.477 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+vframes = 10
+hframes = 10
+frame = 1
+script = ExtResource( 2 )
+ini_frame = [ 30, 31, 25, 41, 56 ]
+
+[node name="Sprite5" type="Sprite" parent="."]
+position = Vector2( 515.482, 133.662 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+vframes = 10
+hframes = 10
+frame = 1
+script = ExtResource( 2 )
+ini_frame = [ 53, 52, 50, 42, 44 ]
+
+[node name="pj3" type="Sprite" parent="."]
+position = Vector2( 490.946, 305.554 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 3 )
+
+[node name="items" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1961.68, 320.524 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )

@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://0Scenes/old_MenuPrincipal/menu_principal.gd" type="Script" id=1]
+[ext_resource path="res://Game/AndroidUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sprites/fondo.jpg" type="Texture" id=3]
+[ext_resource path="res://sprites/nm_fondo.png" type="Texture" id=4]
+[ext_resource path="res://0Scenes/old_MenuPrincipal/pointer.gd" type="Script" id=5]
+[ext_resource path="res://sprites/light.png" type="Texture" id=6]
+[ext_resource path="res://Fonts/menup_font.tres" type="DynamicFont" id=7]
+
+
+
+
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="AndroidUI" parent="." instance=ExtResource( 2 )]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2( -2.896, 0 )
+color = Color( 0.27451, 0.27451, 0.27451, 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -10.38, 0 )
+scale = Vector2( 1.1, 1.15 )
+texture = ExtResource( 3 )
+normal_map = ExtResource( 4 )
+centered = false
+
+[node name="pointer" type="Node2D" parent="."]
+position = Vector2( 511.342, 345.065 )
+script = ExtResource( 5 )
+
+[node name="Light2D" type="Light2D" parent="pointer"]
+position = Vector2( -4.1011, 2.05054 )
+scale = Vector2( 1.5, 1.3 )
+texture = ExtResource( 6 )
+color = Color( 0.968627, 1, 0.482353, 1 )
+energy = 3.0
+range_height = 100.0
+shadow_color = Color( 0, 0, 0, 1 )
+
+[node name="Tween" type="Tween" parent="pointer"]
+
+[node name="Buttons" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="btn1" type="Label" parent="Buttons"]
+margin_left = 412.179
+margin_top = 285.263
+margin_right = 606.179
+margin_bottom = 338.263
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.211765, 0.117647, 0.117647, 1 )
+text = "Fall to
+Dungeon"
+align = 1
+valign = 1
+
+[node name="btn2" type="Label" parent="Buttons"]
+margin_left = 70.8947
+margin_top = 368.737
+margin_right = 198.894
+margin_bottom = 405.737
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.247059, 0.160784, 0.160784, 1 )
+text = "Toggle
+FullScreen"
+align = 1
+valign = 1
+
+[node name="btn3" type="Label" parent="Buttons"]
+margin_left = 807.738
+margin_top = 401.369
+margin_right = 935.737
+margin_bottom = 438.369
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.247059, 0.160784, 0.160784, 1 )
+text = "Quit"
+align = 1
+valign = 1
+
+[node name="btn4" type="Label" parent="Buttons"]
+margin_left = 250.685
+margin_top = 73.632
+margin_right = 773.685
+margin_bottom = 154.632
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.247059, 0.160784, 0.160784, 1 )
+text = " Mole-Programmer    gmgandon-Music & Sfx
+Collabs: InBreadFairy + TheIcySpark + Mustard"
+align = 1
+valign = 1

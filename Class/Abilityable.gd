@@ -24,7 +24,7 @@ func get_all_habs():
 	for h in baseHabs:
 		fullHabs[h]=fullHabs.get(h,0)+baseHabs[h]
 	for h in objectHabs:
-		fullHabs[h]=fullHabs.get(h,0)+objectHabs[h]		
+		fullHabs[h]=fullHabs.get(h,0)+objectHabs[h]
 	return fullHabs
 
 func set_base_hab(CODE_HAB,cnt=0):

@@ -1,0 +1,29 @@
+{
+"//":"ARMAS MELEE",
+"WORM":{"min_dun":1,"max_dun":5,"sprite":"en_worm","name":"Gusano",
+	"attr":{"hp":1,"atk":1,"def":0,"dan":1,"stp":3}},
+
+"SPIDER":{"min_dun":1,"max_dun":4,"sprite":"en_spider","name":"Araña",
+	"attr":{"hp":1,"atk":1,"def":0,"dan":1,"stp":4}},
+
+"TRASGO":{"min_dun":4,"max_dun":8,"sprite":"en_trasgo","name":"Trasgo",
+	"attr":{"hp":3,"atk":1,"def":1,"dan":1,"stp":6}},
+
+"SPIDER_GIANT":{"min_dun":6,"max_dun":20,"sprite":"en_spider_giant","name":"Araña Gigante",
+	"attr":{"hp":3,"atk":1,"def":0,"dan":1,"stp":4},
+	"habs":{"VENENOSO":1}},
+	
+"SPIRIT":{"min_dun":8,"max_dun":20,"sprite":"en_spirit","name":"Espiritu",
+	"attr":{"hp":3,"atk":5,"def":10,"dan":1,"stp":4},
+	"habs":{"ETEREO":1}},
+
+"SKELETON":{"min_dun":10,"max_dun":20,"sprite":"en_skeleton","name":"Esqueleto",
+	"attr":{"hp":6,"atk":3,"def":2,"dan":2,"stp":5}},
+
+"DEAD":{"min_dun":10,"max_dun":20,"sprite":"en_dead","name":"Muerto",
+	"attr":{"hp":6,"atk":2,"def":2,"dan":1,"stp":4}},
+
+"WORM_GIANT":{"min_dun":10,"max_dun":20,"sprite":"en_worm_giant","name":"Gusano Gigante",
+	"attr":{"hp":8,"atk":2,"def":2,"dan":2,"stp":4}},
+
+}

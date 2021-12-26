@@ -1,0 +1,609 @@
+[gd_scene load_steps=55 format=2]
+
+[ext_resource path="res://Cinematics/Cinematic.gd" type="Script" id=1]
+[ext_resource path="res://Cinematics/cinematic_background.jpg" type="Texture" id=2]
+[ext_resource path="res://ui-styles/style-btn-normal.tres" type="StyleBox" id=3]
+[ext_resource path="res://ui-styles/style-btn-press.tres" type="StyleBox" id=4]
+[ext_resource path="res://Fonts/button_font.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Game/AndroidUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Game/Nav2D.gd" type="Script" id=7]
+[ext_resource path="res://sprites/tilesMap/auto_wall_dungeon.png" type="Texture" id=8]
+[ext_resource path="res://sprites/tileset.png" type="Texture" id=9]
+[ext_resource path="res://sprites/fog1.png" type="Texture" id=10]
+[ext_resource path="res://Game/player.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Game/DungeonGenerator.gd" type="Script" id=12]
+[ext_resource path="res://Game/DungeonCelular.gd" type="Script" id=13]
+[ext_resource path="res://Game/DungeonRooms.gd" type="Script" id=14]
+[ext_resource path="res://Game/PJMenu/UIMenu.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Game/Camera2D.gd" type="Script" id=16]
+[ext_resource path="res://sprites/select.png" type="Texture" id=17]
+[ext_resource path="res://Game/SelectPj.gd" type="Script" id=18]
+[ext_resource path="res://Game/UIControl.gd" type="Script" id=19]
+[ext_resource path="res://Fonts/dialog_font.tres" type="DynamicFont" id=20]
+[ext_resource path="res://sprites/uimenu/opts2.png" type="Texture" id=21]
+[ext_resource path="res://sprites/uimenu/map.png" type="Texture" id=22]
+[ext_resource path="res://sprites/uimenu/skip_tuto.png" type="Texture" id=23]
+[ext_resource path="res://Fonts/Manjari-Bold.otf" type="DynamicFontData" id=24]
+[ext_resource path="res://sprites/uimenu/ui_left.png" type="Texture" id=25]
+[ext_resource path="res://Fonts/ui-hp-pp-font.tres" type="DynamicFont" id=26]
+[ext_resource path="res://sprites/uimenu/ui_up.png" type="Texture" id=27]
+[ext_resource path="res://sprites/uimenu/ui_hp_bar.png" type="Texture" id=28]
+[ext_resource path="res://sprites/uimenu/ui_hp.png" type="Texture" id=29]
+[ext_resource path="res://Fonts/B612Mono-Regular.ttf" type="DynamicFontData" id=30]
+[ext_resource path="res://sprites/uimenu/ui_pp_bar.png" type="Texture" id=31]
+[ext_resource path="res://sprites/uimenu/ui_pp.png" type="Texture" id=32]
+[ext_resource path="res://Fonts/attr_labels.tres" type="DynamicFont" id=33]
+[ext_resource path="res://sprites/font.ttf" type="DynamicFontData" id=34]
+[ext_resource path="res://Fonts/Font death node.tres" type="DynamicFont" id=35]
+[ext_resource path="res://Game/DialogsManager.gd" type="Script" id=36]
+[ext_resource path="res://sprites/dialog.png" type="Texture" id=37]
+[ext_resource path="res://Sounds/SFX/diagfx.ogg" type="AudioStream" id=38]
+[ext_resource path="res://Game/TurnController.gd" type="Script" id=39]
+[ext_resource path="res://Game/EffectManager.gd" type="Script" id=40]
+[ext_resource path="res://Game/TilemapManager.gd" type="Script" id=41]
+[ext_resource path="res://Game/ItemsManager.gd" type="Script" id=42]
+[ext_resource path="res://Game/HabsManager.gd" type="Script" id=43]
+[ext_resource path="res://Game/EnemiesManager.gd" type="Script" id=44]
+[ext_resource path="res://Game/SoundsManager.gd" type="Script" id=45]
+[ext_resource path="res://Game/AttackManager.gd" type="Script" id=46]
+
+[sub_resource type="TileSet" id=1]
+0/name = "autotile_wall.png 0"
+0/texture = ExtResource( 8 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 96, 160 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 0
+0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 69, Vector2( 0, 1 ), 65, Vector2( 0, 2 ), 321, Vector2( 0, 3 ), 256, Vector2( 0, 4 ), 4, Vector2( 1, 0 ), 5, Vector2( 1, 1 ), 325, Vector2( 1, 2 ), 320, Vector2( 1, 3 ), 64, Vector2( 1, 4 ), 1, Vector2( 2, 0 ), 261, Vector2( 2, 1 ), 260, Vector2( 2, 2 ), 324, Vector2( 2, 3 ), 65, Vector2( 2, 4 ), 260 ]
+0/autotile/icon_coordinate = Vector2( 1, 0 )
+0/autotile/tile_size = Vector2( 32, 32 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "tileset.png 1"
+1/texture = ExtResource( 9 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 256, 32, 32, 32 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "tileset.png 2"
+2/texture = ExtResource( 9 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 256, 64, 32, 32 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "tileset.png 3"
+3/texture = ExtResource( 9 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 288, 64, 32, 32 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+4/name = "tileset.png 4"
+4/texture = ExtResource( 9 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 224, 96, 32, 32 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "tileset.png 5"
+5/texture = ExtResource( 9 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 256, 224, 32, 32 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+6/name = "tileset.png 6"
+6/texture = ExtResource( 9 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 224, 32, 32, 32 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
+
+[sub_resource type="TileSet" id=2]
+0/name = "fog1.png 0"
+0/texture = ExtResource( 10 )
+0/tex_offset = Vector2( -32, -32 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 96, 96 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+outline_size = 4
+outline_color = Color( 0.207843, 0.262745, 0.0196078, 1 )
+font_data = ExtResource( 24 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 23
+outline_size = 3
+outline_color = Color( 0.0862745, 0.0745098, 0.0745098, 1 )
+font_data = ExtResource( 30 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 22
+outline_size = 3
+outline_color = Color( 0.0862745, 0.0745098, 0.0745098, 1 )
+font_data = ExtResource( 30 )
+
+[sub_resource type="DynamicFont" id=6]
+outline_color = Color( 0.360784, 0.25098, 0.25098, 1 )
+font_data = ExtResource( 34 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 14
+outline_color = Color( 0.164706, 0.164706, 0.164706, 1 )
+font_data = ExtResource( 24 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 17
+outline_color = Color( 0.164706, 0.164706, 0.164706, 1 )
+font_data = ExtResource( 24 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Cinematic" type="CanvasLayer" parent="."]
+layer = 2
+script = ExtResource( 1 )
+
+[node name="blackground" type="Sprite" parent="Cinematic"]
+visible = false
+position = Vector2( 514.063, 315.596 )
+texture = ExtResource( 2 )
+
+[node name="lbl_skip" type="Node2D" parent="Cinematic"]
+visible = false
+z_index = 4096
+
+[node name="skip" type="Button" parent="Cinematic/lbl_skip"]
+anchor_bottom = 1.0
+margin_left = 475.0
+margin_top = 536.947
+margin_right = 575.0
+margin_bottom = 575.947
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 3 )
+text = "Saltar"
+
+[node name="AndroidUI" parent="." instance=ExtResource( 6 )]
+
+[node name="Nav2D" type="Navigation2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="TileMap" type="TileMap" parent="Nav2D"]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( -65535, 13, 1, 131077, 1, 0, 131078, 1, 0, 196613, 1, 0, 196614, 1, 0 )
+
+[node name="FogMap" type="TileMap" parent="Nav2D"]
+z_index = 110
+tile_set = SubResource( 2 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 4, 0, 0, 5, 0, 0, 6, 0, 0, 65540, 0, 0, 65542, 0, 0, 131076, 0, 0, 131078, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0 )
+
+[node name="Line2D" type="Line2D" parent="Nav2D"]
+width = 4.0
+default_color = Color( 0.431373, 0.462745, 0.447059, 1 )
+texture_mode = 7667807
+
+[node name="Player" parent="." instance=ExtResource( 11 )]
+position = Vector2( 289.975, 64.3511 )
+
+[node name="DungeonGenerator" type="Node2D" parent="."]
+script = ExtResource( 12 )
+
+[node name="DungeonCelular" type="Node2D" parent="."]
+script = ExtResource( 13 )
+
+[node name="DungeonRooms" type="Node2D" parent="."]
+script = ExtResource( 14 )
+
+[node name="RootMenu" parent="." instance=ExtResource( 15 )]
+position = Vector2( 517.133, 230.137 )
+z_index = 171
+
+[node name="Camera2D" type="Camera2D" parent="."]
+show_behind_parent = true
+position = Vector2( 514, 300 )
+current = true
+smoothing_enabled = true
+script = ExtResource( 16 )
+
+[node name="SelectPj" type="Sprite" parent="."]
+modulate = Color( 0.235294, 0.886275, 0.101961, 1 )
+position = Vector2( 971.162, 131.085 )
+z_index = 120
+texture = ExtResource( 17 )
+script = ExtResource( 18 )
+
+[node name="Label" type="Label" parent="SelectPj"]
+margin_left = -37.3746
+margin_top = 16.9354
+margin_right = 39.6254
+margin_bottom = 30.9354
+text = "10,10"
+align = 1
+
+[node name="UIControl" type="CanvasLayer" parent="."]
+script = ExtResource( 19 )
+
+[node name="scores_label" type="Label" parent="UIControl"]
+margin_left = 721.583
+margin_top = 57.409
+margin_right = 884.583
+margin_bottom = 86.409
+custom_colors/font_color = Color( 0.74902, 0.639216, 0.639216, 1 )
+custom_constants/line_spacing = 30
+custom_fonts/font = ExtResource( 20 )
+text = "320"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="turn_label" type="Label" parent="UIControl"]
+margin_left = 1074.29
+margin_top = 40.4481
+margin_right = 1391.29
+margin_bottom = 134.448
+custom_constants/line_spacing = 30
+text = "turn-label"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="button_options" type="TextureButton" parent="UIControl"]
+margin_left = 956.344
+margin_top = 20.3165
+margin_right = 1015.34
+margin_bottom = 63.3165
+focus_mode = 0
+shortcut_in_tooltip = false
+enabled_focus_mode = 0
+texture_normal = ExtResource( 21 )
+
+[node name="button_map" type="TextureButton" parent="UIControl"]
+margin_left = 901.561
+margin_top = 19.7058
+margin_right = 954.561
+margin_bottom = 60.7058
+focus_mode = 0
+shortcut_in_tooltip = false
+enabled_focus_mode = 0
+texture_normal = ExtResource( 22 )
+
+[node name="button_skip_tuto" type="TextureButton" parent="UIControl"]
+margin_left = 894.593
+margin_top = 63.0
+margin_right = 1014.59
+margin_bottom = 103.0
+focus_mode = 0
+shortcut_in_tooltip = false
+enabled_focus_mode = 0
+texture_normal = ExtResource( 23 )
+
+[node name="Label_Level" type="Label" parent="UIControl"]
+margin_left = 634.103
+margin_top = 20.9439
+margin_right = 882.097
+margin_bottom = 61.9439
+custom_colors/font_color = Color( 0.34902, 0.615686, 0.376471, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Profundidad 1"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GUI_STATS" type="Control" parent="UIControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ui_left" type="TextureRect" parent="UIControl/GUI_STATS"]
+margin_left = -2.59874
+margin_top = 82.5987
+margin_right = 113.401
+margin_bottom = 264.599
+texture = ExtResource( 25 )
+
+[node name="attr_rlbl" type="RichTextLabel" parent="UIControl/GUI_STATS/ui_left"]
+margin_left = 1.0
+margin_top = 38.4013
+margin_right = 108.0
+margin_bottom = 151.401
+custom_constants/line_separation = 3
+custom_fonts/normal_font = ExtResource( 26 )
+bbcode_enabled = true
+bbcode_text = "[color=#FFA] atk 20[/color]
+[color=#AAA] def 20[/color]
+[color=#FAA] dan 20[/color]
+[color=#AAF] pow 20[/color]"
+text = " atk 20
+ def 20
+ dan 20
+ pow 20"
+scroll_active = false
+
+[node name="ui_up" type="TextureRect" parent="UIControl/GUI_STATS"]
+margin_right = 185.0
+margin_bottom = 115.0
+texture = ExtResource( 27 )
+
+[node name="hp_bar" type="TextureProgress" parent="UIControl/GUI_STATS/ui_up"]
+margin_left = 35.2658
+margin_top = 32.7063
+margin_right = 195.266
+margin_bottom = 59.7063
+value = 80.0
+texture_under = ExtResource( 28 )
+texture_progress = ExtResource( 28 )
+tint_under = Color( 0, 0, 0, 1 )
+
+[node name="hp" type="TextureRect" parent="UIControl/GUI_STATS/ui_up"]
+margin_left = 13.2135
+margin_top = 21.8602
+margin_right = 43.2135
+margin_bottom = 51.8602
+rect_scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 29 )
+
+[node name="hp_lbl" type="Label" parent="UIControl/GUI_STATS/ui_up"]
+margin_left = 67.7064
+margin_top = 6.0
+margin_right = 197.706
+margin_bottom = 39.0
+rect_scale = Vector2( 1.1, 1.1 )
+custom_colors/font_color = Color( 1, 0.352941, 0.352941, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "12/18"
+
+[node name="pp_bar" type="TextureProgress" parent="UIControl/GUI_STATS/ui_up"]
+margin_left = 55.1198
+margin_top = 60.8033
+margin_right = 185.12
+margin_bottom = 86.8033
+value = 80.0
+texture_under = ExtResource( 31 )
+texture_progress = ExtResource( 31 )
+tint_under = Color( 0, 0, 0, 1 )
+
+[node name="pp" type="TextureRect" parent="UIControl/GUI_STATS/ui_up"]
+margin_left = 34.0
+margin_top = 52.0
+margin_right = 64.0
+margin_bottom = 82.0
+rect_scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 32 )
+
+[node name="pp_lbl" type="Label" parent="UIControl/GUI_STATS/ui_up"]
+margin_left = 70.2207
+margin_top = 84.0
+margin_right = 192.221
+margin_bottom = 112.0
+rect_scale = Vector2( 0.8, 0.8 )
+custom_colors/font_color = Color( 0.356863, 0.788235, 1, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "15/55"
+align = 2
+
+[node name="stp_lbl" type="Label" parent="UIControl/GUI_STATS/ui_up"]
+margin_left = 218.0
+margin_top = 3.0
+margin_right = 422.0
+margin_bottom = 31.0
+rect_scale = Vector2( 0.8, 0.8 )
+custom_colors/font_color = Color( 0.835294, 0.835294, 0.835294, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "o o o o o"
+
+[node name="states_label" type="Label" parent="UIControl/GUI_STATS"]
+margin_left = 14.2277
+margin_top = 265.0
+margin_right = 224.228
+margin_bottom = 487.0
+custom_colors/font_color = Color( 0, 0.917647, 0.4, 1 )
+custom_constants/line_spacing = 30
+custom_fonts/font = ExtResource( 33 )
+text = "ENVENENADO 3
+ENVENENADO 3
+ENVENENADO 3
+ENVENENADO 3"
+
+[node name="states_desc" type="Label" parent="UIControl/GUI_STATS"]
+margin_left = 23.7504
+margin_top = 279.325
+margin_right = 233.751
+margin_bottom = 501.325
+custom_colors/font_color = Color( 0.74902, 0.639216, 0.639216, 1 )
+custom_constants/line_spacing = 30
+custom_fonts/font = SubResource( 6 )
+text = "descripcion efecto
+descripcion efecto
+descripcion efecto
+descripcion efecto"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Botones" type="RichTextLabel" parent="UIControl"]
+margin_left = 877.0
+margin_top = 553.0
+margin_right = 1023.0
+margin_bottom = 606.0
+bbcode_enabled = true
+bbcode_text = "[color=#FFA]  [ x ] Accept
+     [ z ] Cancel [/color]"
+text = "  [ x ] Accept
+     [ z ] Cancel "
+
+[node name="Label_TurnOf" type="Label" parent="UIControl"]
+margin_left = 379.138
+margin_top = 6.99837
+margin_right = 627.138
+margin_bottom = 41.9984
+custom_colors/font_color = Color( 0.607843, 0.686275, 0.615686, 1 )
+custom_fonts/font = ExtResource( 35 )
+text = "is your turn"
+align = 1
+valign = 1
+
+[node name="Info_lines" type="GridContainer" parent="UIControl"]
+margin_left = 26.0
+margin_top = 539.0
+margin_right = 744.0
+margin_bottom = 596.0
+custom_constants/vseparation = 0
+
+[node name="Line1" type="Label" parent="UIControl/Info_lines"]
+margin_right = 172.0
+margin_bottom = 18.0
+custom_colors/font_color = Color( 0.741176, 0.788235, 0.74902, 0.301961 )
+custom_fonts/font = SubResource( 7 )
+text = "Bienvenido al dungeon"
+valign = 1
+
+[node name="Line2" type="Label" parent="UIControl/Info_lines"]
+margin_top = 18.0
+margin_right = 172.0
+margin_bottom = 36.0
+custom_colors/font_color = Color( 0.741176, 0.788235, 0.74902, 0.67451 )
+custom_fonts/font = SubResource( 7 )
+text = "Bienvenido al dungeon"
+valign = 1
+
+[node name="Line3" type="Label" parent="UIControl/Info_lines"]
+margin_top = 36.0
+margin_right = 172.0
+margin_bottom = 57.0
+custom_colors/font_color = Color( 0.615686, 0.831373, 0.654902, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "Bienvenido al dungeon"
+valign = 1
+
+[node name="DialogsManager" type="Node2D" parent="UIControl"]
+z_index = 200
+script = ExtResource( 36 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UIControl/DialogsManager"]
+margin_left = 292.0
+margin_top = 93.0
+margin_right = 740.0
+margin_bottom = 267.0
+texture = ExtResource( 37 )
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="label" type="RichTextLabel" parent="UIControl/DialogsManager"]
+margin_left = 306.537
+margin_top = 109.463
+margin_right = 722.537
+margin_bottom = 420.463
+custom_fonts/normal_font = ExtResource( 20 )
+bbcode_enabled = true
+bbcode_text = "Texto de prueba Texto de prueba Texto de prueba Texto de prueba Texto de prueba Texto de prueba Texto de prueba Texto de prueba Texto de prueba "
+text = "Texto de prueba Texto de prueba Texto de prueba Texto de prueba Texto de prueba Texto de prueba Texto de prueba Texto de prueba Texto de prueba "
+
+[node name="SFX" type="AudioStreamPlayer" parent="UIControl/DialogsManager"]
+stream = ExtResource( 38 )
+
+[node name="TurnController" type="Node" parent="."]
+script = ExtResource( 39 )
+
+[node name="EffectManager" type="Node2D" parent="."]
+z_index = 120
+script = ExtResource( 40 )
+
+[node name="TilemapManager" type="Node" parent="."]
+script = ExtResource( 41 )
+
+[node name="ItemsManager" type="Node2D" parent="."]
+script = ExtResource( 42 )
+
+[node name="HabsManager" type="Node2D" parent="."]
+script = ExtResource( 43 )
+
+[node name="EnemiesManager" type="Node2D" parent="."]
+script = ExtResource( 44 )
+
+[node name="SoundsManager" type="Node2D" parent="."]
+script = ExtResource( 45 )
+
+[node name="AttackManager" type="Node2D" parent="."]
+script = ExtResource( 46 )

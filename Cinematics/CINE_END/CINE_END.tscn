@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Cinematics/CINE_END/CINE_END.gd" type="Script" id=1]
+[ext_resource path="res://Cinematics/cinematic_background.jpg" type="Texture" id=2]
+[ext_resource path="res://sprites/character/pj3.png" type="Texture" id=3]
+[ext_resource path="res://sprites/mano.png" type="Texture" id=4]
+[ext_resource path="res://Fonts/Manjari-Bold.otf" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+outline_size = 5
+outline_color = Color( 0.12549, 0.156863, 0.0196078, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 34
+outline_size = 5
+outline_color = Color( 0.12549, 0.156863, 0.0196078, 1 )
+font_data = ExtResource( 5 )
+
+[node name="CINE_INTRO" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 500.723, 299.815 )
+texture = ExtResource( 2 )
+
+[node name="img1" type="Sprite" parent="."]
+position = Vector2( 923.034, 509.656 )
+rotation = -0.349066
+scale = Vector2( 3.44737, 3.44737 )
+texture = ExtResource( 3 )
+flip_h = true
+
+[node name="img2" type="Sprite" parent="."]
+position = Vector2( 112.153, 132.515 )
+rotation = -0.263843
+scale = Vector2( 0.850094, 0.725313 )
+texture = ExtResource( 4 )
+
+[node name="txt1" type="Label" parent="."]
+margin_left = 256.367
+margin_top = 42.4454
+margin_right = 735.367
+margin_bottom = 108.445
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.964706, 0.537255, 0.713726, 1 )
+text = "Esto es todo por ahora!"
+align = 1
+
+[node name="txt2" type="Label" parent="."]
+margin_left = 337.792
+margin_top = 168.029
+margin_right = 994.792
+margin_bottom = 234.03
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.964706, 0.537255, 0.713726, 1 )
+text = "Has llegado al final de nuestro primera version del juego."
+align = 1
+
+[node name="txt3" type="Label" parent="."]
+margin_left = 37.83
+margin_top = 286.295
+margin_right = 890.83
+margin_bottom = 352.295
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.964706, 0.537255, 0.713726, 1 )
+text = "Fue un gran esfuerzo realizarlo y nos alegra que llegues hasta aqui"
+align = 1
+
+[node name="txt4" type="Label" parent="."]
+margin_left = 250.023
+margin_top = 389.571
+margin_right = 958.023
+margin_bottom = 455.571
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.964706, 0.537255, 0.713726, 1 )
+text = "Vamos a esforzarnos por seguir construyendo nuestro anelo"
+align = 1
+
+[node name="txt5" type="Label" parent="."]
+margin_left = 333.188
+margin_top = 504.757
+margin_right = 835.188
+margin_bottom = 570.757
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.964706, 0.537255, 0.713726, 1 )
+text = "Gracias por interesarte!"
+align = 1

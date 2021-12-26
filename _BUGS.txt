@@ -1,0 +1,24 @@
+BUGS!
+25/09---perdes turno cdo te chocas una pared 
+26/09---perdes turno cuando tiras un hechizo mal
+27/09---al equiparte algo que reduce pp recalcular q no se exceda el maximo pp hp
+26/09---quitar el efecto de la c ver mapa sin sombras
+25/09---cambiar que finalice al dungeon 7 al 15
+27/09---que los dungeons no crezcan demasiado
+23/09---si apretas la x despues de un boton canvas es como volver a apretarlo ff
+25/09---si apretas boton x mientras carga crashea
+28/09---la esencia cura hp en vez de pp
+
+--decirle al jugador que la partida se guarda cdo pasa de dungeon
+
+--la magia se esquiva con defenza
+
+--el espectro deberia tener ETEREO y no mucha defensa
+
+--ver el tema de los turnos y enemigos activos, solo pelea uno a la vez, o a veces les tiras magia y no reaccionan
+
+--el arco no anda, se tilda el juego
+
+--punteria o arqueria no toma el ataque, en la descripcion aparece raro
+
+--al hacer para un costado en una pared o enemigo no flipea la imagen
